@@ -169,6 +169,7 @@ const Signin = () => {
     // Toggle between forgotpassword and register
     const toggleForgotPasswordMode = () => {
         clearError(); // Clear the error when switching modes
+        window.scrollTo(0, 0);
     };
 
     // Toggle Remember Me checkbox
@@ -181,8 +182,7 @@ const Signin = () => {
     };
 
     // Register handler
-    const handleRegister = async (e) => {
-        e.preventDefault();
+    const handleRegister = async () => {
         try {
             await signup(email, password, name);
             window.scrollTo(0, 0);
@@ -193,8 +193,7 @@ const Signin = () => {
     };
 
     // Login handler
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         try {
             await login(email, password);
             window.scrollTo(0, 0);

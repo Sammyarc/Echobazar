@@ -10,8 +10,7 @@ const PasswordReset = () => {
 
     const {isLoading, forgotPassword, error, clearError} = useAuthStore();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         await forgotPassword(email);
         setIsSubmitted(true);
     };
@@ -80,7 +79,10 @@ const PasswordReset = () => {
             <div className='px-8 py-4  flex justify-center'>
                 <Link
                     to={"/signup"}
-                    onClick={clearError}
+                    onClick={() => {
+                        clearError(); // Call your clearError function
+                        window.scrollTo(0, 0); // Scroll to the top
+                    }}
                     className='text-[1vw] font-Poppins text-Primary hover:underline flex items-center'>
                     <GoArrowLeft className='text-[1.3vw] mr-2'/>
                     Back to Login
