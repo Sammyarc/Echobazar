@@ -34,9 +34,9 @@ const userSchema = new mongoose.Schema(
 		},
 		role: {
 			type: String,
-			enum: ['buyer', 'seller'], // Restrict role values to 'buyer' or 'seller'
+			enum: ['user', 'admin'], // Restrict role values to 'buyer' or 'seller'
 			required: true, // Ensure that a role is provided
-			default: 'buyer', // Default role can be 'buyer' if not specified
+			default: 'user', // Default role can be 'buyer' if not specified
 		},
 	},
 	{ timestamps: true }
