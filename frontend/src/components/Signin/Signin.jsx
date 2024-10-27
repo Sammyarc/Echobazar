@@ -313,7 +313,7 @@ const Signin = () => {
 
             {/* Submit button */}
             <button
-                className={`mt-[1vw] ${isLoading
+                className={`mt-[1vw] ${isLoading || (isRegister && !termsAccepted)
                     ? 'bg-Gray500 cursor-not-allowed'
                     : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[2.5vw] rounded-full`}
                 onClick={() => {
@@ -323,7 +323,7 @@ const Signin = () => {
                         handleLogin();
                     }
                 }}
-                disabled={isLoading}>
+                disabled={isLoading || (isRegister && !termsAccepted)}> {/* Disable if loading or terms are not accepted */}
                 {
                     isLoading
                         ? (
