@@ -4,10 +4,12 @@ import Home from './pages/Home'
 import Signup from './pages/Signup';
 import VerifyEmail from './pages/VerifyEmail';
 import {useAuthStore} from "./store/authStore";
-import {Toaster} from 'react-hot-toast';
 import LoadingSpinner from "./components/Spinner/LoadingSpinner";
 import Forgotpassword from "./pages/Forgotpassword";
 import Resetpassword from "./pages/Resetpassword";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import styles
+
 
 
 
@@ -73,7 +75,13 @@ const App = () => {
                 /> {/* catch all routes */}
                 <Route path='*' element={<Navigate to = '/' replace />}/>
             </Routes>
-            <Toaster/>
+            <ToastContainer
+                position="top-center" // Position of the toast notifications
+                autoClose={5000} // Duration for which the toast will be visible
+                hideProgressBar={false} // Show progress bar or not
+                closeOnClick // Close the toast on click
+                theme="light" // You can change this to "dark" if needed
+            />
         </Router>
     )
 }
