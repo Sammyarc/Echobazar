@@ -8,7 +8,7 @@ import {LuLoader2} from "react-icons/lu";
 import {useAuthStore} from "../../store/authStore";
 import Role from '../Popups/Role';
 import {GoogleLogin} from '@react-oauth/google';
-import toast from "react-hot-toast";
+import {toast} from 'react-toastify';
 
 import axios from "axios";
 
@@ -73,15 +73,7 @@ const Signin = () => {
             }
         } catch (error) {
             console.error("Error during Google Sign-In:", error);
-            toast.error("Failed to sign in. Please try again.", {
-                position: toast.POSITION.TOP_CENTER,
-                style: {
-                    width: '60%',
-                    margin: '0', // Remove default margin if needed
-                    padding: '10px', // Adjust padding if necessary
-                    boxSizing: 'border-box', // Make sure padding is included in total width
-                }
-            });
+            toast.error("Failed to sign in. Please try again.");
         }
     };
 
@@ -118,15 +110,7 @@ const Signin = () => {
                 navigate("/"); // Redirect to home
             } catch (error) {
                 console.error("Error during role-based Google Sign-In:", error);
-                toast.error("Google Sign-In failed. Please try again.", {
-                    position: toast.POSITION.TOP_CENTER,
-                    style: {
-                        width: '60%',
-                        margin: '0', // Remove default margin if needed
-                        padding: '10px', // Adjust padding if necessary
-                        boxSizing: 'border-box', // Make sure padding is included in total width
-                    }
-                });
+                toast.error("Google Sign-In failed. Please try again.");
             }
         }
         setIsRoleSelectionVisible(false); // Hide role selection modal
@@ -134,15 +118,7 @@ const Signin = () => {
 
     const handleGoogleLoginError = () => {
         console.error("Google Sign-In failed");
-        toast.error("Google Sign-In failed. Please try again.", {
-            position: toast.POSITION.TOP_CENTER,
-            style: {
-                width: '60%',
-                margin: '0', // Remove default margin if needed
-                padding: '10px', // Adjust padding if necessary
-                boxSizing: 'border-box', // Make sure padding is included in total width
-            }
-        });
+        toast.error("Google Sign-In failed. Please try again.");
     };
 
     // Function to toggle password visibility
@@ -185,8 +161,8 @@ const Signin = () => {
     const handleRegister = async () => {
         try {
             await signup(email, password, name);
-            window.scrollTo(0, 0);
             navigate("/verify-email");
+            window.scrollTo(0, 0);
         } catch (error) {
             console.log(error);
         }
@@ -196,8 +172,8 @@ const Signin = () => {
     const handleLogin = async () => {
         try {
             await login(email, password);
-            window.scrollTo(0, 0);
             navigate("/");
+            window.scrollTo(0, 0);
         } catch (error) {
             console.log(error);
         }
@@ -221,7 +197,7 @@ const Signin = () => {
                     <div className="relative mt-[1vw]">
                         <input
                             type="text"
-                            placeholder="Name"
+                            placeholder="Full Name"
                             value={name}
                             className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
                             onChange={(e) => setName(e.target.value)}/>
@@ -270,40 +246,15 @@ const Signin = () => {
             {/* Role selection for registration */}
             {
                 isRegister && (
-                    <div className="mt-[1vw]">
-                        <label className="text-[1vw] text-Gray700 font-Poppins mb-[0.5vw]">What do you intend to use our platform as?</label>
-                        <div className="flex space-x-4 mt-[0.5vw]">
-                            <label className="flex items-center space-x-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    value="buyer"
-                                    checked={role === 'buyer'}
-                                    onChange={(e) => setRole(e.target.value)}
-                                    className="hidden peer"/>
-                                <div
-                                    className="w-[1.2vw] h-[1.2vw] rounded-full border-[0.1vw] border-gray-500 bg-gray-200 peer-checked:bg-Primary flex items-center justify-center cursor-pointer">
-                                    {role === 'buyer' && <div className="w-[0.6vw] h-[0.6vw] bg-white rounded-full"></div>}
-                                </div>
-                                <span className="ml-2 font-Poppins text-Gray700 text-[1vw]">Buyer</span>
-                            </label>
-
-                            <label className="flex items-center space-x-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    value="seller"
-                                    checked={role === 'seller'}
-                                    onChange={(e) => setRole(e.target.value)}
-                                    className="hidden peer"/>
-                                <div
-                                    className="w-[1.2vw] h-[1.2vw] rounded-full border-[0.1vw] border-gray-500 bg-gray-200 peer-checked:bg-Primary flex items-center justify-center cursor-pointer">
-                                    {role === 'seller' && <div className="w-[0.6vw] h-[0.6vw] bg-white rounded-full"></div>}
-                                </div>
-                                <span className="ml-2 font-Poppins text-Gray700 text-[1vw]">Seller</span>
-                            </label>
-
-                        </div>
+                    <div className="mt-[1vw] flex flex-col gap-1">
+                        <label className="text-[1vw] text-Gray700 font-Poppins">Select Your Role:</label>
+                        <select
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            className="w-[30%] mt-[0.5vw] border border-gray-300 rounded-md p-1 font-Poppins text-Gray700 text-[1vw]">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
                     </div>
                 )
             }
@@ -371,7 +322,6 @@ const Signin = () => {
                     } else {
                         handleLogin();
                     }
-                    window.scrollTo(0, 0);
                 }}
                 disabled={isLoading}>
                 {
@@ -401,11 +351,16 @@ const Signin = () => {
                     <span className='text-Gray700 text-[1vw] font-Poppins'>OR</span>
                     <div className="flex-1 border-t border-Gray300 ml-2"></div>
                 </div>
-                <GoogleLogin onSuccess={handleGoogleLoginSuccess} onError={handleGoogleLoginError} useOneTap={true} theme="outline" text="Sign in with Google" shape="rectangular" style={{
+                <GoogleLogin
+                    onSuccess={handleGoogleLoginSuccess}
+                    onError={handleGoogleLoginError}
+                    useOneTap={true}
+                    theme="outline"
+                    text="Sign in with Google"
+                    shape="rectangular"
+                    style={{
                         width: '100%'
-                    }}
-                    // Set width with inline styling or through a CSS class
-                />
+                    }}/>
 
             </div>
 
