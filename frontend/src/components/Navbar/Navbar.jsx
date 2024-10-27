@@ -81,6 +81,18 @@ const Navbar = () => {
         };
     }, []);
 
+    const date = new Date();
+    const hours = date.getHours();
+
+    let timeOfDay 
+
+    if (hours < 12) {
+        timeOfDay = "morning"
+    } else if (hours >= 12 && hours <= 17) {
+        timeOfDay = "Afternoon"
+    } else {
+        timeOfDay = "Evening"
+    }
 
 
     return (
@@ -153,7 +165,7 @@ const Navbar = () => {
                     {isAuthenticated ? (
                         <div className="flex items-center space-x-3 mt-[1vw] md:mt-[0vw]">
                             <span className="font-Poppins text-[4.2vw] md:text-[1.1vw] text-Gray600">
-                                Welcome, {user?.name}
+                            Good {timeOfDay}, {user?.name}
                             </span>
                             <button
                                 className="font-Poppins text-[4.2vw] md:text-[1.1vw] text-Gray600 hover:underline"
