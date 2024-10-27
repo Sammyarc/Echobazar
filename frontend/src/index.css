@@ -11,6 +11,15 @@
   }
 }
 
+.Toastify__toast-container {
+  width: auto; 
+  margin: 0 auto;
+}
+
+.Toastify__toast {
+  width: 100%; /* Ensures each toast takes full width */
+}
+
 body {
   background-color: #ffffff;
 }
