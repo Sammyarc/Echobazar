@@ -10,18 +10,18 @@ const Role = ({ onClose, onSelectRole }) => {
                     <button
                         className="bg-Primary text-white px-4 py-2 rounded font-Poppins"
                         onClick={() => {
-                            onSelectRole('buyer');
+                            onSelectRole('user');
                             onClose();
                         }}>
-                        Buyer
+                        User
                     </button>
                     <button
                         className="bg-Primary text-white px-4 py-2 rounded font-Poppins"
                         onClick={() => {
-                            onSelectRole('seller');
+                            onSelectRole('admin');
                             onClose();
                         }}>
-                        Seller
+                        Admin
                     </button>
                 </div>
             </div>
