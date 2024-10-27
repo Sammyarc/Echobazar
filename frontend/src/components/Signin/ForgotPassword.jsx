@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useAuthStore} from "../../store/authStore";
 import {useNavigate, useParams} from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import {FaEye, FaEyeSlash, FaSpinner} from 'react-icons/fa';
 
 const ForgotPassword = () => {
@@ -31,45 +31,18 @@ const ForgotPassword = () => {
 
         // Check if the password or confirm password fields are empty
         if (!password || !confirmPassword) {
-            toast.error("Both password fields are required", {
-				position: toast.POSITION.TOP_CENTER,
-				style: {
-					width: '60%',
-					margin: '0',  // Remove default margin if needed
-					padding: '10px',  // Adjust padding if necessary
-					boxSizing: 'border-box',  // Make sure padding is included in total width
-				},
-			});
+            toast.error("Both password fields are required");
             return;
         }
 
         if (password !== confirmPassword) {
-            toast.error("Passwords do not match", {
-				position: toast.POSITION.TOP_CENTER,
-				style: {
-					width: '60%',
-					margin: '0',  // Remove default margin if needed
-					padding: '10px',  // Adjust padding if necessary
-					boxSizing: 'border-box',  // Make sure padding is included in total width
-				},
-			});
+            toast.error("Passwords do not match");
             return;
         }
         try {
             await resetPassword(token, password);
-
-            toast.success("Password reset successfully, redirecting to login page...", {
-				position: toast.POSITION.TOP_CENTER,
-				style: {
-					width: '60%',
-					margin: '0',  // Remove default margin if needed
-					padding: '10px',  // Adjust padding if necessary
-					boxSizing: 'border-box',  // Make sure padding is included in total width
-				},
-			});
-            setTimeout(() => {
+            toast.success("Password reset successfully, login to continue");
                 navigate("/signup");
-            }, 3000);
         } catch (error) {
             console.error(error);
             toast.error(error.message || "Error resetting password");
