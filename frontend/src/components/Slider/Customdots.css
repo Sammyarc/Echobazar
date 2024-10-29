@@ -8,8 +8,8 @@
   }
   
   .slick-dots .dot {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background-color: #d1d5db; /* Light gray for inactive dots */
     border: none;
@@ -21,8 +21,8 @@
   
   .slick-dots .dot.slick-active {
     background-color: #00B207; /* Active dot color */
-    width: 25px; /* Increased width for active dot */
-    height: 10px; /* Keep height for active dot */
+    width: 15px; /* Increased width for active dot */
+    height: 7px; /* Keep height for active dot */
     border-radius: 5px; /* Round edges for active dot */
   }
   
