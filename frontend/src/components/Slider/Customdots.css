@@ -1,0 +1,28 @@
+/* Custom slick dots */
+.slick-dots {
+    position: relative;
+    bottom: -10px;
+    display: flex !important;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .slick-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #d1d5db; /* Light gray for inactive dots */
+    border: none;
+    padding: 0;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, width 0.3s ease; /* Smooth transition for size and color */
+  }
+  
+  .slick-dots .dot.slick-active {
+    background-color: #00B207; /* Active dot color */
+    width: 25px; /* Increased width for active dot */
+    height: 10px; /* Keep height for active dot */
+    border-radius: 5px; /* Round edges for active dot */
+  }
+  
