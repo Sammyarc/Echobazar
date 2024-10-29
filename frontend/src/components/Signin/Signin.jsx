@@ -4,6 +4,7 @@ import PasswordStrengthMeter from "../PasswordStrengthMeter/PasswordStregthMeter
 import {PiUserLight} from "react-icons/pi";
 import {GoMail} from "react-icons/go";
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
+import { MdErrorOutline } from "react-icons/md";
 import {LuLoader2} from "react-icons/lu";
 import {useAuthStore} from "../../store/authStore";
 import Role from '../Popups/Role';
@@ -181,9 +182,9 @@ const Signin = () => {
 
     return (
         <div
-            className='w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl p-[2vw] rounded-[0.5vw]'>
+            className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
             <h2
-                className='text-center font-Poppins text-[2vw] font-semibold text-Gray900 mb-[1vw]'>
+                className='text-center font-Poppins text-[6vw] md:text-[2vw] font-semibold text-Gray900 mb-[1vw]'>
                 {
                     isRegister
                         ? 'Create Account'
@@ -194,51 +195,51 @@ const Signin = () => {
             {/* Name input only visible in register mode */}
             {
                 isRegister && (
-                    <div className="relative mt-[1vw]">
+                    <div className="relative mt-[3vw] md:mt-[1vw]">
                         <input
                             type="text"
                             placeholder="Full Name"
                             value={name}
-                            className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                            className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
                             onChange={(e) => setName(e.target.value)}/>
-                        <div className="absolute inset-y-0 right-[1vw] flex items-center">
-                            <PiUserLight className="fa fa-user text-Gray600 text-[1.3vw]"/>
+                        <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
+                            <PiUserLight className="fa fa-user text-Gray600 md:text-[1.3vw]"/>
                         </div>
                     </div>
                 )
             }
 
             {/* Email input */}
-            <div className="relative mt-[1vw]">
+            <div className="relative mt-[3vw] md:mt-[1vw]">
                 <input
                     type="email"
                     placeholder="Email"
                     value={email}
-                    className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                    className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setEmail(email.toLowerCase())}/>
-                <div className="absolute inset-y-0 right-[1vw] flex items-center">
-                    <GoMail className="text-Gray600 text-[1.3vw]"/>
+                <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
+                    <GoMail className="text-Gray600 md:text-[1.3vw]"/>
                 </div>
             </div>
 
             {/* Password input */}
-            <div className="relative mt-[1vw]">
+            <div className="relative mt-[3vw] md:mt-[1vw]">
                 <input
                     type={isPasswordVisible
                         ? 'text'
                         : 'password'}
                     placeholder="Password"
                     value={password}
-                    className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                    className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
                     onChange={(e) => setPassword(e.target.value)}/>
                 <div
-                    className="absolute inset-y-0 right-[1vw] flex items-center cursor-pointer"
+                    className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
                     onClick={togglePasswordVisibility}>
                     {
                         isPasswordVisible
-                            ? <FaEyeSlash className="text-Gray600 text-[1.3vw]"/>
-                            : <FaEye className="text-Gray600 text-[1.3vw]"/>
+                            ? <FaEyeSlash className="text-Gray600 md:text-[1.3vw]"/>
+                            : <FaEye className="text-Gray600 md:text-[1.3vw]"/>
                     }
                 </div>
             </div>
@@ -246,12 +247,12 @@ const Signin = () => {
             {/* Role selection for registration */}
             {
                 isRegister && (
-                    <div className="mt-[1vw] flex flex-col gap-1">
-                        <label className="text-[1vw] text-Gray700 font-Poppins">Select Your Role:</label>
+                    <div className="mt-[3vw] md:mt-[1vw] flex flex-col gap-1">
+                        <label className="text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins">Select Your Role:</label>
                         <select
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
-                            className="w-[30%] mt-[0.5vw] border border-gray-300 rounded-md p-1 font-Poppins text-Gray700 text-[1vw]">
+                            className="w-[30%] mt-[0.5vw] border border-gray-300 rounded-md p-1 font-Poppins text-Gray700 text-[3.5vw] md:text-[1vw]">
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                         </select>
@@ -268,13 +269,13 @@ const Signin = () => {
             }
 
             {/* Show error only for the specific mode */}
-            {error && <p className='text-red-500 font-medium text-[1vw] mt-2 font-Poppins'>{error}</p>}
+            {error && <p className='text-red-500 flex items-center gap-1 font-medium text-[4vw] md:text-[1vw] mt-2 font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1vw]'/> {error}</p>}
 
             {/* Password Strength Meter only in register mode */}
             {isRegister && <PasswordStrengthMeter password={password}/>}
 
             {/* Checkbox for "Remember Me" or "Terms Acceptance" */}
-            <div className="flex justify-between items-center mt-[1vw]">
+            <div className="flex justify-between items-center mt-[3vw] md:mt-[1vw]">
                 {
                     isRegister
                         ? (
@@ -283,8 +284,8 @@ const Signin = () => {
                                     type="checkbox"
                                     checked={termsAccepted}
                                     onChange={handleTermsAcceptance}
-                                    className="h-[1vw] w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
-                                <span className="text-[0.9vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
+                                    className="h-[3vw] w-[3vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
+                                <span className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
                             </label>
                         )
                         : (
@@ -293,8 +294,8 @@ const Signin = () => {
                                     type="checkbox"
                                     checked={rememberMe}
                                     onChange={handleRememberMe}
-                                    className="h-[1vw] w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
-                                <span className="text-[0.9vw] text-Gray700 font-Poppins">Remember Me</span>
+                                    className="h-[4vw] w-[4vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
+                                <span className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins">Remember Me</span>
                             </label>
                         )
                 }
@@ -304,7 +305,7 @@ const Signin = () => {
                         <Link
                             to="/forgot-password"
                             onClick={toggleForgotPasswordMode}
-                            className="text-[0.9vw] text-Gray700 font-Poppins hover:underline">
+                            className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins hover:underline">
                             Forgot Password?
                         </Link>
                     )
@@ -313,9 +314,9 @@ const Signin = () => {
 
             {/* Submit button */}
             <button
-                className={`mt-[1vw] ${isLoading || (isRegister && !termsAccepted)
+                className={`mt-[4vw] md:mt-[1vw] ${isLoading || (isRegister && !termsAccepted)
                     ? 'bg-Gray500 cursor-not-allowed'
-                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[2.5vw] rounded-full`}
+                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[10vw] md:h-[2.5vw] rounded-lg md:rounded-full`}
                 onClick={() => {
                     if (isRegister) {
                         handleRegister();
@@ -345,10 +346,10 @@ const Signin = () => {
             </button>
 
             {/* Sign in with Google button */}
-            <div className="flex flex-col mt-[1vw]">
-                <div className="flex items-center mb-[1vw]">
+            <div className="flex flex-col mt-[4vw] md:mt-[1vw]">
+                <div className="flex items-center mb-[4vw] md:mb-[1vw]">
                     <div className="flex-1 border-t border-Gray300 mr-2"></div>
-                    <span className='text-Gray700 text-[1vw] font-Poppins'>OR</span>
+                    <span className='text-Gray700 text-[3.5vw] md:text-[1vw] font-Poppins'>OR</span>
                     <div className="flex-1 border-t border-Gray300 ml-2"></div>
                 </div>
                 <GoogleLogin
@@ -370,7 +371,7 @@ const Signin = () => {
                     toggleMode();
                     window.scrollTo(0, 0);
                 }}
-                className='mt-[1vw] text-[0.9vw] font-Poppins'>
+                className='mt-[4vw] md:mt-[1vw] text-[3.5vw] md:text-[0.9vw] font-Poppins'>
                 {
                     isRegister
                         ? 'Already have an account? Login'

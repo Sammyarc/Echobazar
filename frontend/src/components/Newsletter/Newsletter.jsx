@@ -11,8 +11,7 @@ const Newsletter = () => {
                     <div className="md:w-[35vw]">
                         <h3 className="text-[5vw] md:text-[2vw] font-semibold font-Poppins">Subscribe to our Newsletter</h3>
                         <p className="text-Gray500 text-[3.6vw] md:text-[1vw] mt-2 font-Poppins">
-                            Pellentesque eu nibh eget mauris congue mattis nec et felis. Proin dapibus
-                            imperdiet odio et magna.
+                        Stay in the loop with our latest updates! Sign up for our newsletter to get exclusive offers, helpful tips, and fresh news delivered straight to your inbox.
                         </p>
                     </div>
                     <div
@@ -20,10 +19,10 @@ const Newsletter = () => {
                         <div className="relative w-full md:w-auto">
                             <input
                                 type="email"
-                                className="w-full md:w-[30vw] py-3 px-4 pr-32 text-Gray900  rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500"
+                                className="w-[90vw] md:w-[30vw] py-3 px-4 pr-32 text-Gray900 rounded-lg md:rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500"
                                 placeholder="Your email address"/>
                             <button
-                                className="absolute right-0 top-0 bottom-0 bg-Primary font-semibold text-white rounded-full px-[5vw] md:px-[2vw]">
+                                className="absolute right-0 top-0 bottom-0 bg-Primary font-semibold text-white rounded-r-lg md:rounded-full px-[5vw] md:px-[2vw]">
                                 Subscribe
                             </button>
                         </div>

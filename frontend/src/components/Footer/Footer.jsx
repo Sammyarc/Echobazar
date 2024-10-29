@@ -20,6 +20,8 @@ const Footer = () => {
         }
     ];
 
+    const year = new Date().getFullYear();
+
     return (
         <footer className="bg-Gray900 text-gray-400 py-5 md:py-12">
             <div className="px-[2vw] md:px-[8vw]">
@@ -27,9 +29,10 @@ const Footer = () => {
                     {/* Logo and contact section */}
                     <div className="md:w-[25%]">
                         {/* logo */}
-                        <img src={Logo}/>
-                        <p className="md:text-[1vw] mb-4 mt-[0.5vw] font-Poppins">
-                        Shop fresh, quality food delivered to your door. We make grocery shopping simple, so you can enjoy more of what matters.
+                        <img src={Logo} className='w-[40vw] h-[10vw] md:w-[15vw] md:h-[5vw]'/>
+                        <p className="text-[3.5vw] md:text-[1vw] mb-3 mt-[0.5vw] font-Poppins">
+                            Shop fresh, quality food delivered to your door. We make grocery shopping
+                            simple, so you can enjoy more of what matters.
                         </p>
                         <div className="flex items-center gap-3 mb-2">
                             <span className="mr-2 border-b-2 border-Primary pb-[0.5vw]">(219) 555-0114</span>
@@ -41,38 +44,40 @@ const Footer = () => {
                     </div>
 
                     {/* Links sections */}
-                    {
-                        footerSections.map((section) => (
-                            <div key={section.title} className='flex flex-col justify-between'>
-                                <h3 className="text-white font-semibold mb-2 font-Poppins">{section.title}</h3>
-                                <ul>
-                                    {
-                                        section
-                                            .links
-                                            .map((link) => (
-                                                <li key={link} className="mb-2">
-                                                    <Link to={`/${link
-                                                            .replace(/\s+/g, '-')
-                                                            .toLowerCase()}`}
-                                                        // Creates a slug for each link
-                                                        className="hover:text-White text-[0.9vw] transition-colors font-Poppins">
-                                                        {link}
-                                                    </Link>
-                                                </li>
-                                            ))
-                                    }
-                                </ul>
-                            </div>
-                        ))
-                    }
+                    <div className="grid grid-cols-2 gap-4 md:gap-20 md:grid-cols-4">
+                        {
+                            footerSections.map((section) => (
+                                <div key={section.title} className="flex flex-col mt-[2vw]">
+                                    <h3 className="text-white font-semibold mb-2 font-Poppins text-[4vw] md:text-[1vw] ">{section.title}</h3>
+                                    <ul>
+                                        {
+                                            section
+                                                .links
+                                                .map((link) => (
+                                                    <li key={link} className="mb-2">
+                                                        <Link to={`/${link
+                                                                .replace(/\s+/g, '-')
+                                                                .toLowerCase()}`}
+                                                            // Creates a slug for each link
+                                                            className="hover:text-white text-[3.5vw] md:text-[0.9vw]  transition-colors font-Poppins">
+                                                            {link}
+                                                        </Link>
+                                                    </li>
+                                                ))
+                                        }
+                                    </ul>
+                                </div>
+                            ))
+                        }
+                    </div>
 
                 </div>
 
                 {/* Bottom section with copyright and payment methods */}
                 <div
-                    className="border-t border-Gray700 mt-8 pt-8 flex flex-row justify-center items-center">
-                    <p className="text-[1vw] mb-4 md:mb-0 font-Poppins">
-                        Ecobazar eCommerce © 2024. All Rights Reserved
+                    className="border-t border-Gray700 mt-8 pt-4 flex flex-row justify-center items-center md:pt-8">
+                    <p className="text-[3.5vw] md:text-[1vw] font-Poppins">
+                        Ecobazar eCommerce © {year}. All Rights Reserved
                     </p>
                 </div>
             </div>
