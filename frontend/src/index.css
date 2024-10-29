@@ -32,3 +32,29 @@ body {
   background-size: contain;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .search-input::-webkit-search-cancel-button {
+    height: 6vw;
+    width: 6vw;
+  }
+}
+
+
+.slide1 {
+  background-image: url('../src/assets/Heroimg-1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.slide2 {
+  background-image: url('../src/assets/Hero-2.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.slide3 {
+  background-image: url('../src/assets/Hero-3.png');
+  background-size: cover;
+  background-position: center;
+}
