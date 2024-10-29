@@ -71,7 +71,7 @@ const CategoryCard = ({name, image, link}) => {
     return (
         <a
             href={link}
-            className="p-[0.5vw] md:w-[12vw] md:h-[12vw] border border-Gray100 rounded-lg md:p-[0.2vw] transition-all duration-300 hover:border-Primary hover:shadow-xl hover:text-Primary">
+            className="p-[0.5vw] h-[28vw] md:w-[12vw] md:h-[12vw] border border-Gray100 rounded-lg md:p-[0.2vw] transition-all duration-300 hover:border-Primary hover:shadow-xl hover:text-Primary">
             <img src={image} alt={name} className="w-full md:w-[100vw] object-contain mb-[0.5vw]"/>
             <p className="text-[3vw] md:text-[1vw] text-center font-medium font-Poppins">{name}</p>
         </a>
@@ -82,7 +82,7 @@ const ProductCategories = () => {
     return (
         <div>
             <section className='md:mt-[3vw] mt-[6vw] px-[2vw] md:px-[8vw]'>
-                <div className='flex justify-between items-center mb-[0.7vw]'>
+                <div className='flex justify-between items-center mb-[3vw] md:mb-[0.7vw]'>
                     <h2 className='font-Poppins text-[5vw] md:text-[2vw] font-semibold'>Popular Categories</h2>
                     <Link to='/' className='flex gap-1 md:gap-2 items-center text-Primary font-Poppins text-[3.5vw] md:text-[1.2vw]'>View All <BsArrowRight className='text-[4vw] md:text-[1.2vw]'/></Link>
                 </div>
