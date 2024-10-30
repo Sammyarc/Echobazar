@@ -53,12 +53,12 @@ const NewProducts = () => {
         <div>
             <section className='mt-[6vw] md:mt-[3vw] px-[2vw] md:px-[8vw]'>
                 <div className='flex justify-between items-center mb-[0.7vw]'>
-                    <h2 className='font-Poppins text-[5vw] md:text-[2vw] font-semibold'>New Products</h2>
-                    <Link to='/' className='flex gap-1 md:gap-2 items-center text-Primary text-[3.5vw] md:text-[1.2vw] font-Poppins'>View All
+                    <h2 className='font-Poppins text-[6vw] md:text-[2vw] font-semibold'>New Products</h2>
+                    <Link to='/' className='flex gap-1 md:gap-2 items-center text-Primary text-[4vw] md:text-[1.2vw] font-Poppins'>View All
                         <BsArrowRight className='text-[4vw] md:text-[1.2vw]'/></Link>
                 </div>
                 <div
-                    className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    className="grid grid-cols-2 md:grid-cols-5 gap-4 md:mt-[1vw] mt-[6vw]">
                     {products.map((product) => (<ProductCard key={product.id} product={product}/>))}
                 </div>
             </section>

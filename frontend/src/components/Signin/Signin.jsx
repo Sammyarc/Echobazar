@@ -184,11 +184,11 @@ const Signin = () => {
         <div
             className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
             <h2
-                className='text-center font-Poppins text-[6vw] md:text-[2vw] font-semibold text-Gray900 mb-[1vw]'>
+                className='text-center font-Poppins text-[7vw] md:text-[2.5vw] font-semibold text-Gray900 mb-[1vw]'>
                 {
                     isRegister
                         ? 'Create Account'
-                        : 'Sign In'
+                        : 'Welcome Back!'
                 }
             </h2>
 
@@ -200,7 +200,7 @@ const Signin = () => {
                             type="text"
                             placeholder="Full Name"
                             value={name}
-                            className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                            className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                             onChange={(e) => setName(e.target.value)}/>
                         <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
                             <PiUserLight className="fa fa-user text-Gray600 md:text-[1.3vw]"/>
@@ -213,9 +213,11 @@ const Signin = () => {
             <div className="relative mt-[3vw] md:mt-[1vw]">
                 <input
                     type="email"
+                    name="email"
                     placeholder="Email"
+                    autoComplete="on"
                     value={email}
-                    className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setEmail(email.toLowerCase())}/>
                 <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
@@ -231,7 +233,7 @@ const Signin = () => {
                         : 'password'}
                     placeholder="Password"
                     value={password}
-                    className='w-full outline-none border border-Gray100 px-[2vw] py-[2vw] md:px-[1vw] md:py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                     onChange={(e) => setPassword(e.target.value)}/>
                 <div
                     className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
@@ -248,11 +250,11 @@ const Signin = () => {
             {
                 isRegister && (
                     <div className="mt-[3vw] md:mt-[1vw] flex flex-col gap-1">
-                        <label className="text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins">Select Your Role:</label>
+                        <label className="text-[4vw] md:text-[1vw] text-Gray700 font-Poppins">Select Your Role:</label>
                         <select
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
-                            className="w-[30%] mt-[0.5vw] border border-gray-300 rounded-md p-1 font-Poppins text-Gray700 text-[3.5vw] md:text-[1vw]">
+                            className="w-[30%] mt-[0.5vw] border border-Gray300 rounded-md p-1 font-Poppins text-Gray700 text-[4vw] md:text-[1vw] focus:border-Primary outline-none">
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                         </select>
@@ -284,8 +286,8 @@ const Signin = () => {
                                     type="checkbox"
                                     checked={termsAccepted}
                                     onChange={handleTermsAcceptance}
-                                    className="h-[3vw] w-[3vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
-                                <span className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
+                                    className="h-[4.5vw] w-[4.5vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
+                                <span className="text-[4vw] md:text-[0.9vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
                             </label>
                         )
                         : (
@@ -294,8 +296,8 @@ const Signin = () => {
                                     type="checkbox"
                                     checked={rememberMe}
                                     onChange={handleRememberMe}
-                                    className="h-[4vw] w-[4vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
-                                <span className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins">Remember Me</span>
+                                    className="h-[4.5vw] w-[4.5vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
+                                <span className="text-[4vw] md:text-[0.9vw] text-Gray700 font-Poppins">Remember Me</span>
                             </label>
                         )
                 }
@@ -305,7 +307,7 @@ const Signin = () => {
                         <Link
                             to="/forgot-password"
                             onClick={toggleForgotPasswordMode}
-                            className="text-[3.5vw] md:text-[0.9vw] text-Gray700 font-Poppins hover:underline">
+                            className="text-[4vw] md:text-[0.9vw] text-Gray700 font-Poppins hover:underline">
                             Forgot Password?
                         </Link>
                     )
@@ -371,7 +373,7 @@ const Signin = () => {
                     toggleMode();
                     window.scrollTo(0, 0);
                 }}
-                className='mt-[4vw] md:mt-[1vw] text-[3.5vw] md:text-[0.9vw] font-Poppins'>
+                className='mt-[4vw] md:mt-[1vw] text-[4vw] md:text-[1vw] font-Poppins font-medium'>
                 {
                     isRegister
                         ? 'Already have an account? Login'

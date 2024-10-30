@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
 import toast from "react-hot-toast";
+import { MdErrorOutline } from "react-icons/md";
 
 const EmailVerificationPage = () => {
 	const [code, setCode] = useState(["", "", "", "", "", ""]);
@@ -71,11 +72,11 @@ const EmailVerificationPage = () => {
 	}, [code]);
 
 	return (
-		<div className='w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl p-[2vw] rounded-[0.5vw]'>
-				<h2 className='text-3xl font-bold mb-6 text-center text-Primary font-Poppins'>
+		<div className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
+				<h2 className='text-[6vw] md:text-[2vw] font-bold mb-6 text-center text-Primary font-Poppins'>
 					Verify Your Email
 				</h2>
-				<p className='text-center text-Gray700 font-Poppins mb-6'>Enter the 6-digit code sent to your email address.</p>
+				<p className='text-center text-[4vw] md:text-[1vw] text-Gray700 font-Poppins mb-6'>Enter the 6-digit code sent to your email address.</p>
 
 				<form onSubmit={handleSubmit} className='space-y-6'>
 					<div className='flex justify-between'>
@@ -92,11 +93,11 @@ const EmailVerificationPage = () => {
 							/>
 						))}
 					</div>
-					{error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
+					{error && <p className='text-red-500 flex items-center gap-1 font-medium text-[4vw] md:text-[1vw] font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1vw]'/> {error}</p>}
 					<button
 						type='submit'
 						disabled={isLoading || code.some((digit) => !digit)}
-						className='w-full bg-Primary hover:bg-HardPrimary text-White font-Poppins h-[3vw] rounded-full  disabled:bg-Gray300 disabled:cursor-not-allowed'
+						className='w-full bg-Primary hover:bg-HardPrimary text-White font-Poppins h-[10vw] md:h-[3vw] rounded-full  disabled:bg-Gray300 disabled:cursor-not-allowed'
 					>
 						{isLoading ? "Verifying..." : "Verify Email"}
 					</button>

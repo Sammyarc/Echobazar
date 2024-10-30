@@ -21,48 +21,44 @@ const ProductGrid = () => {
 };
 
 // First grid - Sale Countdown 
+
 const SaleCountdownGrid = () => {
     const [timeLeft, setTimeLeft] = useState({
-        days: 24,
-        hours: 2,
-        mins: 20,
-        secs: 46
+        days: 0,
+        hours: 0,
+        mins: 0,
+        secs: 0
     });
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(prevTime => {
-                const newTime = { ...prevTime };
+        // Set the target end time (e.g., 24 days from now)
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 24);
 
-                // Check if seconds are greater than zero
-                if (newTime.secs > 0) {
-                    newTime.secs--;
-                } else {
-                    newTime.secs = 59; // Reset seconds
-                    if (newTime.mins > 0) {
-                        newTime.mins--;
-                    } else {
-                        newTime.mins = 59; // Reset minutes
-                        if (newTime.hours > 0) {
-                            newTime.hours--;
-                        } else {
-                            newTime.hours = 23; // Reset hours
-                            if (newTime.days > 0) {
-                                newTime.days--;
-                            } else {
-                                // Stop the timer when it reaches 0
-                                clearInterval(timer);
-                                return { days: 0, hours: 0, mins: 0, secs: 0 };
-                            }
-                        }
-                    }
-                }
+        const calculateTimeLeft = () => {
+            const now = new Date();
+            const difference = targetDate - now;
 
-                return newTime;
-            });
-        }, 1000);
+            if (difference > 0) {
+                setTimeLeft({
+                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                    mins: Math.floor((difference / 1000 / 60) % 60),
+                    secs: Math.floor((difference / 1000) % 60),
+                });
+            } else {
+                // Stop the timer when time is up
+                setTimeLeft({ days: 0, hours: 0, mins: 0, secs: 0 });
+                clearInterval(timer);
+            }
+        };
 
-        return () => clearInterval(timer); // Clean up timer on unmount
+        // Initial call to set countdown immediately
+        calculateTimeLeft();
+        const timer = setInterval(calculateTimeLeft, 1000);
+
+        // Clean up timer on unmount
+        return () => clearInterval(timer);
     }, []);
 
     return (
@@ -76,40 +72,22 @@ const SaleCountdownGrid = () => {
                 <h2 className="text-[7vw] md:text-[2.5vw] font-bold mb-2 text-center font-Poppins">Sale of the Month</h2>
 
                 <div className="flex justify-center text-center space-x-[1.2vw] mb-6 font-Poppins">
-                    <TimeUnit
-                        value={timeLeft
-                            .days
-                            .toString()
-                            .padStart(2, '0')}
-                        label="DAYS"/>
-                        <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
-                    <TimeUnit
-                        value={timeLeft
-                            .hours
-                            .toString()
-                            .padStart(2, '0')}
-                        label="HOURS" />
-                        <span className='text-[1.5vw] font-Poppins'>:</span>
-                    <TimeUnit
-                        value={timeLeft
-                            .mins
-                            .toString()
-                            .padStart(2, '0')}
-                        label="MINS"/>
-                        <span className='text-[1.5vw] font-Poppins'>:</span>
-                    <TimeUnit
-                        value={timeLeft
-                            .secs
-                            .toString()
-                            .padStart(2, '0')}
-                        label="SECS"/>
+                    <TimeUnit value={String(timeLeft.days).padStart(2, '0')} label="DAYS" />
+                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <TimeUnit value={String(timeLeft.hours).padStart(2, '0')} label="HOURS" />
+                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <TimeUnit value={String(timeLeft.mins).padStart(2, '0')} label="MINS" />
+                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <TimeUnit value={String(timeLeft.secs).padStart(2, '0')} label="SECS" />
                 </div>
 
-                <ShopNowButton/>
+                <ShopNowButton />
             </div>
         </div>
     );
 };
+
+
 
 // Second grid - Low-Fat Meat
 const LowFatMeatGrid = () => {

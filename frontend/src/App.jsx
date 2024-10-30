@@ -76,7 +76,6 @@ const App = () => {
                 <Route path='*' element={<Navigate to = '/' replace />}/>
             </Routes>
             <ToastContainer
-                position="top-center" // Position of the toast notifications
                 autoClose={5000} // Duration for which the toast will be visible
                 hideProgressBar={false} // Show progress bar or not
                 closeOnClick // Close the toast on click
