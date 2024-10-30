@@ -16,8 +16,14 @@
   margin: 0 auto;
 }
 
+.Toastify__close-button > svg {
+  width: 1.2vw !important;
+  height: 1.2vw !important;
+}
+
 .Toastify__toast {
   width: 100%; /* Ensures each toast takes full width */
+  font-family: 'Poppins';
 }
 
 body {
@@ -32,14 +38,6 @@ body {
   background-size: contain;
   cursor: pointer;
 }
-
-@media (max-width: 768px) {
-  .search-input::-webkit-search-cancel-button {
-    height: 6vw;
-    width: 6vw;
-  }
-}
-
 
 .slide1 {
   background-image: url('../src/assets/Heroimg-1.jpg');
@@ -57,4 +55,20 @@ body {
   background-image: url('../src/assets/Hero-3.png');
   background-size: cover;
   background-position: center;
+}
+
+@media (max-width: 768px) {
+  .search-input::-webkit-search-cancel-button {
+    height: 6vw;
+    width: 6vw;
+  }
+  .Toastify__toast-container {
+    width: 100% !important; /* Full width */
+    right: 0 !important;    /* Align to the top-right */
+    left: 0 !important;     /* Center it across the screen */
+  }
+  .Toastify__close-button > svg {
+    width: 6vw !important;
+    height: 6vw !important;
+  }
 }
