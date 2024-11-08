@@ -171,7 +171,7 @@ const TimeUnit = ({value, label}) => (
 
 const ShopNowButton = () => (
     <button
-        className='px-[4vw] py-[2vw] md:px-5 md:py-2 rounded-xl md:rounded-full flex text-Primary text-[4vw] md:text-[1.2vw] bg-White items-center justify-center gap-2 mx-auto font-Poppins font-semibold'>
+        className='px-[3.5vw] py-[2vw] md:px-5 md:py-2 rounded-xl md:rounded-full flex text-Primary text-[4vw] md:text-[1.2vw] bg-White items-center justify-center gap-2 mx-auto font-Poppins font-semibold'>
         Shop Now
         <BsArrowRight className='text-[5vw] md:text-[1.5vw]'/>
     </button>

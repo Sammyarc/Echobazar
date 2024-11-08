@@ -336,15 +336,15 @@ const Navbar = () => {
             {/* Mobile Search bar */}
 
             <div
-                className='flex md:hidden mx-auto my-[3vw] w-[90vw] h-[10vw] border border-Gray200 items-center space-x-1 rounded-[1.5vw] focus-within:border-Primary'>
+                className='flex md:hidden mx-auto my-[3.5vw] w-[90vw] h-[11vw] border border-Gray200 items-center space-x-1 rounded-[1.5vw] focus-within:border-Primary'>
 
                 {/* Search icon */}
 
-                <GoSearch className='px-[0.2vw] w-[10%] text-[4vw] md:text-[1.3vw]'/> {/* Search input */}
+                <GoSearch className='px-[0.2vw] w-[10%] text-[4.5vw]'/> {/* Search input */}
                 <input
                     type="search"
                     placeholder="Search"
-                    className="search-input h-full text-[3.5vw] outline-none border-none w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[4vw]"/> {/* Search button */}
+                    className="search-input h-full text-[3.5vw] outline-none border-none bg-transparent w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[4vw]"/> {/* Search button */}
 
                 <button
                     className='bg-Primary w-[25%] h-full border border-Primary rounded-r-[1.5vw] font-Poppins text-White text-[4vw]'>

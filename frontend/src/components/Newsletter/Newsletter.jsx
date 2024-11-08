@@ -19,7 +19,7 @@ const Newsletter = () => {
                         <div className="relative w-full md:w-auto">
                             <input
                                 type="email"
-                                className="w-[90vw] md:w-[30vw] py-[2.5vw] px-[2.5vw] md:py-3 md:px-4 pr-32 text-Gray900 text-[4vw] md:text-[1vw] rounded-lg md:rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500 focus:border-Primary"
+                                className="w-[90vw] md:w-[30vw] py-[3vw] px-[2.5vw] md:py-3 md:px-4 pr-32 text-Gray900 text-[4vw] md:text-[1vw] rounded-lg md:rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500 focus:border-Primary"
                                 placeholder="Your email address"/>
                             <button
                                 className="absolute right-0 top-0 bottom-0 bg-Primary font-Poppins font-medium text-white rounded-r-lg md:rounded-full px-[5vw] text-[4vw] md:text-[1vw] md:px-[2vw]">
