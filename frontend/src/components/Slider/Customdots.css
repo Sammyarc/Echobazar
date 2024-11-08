@@ -21,7 +21,7 @@
   
   .slick-dots .dot.slick-active {
     background-color: #00B207; /* Active dot color */
-    width: 15px; /* Increased width for active dot */
+    width: 18px; /* Increased width for active dot */
     height: 7px; /* Keep height for active dot */
     border-radius: 5px; /* Round edges for active dot */
   }

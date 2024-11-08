@@ -41,9 +41,9 @@ const PasswordReset = () => {
                             <div className="relative mt-[1vw]">
                                 <input
                                     type="email"
-                                    placeholder="Email"
+                                    placeholder="Email Address"
                                     value={email}
-                                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                                     onChange={(e) => setEmail(e.target.value)}
                                     onBlur={() => setEmail(email.toLowerCase())}/>
                                 <div
@@ -60,7 +60,7 @@ const PasswordReset = () => {
                             <button
                                 className={`text-White ${isLoading 
                                     ? 'bg-Gray500 cursor-not-allowed'
-                                    : 'bg-Primary hover:bg-HardPrimary'} font-Poppins h-[10vw] md:h-[3vw] rounded-lg md:rounded-full mt-[4vw] md:mt-[1vw] w-full`}
+                                    : 'bg-Primary hover:bg-HardPrimary'} font-Poppins h-[10vw] md:h-[3vw] rounded-lg md:rounded-xl mt-[4vw] md:mt-[1vw] w-full`}
                                 type='submit'
                                 disabled={isLoading}>
                                 {

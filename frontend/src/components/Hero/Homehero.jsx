@@ -122,9 +122,9 @@ const Homehero = () => {
                                 <p className='text-[3.5vw] font-medium font-Poppins text-White'>
                                     Sale up to
                                     <span
-                                        className='px-[1vw] py-[0.2vw] font-medium bg-Warning rounded-md ml-[1vw]'>30% OFF</span>
+                                        className='px-[2vw] py-[0.5vw] md:px-[1vw] md:py-[0.2vw] font-medium bg-Warning rounded-md ml-[1vw]'>30% OFF</span>
                                 </p>
-                                <p className='mt-[1vw] font-Poppins text-White text-[2.5vw]'>Free shipping on all your order.</p>
+                                <p className='mt-[1vw] font-Poppins text-White text-[3vw] md:text-[2.5vw]'>Free shipping on all your order.</p>
                             </div>
                         </div>
 

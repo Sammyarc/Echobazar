@@ -9,10 +9,21 @@ const ProductGrid = () => {
     return (
         <div>
             <section className='my-[5vw] px-[2vw] md:my-[2vw] md:px-[8vw]'>
-                <div className="md:grid md:grid-cols-3 w-full space-x-[1.2vw]">
+                {/* Desktop */}
+                <div className="hidden md:grid md:grid-cols-3 w-full space-x-[1.2vw]">
                     <SaleCountdownGrid/>
                     <LowFatMeatGrid/>
                     <FreshFruitGrid/>
+                </div>
+
+                {/* Mobile */}
+
+                <div className="md:hidden w-full">
+                    <SaleCountdownGrid/>
+                    <div className='grid grid-cols-2 gap-2'>
+                    <LowFatMeatGrid/>
+                    <FreshFruitGrid/>
+                    </div>
                 </div>
             </section>
         </div>
@@ -31,9 +42,17 @@ const SaleCountdownGrid = () => {
     });
 
     useEffect(() => {
-        // Set the target end time (e.g., 24 days from now)
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 24);
+        let targetDate = localStorage.getItem('targetDate');
+
+        // If no target date exists, set one for 24 days from now and store it
+        if (!targetDate) {
+            targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 24);
+            localStorage.setItem('targetDate', targetDate);
+        } else {
+            // Parse the stored target date
+            targetDate = new Date(targetDate);
+        }
 
         const calculateTimeLeft = () => {
             const now = new Date();
@@ -50,6 +69,8 @@ const SaleCountdownGrid = () => {
                 // Stop the timer when time is up
                 setTimeLeft({ days: 0, hours: 0, mins: 0, secs: 0 });
                 clearInterval(timer);
+                // Clear the stored target date
+                localStorage.removeItem('targetDate');
             }
         };
 
@@ -61,8 +82,9 @@ const SaleCountdownGrid = () => {
         return () => clearInterval(timer);
     }, []);
 
+
     return (
-        <div className="h-[80vw] md:h-[35vw] rounded-2xl p-6 relative overflow-hidden" style={{
+        <div className="h-[80vw] md:h-[35vw] rounded-2xl py-[5vw] relative overflow-hidden" style={{
             backgroundImage: `url(${Img1})`,
             backgroundSize: 'cover',
             backgroundPosition: 'bottom',
@@ -73,11 +95,11 @@ const SaleCountdownGrid = () => {
 
                 <div className="flex justify-center text-center space-x-[1.2vw] mb-6 font-Poppins">
                     <TimeUnit value={String(timeLeft.days).padStart(2, '0')} label="DAYS" />
-                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <span className='text-[3.5vw] md:text-[1.5vw] mt-[1vw] md:mt-0 font-Poppins'>:</span>
                     <TimeUnit value={String(timeLeft.hours).padStart(2, '0')} label="HOURS" />
-                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <span className='text-[3.5vw] md:text-[1.5vw] mt-[1vw] md:mt-0  font-Poppins'>:</span>
                     <TimeUnit value={String(timeLeft.mins).padStart(2, '0')} label="MINS" />
-                    <span className='text-[3vw] md:text-[1.5vw] font-Poppins'>:</span>
+                    <span className='text-[3.5vw] md:text-[1.5vw] mt-[1vw] md:mt-0  font-Poppins'>:</span>
                     <TimeUnit value={String(timeLeft.secs).padStart(2, '0')} label="SECS" />
                 </div>
 
@@ -88,11 +110,10 @@ const SaleCountdownGrid = () => {
 };
 
 
-
 // Second grid - Low-Fat Meat
 const LowFatMeatGrid = () => {
     return (
-        <div className="h-[80vw] md:h-[35vw] rounded-2xl p-6 relative mt-[4vw] md:mt-[0vw] overflow-hidden"
+        <div className="h-[60vw] md:h-[35vw] rounded-2xl py-[10vw] md:py-[5vw] relative mt-[4vw] md:mt-[0vw] overflow-hidden"
         style={{
             backgroundImage: `url(${Img2})`,
             backgroundSize: 'cover',
@@ -100,13 +121,15 @@ const LowFatMeatGrid = () => {
         }}>
             <div className="text-white">
                 <p className="uppercase text-[3vw] md:text-[1vw] mb-2 text-center font-Poppins">85% FAT FREE</p>
-                <h2 className="text-[7vw] md:text-[2.5vw] font-bold mb-2 text-center font-Poppins">Low-Fat Meat</h2>
+                <h2 className="text-[5vw] md:text-[2.5vw] font-bold mb-2 text-center font-Poppins">Low-Fat Meat</h2>
 
                 <div className="mb-6 text-center">
-                    <p className="text-[4vw] md:text-[1.2vw] font-Poppins mb-1">Started at <span className='font-bold text-Warning'>$79.99</span></p>
+                    <p className="text-[3vw] md:text-[1.2vw] font-Poppins mb-1">Starting at <span className='font-bold text-Warning px-[2vw] py-[1vw] bg-White rounded-md md:px-0 md:py-0 md:bg-transparent md:rounded-none'>$79.99</span></p>
                 </div>
 
+                <div className='hidden md:flex'>
                 <ShopNowButton/>
+                </div>
             </div>
         </div>
     );
@@ -115,7 +138,7 @@ const LowFatMeatGrid = () => {
 // Third grid - Fresh Fruit
 const FreshFruitGrid = () => {
     return (
-        <div className="h-[80vw] md:h-[35vw] rounded-2xl p-6 relative mt-[4vw] md:mt-[0vw] overflow-hidden"
+        <div className="h-[60vw] md:h-[35vw] rounded-2xl py-[10vw] md:py-[5vw] relative mt-[4vw] md:mt-[0vw] overflow-hidden"
         style={{
             backgroundImage: `url(${Img3})`,
             backgroundSize: 'cover',
@@ -123,13 +146,15 @@ const FreshFruitGrid = () => {
         }}>
             <div>
                 <p className="uppercase text-[3vw] md:text-[1vw] mb-2 text-center font-Poppins">SUMMER SALE</p>
-                <h2 className="text-[7vw] md:text-[2.5vw] font-bold mb-2 text-center font-Poppins">100% Fresh Fruit</h2>
+                <h2 className="text-[5vw] md:text-[2.5vw] font-bold mb-2 text-center font-Poppins">100% Fresh Fruit</h2>
 
                 <div className="mb-6 text-center">
-                    <p className="text-[4vw] md:text-[1.2vw] font-Poppins mb-1">Up to <span className='bg-black text-yellow-500 font-semibold inline-block px-3 py-1 rounded-md'>64% OFF</span></p>
+                    <p className="text-[3vw] md:text-[1.2vw] font-Poppins mb-1">Up to <span className='bg-black text-yellow-500 font-semibold inline-block px-3 py-1 rounded-md'>64% OFF</span></p>
                 </div>
 
+                <div className='hidden md:flex'>
                 <ShopNowButton/>
+                </div>
             </div>
 
         </div>
@@ -140,13 +165,13 @@ const FreshFruitGrid = () => {
 const TimeUnit = ({value, label}) => (
     <div className="text-center">
         <div className="text-[5vw] md:text-[1.5vw] font-meduim">{value}</div>
-        <div className="text-xs">{label}</div>
+        <div className="text-base">{label}</div>
     </div>
 );
 
 const ShopNowButton = () => (
     <button
-        className='px-5 py-2 rounded-full flex text-Primary text-[3.5vw] md:text-[1.2vw] bg-White items-center justify-center gap-2 mx-auto font-semibold'>
+        className='px-[4vw] py-[2vw] md:px-5 md:py-2 rounded-xl md:rounded-full flex text-Primary text-[4vw] md:text-[1.2vw] bg-White items-center justify-center gap-2 mx-auto font-semibold'>
         Shop Now
         <BsArrowRight className='text-[5vw] md:text-[1.2vw]'/>
     </button>

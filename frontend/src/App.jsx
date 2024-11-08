@@ -46,7 +46,7 @@ const App = () => {
         checkAuth();
     }, [checkAuth]);
 
-    if (isCheckingAuth) 
+   if (isCheckingAuth) 
         return <LoadingSpinner/>;
     
     return (
@@ -60,7 +60,7 @@ const App = () => {
                     element={<RedirectAuthenticatedUser > <Signup /> </RedirectAuthenticatedUser>
                     }
                 />
-                <Route path="/verify-email" element={<VerifyEmail />}/>
+                <Route path="/verify-email" element={<RedirectAuthenticatedUser > <VerifyEmail /> </RedirectAuthenticatedUser>}/>
 
                 <Route
                     path="/forgot-password"
@@ -79,7 +79,7 @@ const App = () => {
                 autoClose={5000} // Duration for which the toast will be visible
                 hideProgressBar={false} // Show progress bar or not
                 closeOnClick // Close the toast on click
-                theme="light" // You can change this to "dark" if needed
+                theme="light" 
             />
         </Router>
     )

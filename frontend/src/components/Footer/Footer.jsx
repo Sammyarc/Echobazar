@@ -35,11 +35,11 @@ const Footer = () => {
                             simple, so you can enjoy more of what matters.
                         </p>
                         <div className="flex items-center gap-3 mb-2">
-                            <span className="mr-2 border-b-2 text-[3.5vw] md:text-[1vw] border-Primary pb-[0.5vw]">(219) 555-0114</span>
-                            <span className="text-gray-500 pb-[0.5vw] text-[4vw] md:text-[1vw]">or</span>
+                            <span className="border-b-2 text-[4vw] md:text-[1vw] font-Poppins border-Primary pb-[0.5vw]">(219) 555-0114</span>
+                            <span className="text-gray-500 font-Poppins pb-[0.5vw] text-[4vw] md:text-[1vw]">or</span>
                             <a
                                 href="mailto:proxy@gmail.com"
-                                className="text-Primary pb-[0.5vw] text-[4vw] md:text-[1vw] border-b-2 border-Primary">proxy@gmail.com</a>
+                                className="text-Primary font-Poppins pb-[0.5vw] text-[4vw] md:text-[1vw] border-b-2 border-Primary">proxy@gmail.com</a>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@ const Footer = () => {
                 {/* Bottom section with copyright and payment methods */}
                 <div
                     className="border-t border-Gray700 mt-8 pt-4 flex flex-row justify-center items-center md:pt-8">
-                    <p className="text-[4vw] md:text-[1vw] font-Poppins">
+                    <p className="text-[4.2vw] md:text-[1vw] font-Poppins">
                         Ecobazar © {year}. All Rights Reserved
                     </p>
                 </div>

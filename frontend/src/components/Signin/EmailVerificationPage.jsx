@@ -97,7 +97,7 @@ const EmailVerificationPage = () => {
 					<button
 						type='submit'
 						disabled={isLoading || code.some((digit) => !digit)}
-						className='w-full bg-Primary hover:bg-HardPrimary text-White font-Poppins h-[10vw] md:h-[3vw] rounded-full  disabled:bg-Gray300 disabled:cursor-not-allowed'
+						className='w-full bg-Primary hover:bg-HardPrimary text-White font-Poppins h-[11vw] md:h-[3vw] rounded-lg md:rounded-xl disabled:bg-Gray300 disabled:cursor-not-allowed'
 					>
 						{isLoading ? "Verifying..." : "Verify Email"}
 					</button>

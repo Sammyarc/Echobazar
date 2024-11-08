@@ -200,7 +200,7 @@ const Signin = () => {
                             type="text"
                             placeholder="Full Name"
                             value={name}
-                            className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                             onChange={(e) => setName(e.target.value)}/>
                         <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
                             <PiUserLight className="fa fa-user text-Gray600 md:text-[1.3vw]"/>
@@ -217,7 +217,7 @@ const Signin = () => {
                     placeholder="Email"
                     autoComplete="on"
                     value={email}
-                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setEmail(email.toLowerCase())}/>
                 <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
@@ -233,7 +233,7 @@ const Signin = () => {
                         : 'password'}
                     placeholder="Password"
                     value={password}
-                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                     onChange={(e) => setPassword(e.target.value)}/>
                 <div
                     className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
@@ -254,7 +254,7 @@ const Signin = () => {
                         <select
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
-                            className="w-[30%] mt-[0.5vw] border border-Gray300 rounded-md p-1 font-Poppins text-Gray700 text-[4vw] md:text-[1vw] focus:border-Primary outline-none">
+                            className="w-[30%] mt-[0.5vw] border border-Gray200 rounded-md p-1 font-Poppins text-Gray700 text-[4vw] md:text-[1vw] focus:border-Primary outline-none">
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
                         </select>
@@ -271,7 +271,7 @@ const Signin = () => {
             }
 
             {/* Show error only for the specific mode */}
-            {error && <p className='text-red-500 flex items-center gap-1 font-medium text-[4vw] md:text-[1vw] mt-2 font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1vw]'/> {error}</p>}
+            {error && <p className='text-red-500 flex items-start gap-1 font-medium text-[4vw] md:text-[1vw] mt-2 font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1.2vw]'/> {error}</p>}
 
             {/* Password Strength Meter only in register mode */}
             {isRegister && <PasswordStrengthMeter password={password}/>}
@@ -287,7 +287,7 @@ const Signin = () => {
                                     checked={termsAccepted}
                                     onChange={handleTermsAcceptance}
                                     className="h-[4.5vw] w-[4.5vw] md:h-[1vw] md:w-[1vw] rounded-[0.2vw] accent-Primary cursor-pointer"/>
-                                <span className="text-[4vw] md:text-[0.9vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
+                                <span className="text-[4vw] md:text-[1vw] text-Gray700 font-Poppins">I accept the Terms and Conditions</span>
                             </label>
                         )
                         : (
@@ -318,7 +318,7 @@ const Signin = () => {
             <button
                 className={`mt-[4vw] md:mt-[1vw] ${isLoading || (isRegister && !termsAccepted)
                     ? 'bg-Gray500 cursor-not-allowed'
-                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[10vw] md:h-[2.5vw] rounded-lg md:rounded-full`}
+                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[11vw] md:h-[2.5vw] rounded-lg md:rounded-xl`}
                 onClick={() => {
                     if (isRegister) {
                         handleRegister();
@@ -360,10 +360,7 @@ const Signin = () => {
                     useOneTap={true}
                     theme="outline"
                     text="Sign in with Google"
-                    shape="rectangular"
-                    style={{
-                        width: '100%'
-                    }}/>
+                    shape="rectangular"/>
 
             </div>
 

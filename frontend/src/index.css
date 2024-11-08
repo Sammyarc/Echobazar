@@ -11,6 +11,10 @@
   }
 }
 
+body {
+  background-color: #ffffff;
+}
+
 .Toastify__toast-container {
   width: auto; 
   margin: 0 auto;
@@ -26,9 +30,6 @@
   font-family: 'Poppins';
 }
 
-body {
-  background-color: #ffffff;
-}
 
 .search-input::-webkit-search-cancel-button {
   -webkit-appearance: none;

@@ -51,57 +51,57 @@ const ForgotPassword = () => {
 
     return (
         <div
-            className='w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl p-[2vw] rounded-[0.5vw]'>
+            className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
             <h2
-                className='text-center font-Poppins text-[2vw] font-semibold text-Gray900 mb-[1vw]'>
+                className='text-center font-Poppins text-[7vw] md:text-[2.5vw] font-semibold text-Gray900 mb-[1vw]'>
                 Reset Password
             </h2>
             {error && <p className='text-red-500 text-[1.2vw] mb-2'>{error}</p>}
             {message && <p className='text-Primary text-[1.2vw] mb-2'>{message}</p>}
 
             <form onSubmit={handleSubmit}>
-                <div className="relative mt-[1vw]">
+                <div className="relative mt-[3vw] md:mt-[1vw]">
                     <input
                         type={isPasswordVisible
                             ? 'text'
                             : 'password'}
                         placeholder="Password"
                         value={password}
-                        className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                         onChange={(e) => setPassword(e.target.value)}/>
                     <div
-                        className="absolute inset-y-0 right-[1vw] flex items-center cursor-pointer"
+                        className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
                         onClick={togglePasswordVisibility}>
                         {
                             isPasswordVisible
-                                ? (<FaEyeSlash className="text-Gray600 text-[1.3vw]"/>)
-                                : (<FaEye className="text-Gray600 text-[1.3vw]"/>)
+                                ? (<FaEyeSlash className="text-Gray600 text-[5.5vw] md:text-[1.3vw]"/>)
+                                : (<FaEye className="text-Gray600 text-[5.5vw] md:text-[1.3vw]"/>)
                         }
                     </div>
                 </div>
 
-                <div className="relative mt-[1vw]">
+                <div className="relative mt-[3vw] md:mt-[1vw]">
                     <input
                         type={isConfirmPasswordVisible
                             ? 'text'
                             : 'password'}
                         placeholder="Confirm Password"
                         value={confirmPassword}
-                        className='w-full outline-none border border-Gray100 px-[1vw] py-[0.5vw] rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-2 focus:border-Gray700'
+                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
                         onChange={(e) => setConfirmPassword(e.target.value)}/>
                     <div
-                        className="absolute inset-y-0 right-[1vw] flex items-center cursor-pointer"
+                        className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
                         onClick={toggleConfirmPasswordVisibility}>
                         {
                             isConfirmPasswordVisible
-                                ? (<FaEyeSlash className="text-Gray600 text-[1.3vw]"/>)
-                                : (<FaEye className="text-Gray600 text-[1.3vw]"/>)
+                                ? (<FaEyeSlash className="text-Gray600 text-[5.5vw] md:text-[1.3vw]"/>)
+                                : (<FaEye className="text-Gray600 text-[5.5vw] md:text-[1.3vw]"/>)
                         }
                     </div>
                 </div>
 
                 <button
-                    className={`flex items-center justify-center text-White font-Poppins h-[3vw] rounded-full mt-[1vw] bg-Primary hover:bg-HardPrimary w-full 
+                    className={`flex items-center justify-center text-White font-Poppins h-[11vw] md:h-[3vw] rounded-lg md:rounded-xl mt-[4vw] md:mt-[1vw] bg-Primary hover:bg-HardPrimary w-full 
                         ${isLoading
                         ? 'cursor-not-allowed opacity-70'
                         : ''}`}

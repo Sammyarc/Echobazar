@@ -192,10 +192,10 @@ const Navbar = () => {
                             onClick={toggleDropdown1}
                             aria-haspopup="true"
                             aria-expanded={isDropdownOpen1}
-                            className="flex items-center text-[4.5vw] text-Gray600 font-Poppins transition duration-200">
+                            className="flex items-center text-[4.2vw] text-Gray600 font-Poppins transition duration-200">
                             {selectedLanguage}
                             <GoChevronDown
-                                className={`ml-[0.1vw] text-[6vw] text-Gray600 transition-transform duration-200 ${isDropdownOpen1
+                                className={`ml-[0.1vw] text-[5.5vw] text-Gray600 transition-transform duration-500 ${isDropdownOpen1
                                     ? 'rotate-180'
                                     : ''}`}/>
                         </button>
@@ -205,12 +205,12 @@ const Navbar = () => {
                                     <ul className="text-Gray600">
                                         <li
                                             onClick={() => handleLanguageChange('Eng')}
-                                            className="px-[2vw] py-[2vw] font-PublicSans text-[4vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
+                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
                                             Eng
                                         </li>
                                         <li
                                             onClick={() => handleLanguageChange('Den')}
-                                            className="px-[2vw] py-[2vw] font-PublicSans text-[4vw] hover:bg-gray-100 cursor-pointer">
+                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer">
                                             Den
                                         </li>
                                     </ul>
@@ -225,10 +225,10 @@ const Navbar = () => {
                             onClick={toggleDropdown2}
                             aria-haspopup="true"
                             aria-expanded={isDropdownOpen2}
-                            className="flex items-center text-[4.5vw] text-Gray600 font-Poppins transition duration-200">
+                            className="flex items-center text-[4.2vw] text-Gray600 font-Poppins transition duration-200">
                             {selectedCurrency}
                             <GoChevronDown
-                                className={`ml-[0.1vw] text-[6vw] text-Gray600 transition-transform duration-200 ${isDropdownOpen2
+                                className={`ml-[0.1vw] text-[5.5vw] text-Gray600 transition-transform duration-500 ${isDropdownOpen2
                                     ? 'rotate-180'
                                     : ''}`}/>
                         </button>
@@ -238,12 +238,12 @@ const Navbar = () => {
                                     <ul className="text-Gray600">
                                         <li
                                             onClick={() => handleCurrencyChange('USD')}
-                                            className="px-[2vw] py-[2vw] font-PublicSans text-[4vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
+                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
                                             USD
                                         </li>
                                         <li
                                             onClick={() => handleCurrencyChange('NGN')}
-                                            className="px-[2vw] py-[2vw] font-PublicSans text-[4vw] hover:bg-gray-100 cursor-pointer">
+                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer">
                                             NGN
                                         </li>
                                     </ul>
@@ -277,10 +277,12 @@ const Navbar = () => {
 
                 {/* logo */}
 
-                <img src={Logo} className='w-[40vw] h-[10vw] md:w-[15vw] md:h-[5vw]'/> {/* Desktop Search bar */}
+                <img src={Logo} className='w-[40vw] h-[10vw] md:w-[15vw] md:h-[5vw]'/> 
+                
+                {/* Desktop Search bar */}
 
                 <div
-                    className='hidden md:flex w-[30vw] h-[3vw] border border-Gray100 items-center space-x-1 rounded-[0.5vw]'>
+                    className='hidden md:flex w-[30vw] h-[3vw] border border-Gray100 items-center space-x-1 rounded-[0.5vw] focus-within:border-Primary'>
 
                     {/* Search icon */}
 
@@ -288,10 +290,12 @@ const Navbar = () => {
                     <input
                         type="search"
                         placeholder="Search"
-                        className="search-input h-full text-[1.3vw] outline-none border-none w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[1vw]"/> {/* Search button */}
+                        className="search-input h-full text-[1vw] outline-none border-none w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[1vw]"/> 
+                        
+                        {/* Search button */}
 
                     <button
-                        className='bg-Primary w-[20%] h-full border border-Primary rounded-r-[0.5vw] font-Poppins text-White text-[0.9vw] hover:bg-HardPrimary transition duration-200'>
+                        className='bg-Primary w-[20%] h-full border border-Primary rounded-r-[0.5vw] font-Poppins text-White text-[0.9vw]'>
                         Search
                     </button>
                 </div>
@@ -302,9 +306,9 @@ const Navbar = () => {
                     <Link to="/wishlist" className="flex items-end space-x-1 relative">
                         <div className="relative">
                             {/* Wishlist Icon */}
-                            <GoHeart className="w-[15vw] h-[8vw] md:w-[1.8vw] md:h-[1.8vw]"/> {/* Wishlist Count Badge */}
+                            <GoHeart className="w-[12vw] h-[8vw] md:w-[1.8vw] md:h-[1.8vw]"/> {/* Wishlist Count Badge */}
                             <span
-                                className="absolute -top-[0.15vw] right-[3vw] md:right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[5vw] md:w-[1vw] h-[5vw] md:h-[1vw] flex items-center justify-center font-Poppins">
+                                className="absolute -top-[0.15vw] right-[1.5vw] md:right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[5vw] md:w-[1vw] h-[5vw] md:h-[1vw] flex items-center justify-center font-Poppins">
                                 {wishlistCount}
                             </span>
                         </div>
@@ -332,7 +336,7 @@ const Navbar = () => {
             {/* Mobile Search bar */}
 
             <div
-                className='flex md:hidden mx-auto my-[3vw] w-[90vw] h-[10vw] border border-Gray300 items-center space-x-1 rounded-[1.5vw]'>
+                className='flex md:hidden mx-auto my-[3vw] w-[90vw] h-[10vw] border border-Gray200 items-center space-x-1 rounded-[1.5vw] focus-within:border-Primary'>
 
                 {/* Search icon */}
 
@@ -340,10 +344,10 @@ const Navbar = () => {
                 <input
                     type="search"
                     placeholder="Search"
-                    className="search-input h-full text-[3.5vw] outline-none border-none w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[3.5vw]"/> {/* Search button */}
+                    className="search-input h-full text-[3.5vw] outline-none border-none w-[70%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[4vw]"/> {/* Search button */}
 
                 <button
-                    className='bg-Primary w-[25%] h-full border border-Primary rounded-r-[1.5vw] font-Poppins text-White text-[4vw] hover:bg-HardPrimary transition duration-200'>
+                    className='bg-Primary w-[25%] h-full border border-Primary rounded-r-[1.5vw] font-Poppins text-White text-[4vw]'>
                     Search
                 </button>
             </div>
@@ -358,7 +362,7 @@ const Navbar = () => {
                             <Link
                                 key={item.id}
                                 to={item.link}
-                                className="text-[3.6vw] md:text-[1vw] text-White font-Poppins transition duration-200 hover:text-Gray300">
+                                className="text-[4vw] md:text-[1vw] text-White font-Poppins transition duration-200 hover:text-Primary">
                                 {item.name}
                             </Link>
                         ))
