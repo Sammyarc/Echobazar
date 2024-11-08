@@ -200,7 +200,7 @@ const Signin = () => {
                             type="text"
                             placeholder="Full Name"
                             value={name}
-                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] focus:border-Primary'
                             onChange={(e) => setName(e.target.value)}/>
                         <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
                             <PiUserLight className="fa fa-user text-Gray600 md:text-[1.3vw]"/>
@@ -217,7 +217,7 @@ const Signin = () => {
                     placeholder="Email"
                     autoComplete="on"
                     value={email}
-                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] focus:border-Primary'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setEmail(email.toLowerCase())}/>
                 <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
@@ -233,7 +233,7 @@ const Signin = () => {
                         : 'password'}
                     placeholder="Password"
                     value={password}
-                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[2.5vw] focus:border-Primary'
+                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] focus:border-Primary'
                     onChange={(e) => setPassword(e.target.value)}/>
                 <div
                     className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
