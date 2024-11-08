@@ -84,7 +84,7 @@ const ProductCategories = () => {
             <section className='md:mt-[3vw] mt-[6vw] px-[2vw] md:px-[8vw]'>
                 <div className='flex justify-between items-center mb-[3vw] md:mb-[0.7vw]'>
                     <h2 className='font-Poppins text-[6vw] md:text-[2vw] font-semibold'>Popular Categories</h2>
-                    <Link to='/' className='flex gap-1 md:gap-2 items-start text-Primary font-Poppins text-[4vw] md:text-[1.2vw]'>View All <BsArrowRight className='text-[5vw] md:text-[1.2vw]'/></Link>
+                    <Link to='/' className='flex gap-1 md:gap-2 items-center text-Primary font-Poppins text-[4vw] md:text-[1.2vw]'>View All <BsArrowRight className='text-[5vw] md:text-[1.2vw]'/></Link>
                 </div>
                 <div className="w-full grid grid-cols-3 gap-3 md:grid-cols-6 md:gap-6">
                     {

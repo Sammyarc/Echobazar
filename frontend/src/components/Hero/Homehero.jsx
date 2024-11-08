@@ -111,7 +111,7 @@ const Homehero = () => {
             </section>
 
             <section>
-                <div className="py-[5vw] px-[2vw] md:hidden">
+                <div className="py-[5vw] px-[2vw] overflow-hidden md:hidden">
                     <Slider {...sliderSettings} ref={sliderRef}>
 
                         {/* Slide 1 */}
