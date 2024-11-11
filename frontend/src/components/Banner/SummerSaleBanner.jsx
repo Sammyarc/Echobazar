@@ -12,7 +12,7 @@ const SummerSaleBanner = () => {
 
                 {/* Content */}
                 <div
-                    className="md:flex md:justify-end h-[60vw] md:h-[25vw] py-[2.5vw] px-[3vw] md:px-[1vw] md:py-[0vw] rounded-xl items-center"
+                    className="md:flex md:justify-end h-[80vw] md:h-[25vw] py-[15vw] px-[3vw] md:px-[1vw] md:py-[0vw] rounded-xl items-center"
                     style={{
                         backgroundImage: `url(${bgImg})`,
                         backgroundSize: 'cover',
@@ -20,7 +20,7 @@ const SummerSaleBanner = () => {
                     }}>
                     <div className="md:ml-16 text-white">
                         <p className="md:text-[1.2vw] text-center md:text-start mb-2 font-Poppins">SUMMER SALE</p>
-                        <div className="flex justify-center md:justify-normal md:items-baseline mb-4 font-Poppins">
+                        <div className="flex justify-center md:justify-normal md:items-baseline mb-4 font-Poppins mx-auto w-[40vw] md:w-0 md:mx-0 px-[2vw] py-[1vw] bg-gradient-to-l from-neutral-700 via-neutral-800 to-transparent rounded-md md:px-0 md:py-0 md:bg-transparent md:rounded-none">
                             <span className="text-[6vw] md:text-[3vw] font-bold text-orange-500">37%</span>
                             <span className="text-[6vw] md:text-[3vw] font-bold ml-2">OFF</span>
                         </div>
@@ -29,7 +29,7 @@ const SummerSaleBanner = () => {
                         </p>
                         <Link
                             to='/'
-                            className="bg-Primary transition-colors text-white py-2 px-4 mx-auto md:mx-0 md:px-6 md:py-3 rounded-full flex w-36 md:w-[35%] text-[4vw] md:text-[1vw] items-center gap-1 font-meduim font-Poppins">
+                            className="bg-Primary transition-colors text-white py-2 px-4 mx-auto md:mx-0 md:px-4 md:py-2 rounded-xl md:rounded-full flex w-[35vw] md:w-[9vw] text-[4vw] md:text-[1vw] items-center gap-1 font-meduim font-Poppins">
                             Shop Now
                             <BsArrowRight className='text-[5vw] md:text-[1.3vw]'/>
                         </Link>

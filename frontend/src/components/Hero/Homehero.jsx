@@ -144,7 +144,7 @@ const Homehero = () => {
                                 className='font-Poppins text-[7vw] text-White font-semibold w-[15ch] mx-auto'>Special Products Deal of the Month</h2>
                             <Link
                                 to="/shop"
-                                className="flex justify-center mx-auto space-x-[1vw] items-center mt-[1vw]">
+                                className="flex justify-center mx-auto space-x-[1vw] items-center mt-[3vw]">
                                 <span className='font-semibold font-Poppins text-Primary text-[4vw]'>Shop Now</span>
                                 <GoArrowRight className='text-[6vw] text-Primary'/>
                             </Link>

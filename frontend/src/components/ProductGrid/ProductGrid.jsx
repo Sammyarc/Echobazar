@@ -5,6 +5,15 @@ import Img1 from '../../assets/Rectangle 54.png';
 import Img2 from '../../assets/Pimg1.png';
 import Img3 from '../../assets/Pimg2.png';
 
+import axios from "axios";
+
+// Set the API URL based on the environment
+const API_URL = import.meta.env.MODE === "development"
+    ? "http://localhost:5000/api/auth"
+    : "/api/auth";
+
+axios.defaults.withCredentials = true;
+
 const ProductGrid = () => {
     return (
         <div>
@@ -31,8 +40,6 @@ const ProductGrid = () => {
     );
 };
 
-// First grid - Sale Countdown 
-
 const SaleCountdownGrid = () => {
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
@@ -42,46 +49,48 @@ const SaleCountdownGrid = () => {
     });
 
     useEffect(() => {
-        let targetDate = localStorage.getItem('targetDate');
+        let timer;  // Declare the timer variable here
 
-        // If no target date exists, set one for 24 days from now and store it
-        if (!targetDate) {
-            targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 24);
-            localStorage.setItem('targetDate', targetDate);
-        } else {
-            // Parse the stored target date
-            targetDate = new Date(targetDate);
-        }
+        const fetchTargetDate = async () => {
+            try {
+                // Fetch the target date from the backend without any additional params
+                const response = await axios.get(`${API_URL}/get-countdown-date`);
+                const targetDate = new Date(response.data.targetDate);
 
-        const calculateTimeLeft = () => {
-            const now = new Date();
-            const difference = targetDate - now;
+                // Define the calculateTimeLeft function
+                const calculateTimeLeft = () => {
+                    const now = new Date();
+                    const difference = targetDate - now;
 
-            if (difference > 0) {
-                setTimeLeft({
-                    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                    mins: Math.floor((difference / 1000 / 60) % 60),
-                    secs: Math.floor((difference / 1000) % 60),
-                });
-            } else {
-                // Stop the timer when time is up
-                setTimeLeft({ days: 0, hours: 0, mins: 0, secs: 0 });
-                clearInterval(timer);
-                // Clear the stored target date
-                localStorage.removeItem('targetDate');
+                    if (difference > 0) {
+                        setTimeLeft({
+                            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                            mins: Math.floor((difference / 1000 / 60) % 60),
+                            secs: Math.floor((difference / 1000) % 60),
+                        });
+                    } else {
+                        // Stop the timer when time is up
+                        setTimeLeft({ days: 0, hours: 0, mins: 0, secs: 0 });
+                        clearInterval(timer);
+                    }
+                };
+
+                // Initial call to set countdown immediately
+                calculateTimeLeft();
+                // Start interval timer
+                timer = setInterval(calculateTimeLeft, 1000);
+            } catch (error) {
+                console.error("Error fetching target date:", error);
             }
         };
 
-        // Initial call to set countdown immediately
-        calculateTimeLeft();
-        const timer = setInterval(calculateTimeLeft, 1000);
+        // Fetch the target date and start the timer
+        fetchTargetDate();
 
-        // Clean up timer on unmount
+        // Clean up the timer on unmount
         return () => clearInterval(timer);
     }, []);
-
 
     return (
         <div className="h-[80vw] md:h-[35vw] rounded-2xl py-[5vw] relative overflow-hidden" style={{
@@ -110,6 +119,7 @@ const SaleCountdownGrid = () => {
 };
 
 
+
 // Second grid - Low-Fat Meat
 const LowFatMeatGrid = () => {
     return (
@@ -125,10 +135,6 @@ const LowFatMeatGrid = () => {
 
                 <div className="mb-6 text-center">
                     <p className="text-[3vw] md:text-[1.2vw] font-Poppins mb-1">Starting at <span className='font-bold text-Warning px-[2vw] py-[1vw] bg-White rounded-md md:px-0 md:py-0 md:bg-transparent md:rounded-none'>$79.99</span></p>
-                </div>
-
-                <div className='hidden md:flex'>
-                <ShopNowButton/>
                 </div>
             </div>
         </div>
@@ -151,10 +157,6 @@ const FreshFruitGrid = () => {
                 <div className="mb-6 text-center">
                     <p className="text-[3vw] md:text-[1.2vw] font-Poppins mb-1">Up to <span className='bg-black text-yellow-500 font-semibold inline-block px-3 py-1 rounded-md'>64% OFF</span></p>
                 </div>
-
-                <div className='hidden md:flex'>
-                <ShopNowButton/>
-                </div>
             </div>
 
         </div>
@@ -171,9 +173,9 @@ const TimeUnit = ({value, label}) => (
 
 const ShopNowButton = () => (
     <button
-        className='px-[3.5vw] py-[2vw] md:px-5 md:py-2 rounded-xl md:rounded-full flex text-Primary text-[4vw] md:text-[1.2vw] bg-White items-center justify-center gap-2 mx-auto font-Poppins font-semibold'>
+        className='px-[3.5vw] py-[2vw] md:px-5 md:py-2 rounded-xl md:rounded-full flex text-Primary text-[4vw] md:text-[1vw] bg-White items-center justify-center gap-1 mx-auto font-Poppins font-semibold'>
         Shop Now
-        <BsArrowRight className='text-[5vw] md:text-[1.5vw]'/>
+        <BsArrowRight className='text-[5vw] md:text-[1.2vw]'/>
     </button>
 );
 

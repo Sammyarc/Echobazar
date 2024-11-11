@@ -76,7 +76,7 @@ const Navbar = () => {
                 <div className="flex items-center space-x-[0.5vw]">
                     <GoLocation className="text-[1vw] text-Gray600"/>
                     <span className="font-Poppins text-[1vw] text-Gray600">
-                        Store Location: Lincoln- 344, Illinois, Chicago, USA
+                        Store Location: 7 Ajegunle Drive, V.I, Lagos State
                     </span>
                 </div>
 
@@ -306,7 +306,8 @@ const Navbar = () => {
                     <Link to="/wishlist" className="flex items-end space-x-1 relative">
                         <div className="relative">
                             {/* Wishlist Icon */}
-                            <GoHeart className="w-[12vw] h-[8vw] md:w-[1.8vw] md:h-[1.8vw]"/> {/* Wishlist Count Badge */}
+                            <GoHeart className="w-[12vw] h-[8vw] md:w-[1.8vw] md:h-[1.8vw]"/> 
+                            {/* Wishlist Count Badge */}
                             <span
                                 className="absolute -top-[0.15vw] right-[1.5vw] md:right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[5vw] md:w-[1vw] h-[5vw] md:h-[1vw] flex items-center justify-center font-Poppins">
                                 {wishlistCount}
@@ -319,7 +320,8 @@ const Navbar = () => {
                     <Link to="/cart" className="flex items-end space-x-1 relative">
                         <div className="relative">
                             {/* Cart Image */}
-                            <img src={Cart} className="ml-[1vw] w-[8.5vw] md:w-[1.8vw] md:h-[1.8vw]"/> {/* Cart Count Badge */}
+                            <img src={Cart} className="ml-[1vw] w-[8.5vw] md:w-[1.8vw] md:h-[1.8vw]"/> 
+                            {/* Cart Count Badge */}
                             <span
                                 className="absolute top-[0.3vw] md:-top-[0.15vw] right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[4.8vw] md:w-[1vw] h-[4.8vw] md:h-[1vw] flex items-center justify-center font-Poppins">
                                 {cartCount}
@@ -369,12 +371,12 @@ const Navbar = () => {
                     }
                 </nav>
                 <a
-                    href="tel:+(219) 555-0114"
+                    href="tel:+(234) 70-5866-7431"
                     className='hidden md:flex items-center space-x-1 mt-[1vw] md:mt-[0vw]'>
                     <PiPhoneCallLight
                         className='text-[5vw] md:text-[1.5vw] text-White font-Poppins'/>
                     <span className="text-[3.6vw] md:text-[1vw] text-White font-Poppins">
-                        +(219) 555-0114
+                        +(234) 70-5866-7431
                     </span>
                 </a>
             </div>
