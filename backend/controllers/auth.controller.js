@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
 import { OAuth2Client } from "google-auth-library";
+import axios from "axios";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -12,6 +13,9 @@ import {
 	sendWelcomeEmail,
 } from "../mails/emails.js";
 import { User } from "../models/user.model.js";
+import { getTargetDate } from "./getTargetDate.js";
+
+
 
 export const signup = async (req, res) => {
 	const { email, password, name, role } = req.body;
@@ -61,59 +65,70 @@ export const signup = async (req, res) => {
 };
 
 export const googleSignIn = async (req, res) => {
-	try {
-		const { token, role } = req.body; // Accept role from the request
+    try {
+        const { token, role } = req.body; // Accept role from the request
 
-		// Verify the Google token
-		const ticket = await client.verifyIdToken({
-			idToken: token,
-			audience: process.env.GOOGLE_CLIENT_ID,
-		});
+        // Step 1: Verify the access token by calling Google's tokeninfo endpoint
+        const tokenInfoResponse = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${token}`);
+        
+        if (tokenInfoResponse.status !== 200) {
+            throw new Error("Invalid access token");
+        }
 
-		const payload = ticket.getPayload(); // Extract user details from token
-		const { email, name } = payload;
+        // Step 2: Fetch user profile data (including name) from the Google UserInfo API
+        const userInfoResponse = await axios.get(`https://www.googleapis.com/oauth2/v2/userinfo?access_token=${token}`);
+        
+        if (userInfoResponse.status !== 200) {
+            throw new Error("Failed to fetch user profile");
+        }
 
-		// Check if the user already exists
-		let user = await User.findOne({ email });
+        const { email, name } = userInfoResponse.data;
 
-		if (!user) {
-			// If user doesn't exist, create a new user with the provided role
-			user = new User({
-				email,
-				name,
-				role, // Assign the role (buyer/seller) during account creation
-				isVerified: true, // Automatically verify Google users
-				isGoogleUser: true, // Indicate that this user signed up via Google
-			});
-			await user.save();
+        // Ensure both email and name are present
+        if (!email || !name) {
+            throw new Error("Incomplete user data from Google");
+        }
 
-			console.log("New user created with role:", user.role);
+        // Check if the user already exists in your database
+        let user = await User.findOne({ email });
 
-			await sendWelcomeEmail(user.email, user.name);
-		}
+        if (!user) {
+            // If user doesn't exist, create a new user with the provided role
+            user = new User({
+                email,
+                name,
+                role, // Assign the role (buyer/seller) during account creation
+                isVerified: true, // Automatically verify Google users
+                isGoogleUser: true, // Indicate that this user signed up via Google
+            });
+            await user.save();
 
-		// Update the user's last login time
-		user.lastLogin = new Date();
-		await user.save();
+            console.log("New user created with role:", user.role);
 
-		// Generate a JWT and set it as an HTTP-only cookie
-		generateTokenAndSetCookie(res, user._id);
+            await sendWelcomeEmail(user.email, user.name);
+        }
 
-		// Return success response with user data
-		res.status(200).json({
-			success: true,
-			message: "Google sign-in successful",
-			user: {
-				...user._doc,
-				password: undefined, // Exclude password from the response
-			},
-		});
-	} catch (error) {
-		console.error("Error in googleSignIn:", error);
-		res.status(400).json({ success: false, message: error.message });
-	}
+        // Update the user's last login time
+        user.lastLogin = new Date();
+        await user.save();
+
+        // Generate a JWT and set it as an HTTP-only cookie
+        generateTokenAndSetCookie(res, user._id);
+
+        // Return success response with user data
+        res.status(200).json({
+            success: true,
+            message: "Google sign-in successful",
+            user: {
+                ...user._doc,
+                password: undefined, // Exclude password from the response
+            },
+        });
+    } catch (error) {
+        console.error("Error in googleSignIn:", error);
+        res.status(400).json({ success: false, message: error.message });
+    }
 };
-
 
 export const verifyEmail = async (req, res) => {
 	const { code } = req.body;
@@ -282,4 +297,9 @@ export const googleCheck = async (req, res) => {
         console.error("Error checking user:", error);
         return res.status(500).json({ error: 'Internal server error' });
     }
+};
+
+export const countdownDate = (req, res) => {
+    const targetDate = getTargetDate();
+    res.json({ targetDate });
 };
