@@ -17,7 +17,6 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
         background-size: cover; 
         background-position: center; 
         padding: 40px;"></div>
-  </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello {name},</p>
     <p>Thank you for signing up! Your verification code is:</p>
@@ -58,7 +57,6 @@ export const PASSWORD_RESET_SUCCESS_TEMPLATE = `
         background-size: cover; 
         background-position: center; 
         padding: 40px;"></div>
-  </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello {name},</p>
     <p>We're writing to confirm that your password has been successfully reset.</p>
@@ -106,7 +104,6 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
         background-size: cover; 
         background-position: center; 
         padding: 40px;"></div>
-  </div>
   <div style="background-color: #f9f9f9; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
     <p>Hello {name},</p>
     <p>We received a request to reset your password. If you didn't make this request, please ignore this email.</p>
