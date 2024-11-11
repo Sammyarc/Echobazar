@@ -65,70 +65,59 @@ export const signup = async (req, res) => {
 };
 
 export const googleSignIn = async (req, res) => {
-    try {
-        const { token, role } = req.body; // Accept role from the request
+	try {
+		const { token, role } = req.body; // Accept role from the request
 
-        // Step 1: Verify the access token by calling Google's tokeninfo endpoint
-        const tokenInfoResponse = await axios.get(`https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${token}`);
-        
-        if (tokenInfoResponse.status !== 200) {
-            throw new Error("Invalid access token");
-        }
+		// Verify the Google token
+		const ticket = await client.verifyIdToken({
+			idToken: token,
+			audience: process.env.GOOGLE_CLIENT_ID,
+		});
 
-        // Step 2: Fetch user profile data (including name) from the Google UserInfo API
-        const userInfoResponse = await axios.get(`https://www.googleapis.com/oauth2/v2/userinfo?access_token=${token}`);
-        
-        if (userInfoResponse.status !== 200) {
-            throw new Error("Failed to fetch user profile");
-        }
+		const payload = ticket.getPayload(); // Extract user details from token
+		const { email, name } = payload;
 
-        const { email, name } = userInfoResponse.data;
+		// Check if the user already exists
+		let user = await User.findOne({ email });
 
-        // Ensure both email and name are present
-        if (!email || !name) {
-            throw new Error("Incomplete user data from Google");
-        }
+		if (!user) {
+			// If user doesn't exist, create a new user with the provided role
+			user = new User({
+				email,
+				name,
+				role, // Assign the role (buyer/seller) during account creation
+				isVerified: true, // Automatically verify Google users
+				isGoogleUser: true, // Indicate that this user signed up via Google
+			});
+			await user.save();
 
-        // Check if the user already exists in your database
-        let user = await User.findOne({ email });
+			console.log("New user created with role:", user.role);
 
-        if (!user) {
-            // If user doesn't exist, create a new user with the provided role
-            user = new User({
-                email,
-                name,
-                role, // Assign the role (buyer/seller) during account creation
-                isVerified: true, // Automatically verify Google users
-                isGoogleUser: true, // Indicate that this user signed up via Google
-            });
-            await user.save();
+			await sendWelcomeEmail(user.email, user.name);
+		}
 
-            console.log("New user created with role:", user.role);
+		// Update the user's last login time
+		user.lastLogin = new Date();
+		await user.save();
 
-            await sendWelcomeEmail(user.email, user.name);
-        }
+		// Generate a JWT and set it as an HTTP-only cookie
+		generateTokenAndSetCookie(res, user._id);
 
-        // Update the user's last login time
-        user.lastLogin = new Date();
-        await user.save();
-
-        // Generate a JWT and set it as an HTTP-only cookie
-        generateTokenAndSetCookie(res, user._id);
-
-        // Return success response with user data
-        res.status(200).json({
-            success: true,
-            message: "Google sign-in successful",
-            user: {
-                ...user._doc,
-                password: undefined, // Exclude password from the response
-            },
-        });
-    } catch (error) {
-        console.error("Error in googleSignIn:", error);
-        res.status(400).json({ success: false, message: error.message });
-    }
+		// Return success response with user data
+		res.status(200).json({
+			success: true,
+			message: "Google sign-in successful",
+			user: {
+				...user._doc,
+				password: undefined, // Exclude password from the response
+			},
+		});
+	} catch (error) {
+		console.error("Error in googleSignIn:", error);
+		res.status(400).json({ success: false, message: error.message });
+	}
 };
+
 
 export const verifyEmail = async (req, res) => {
 	const { code } = req.body;
