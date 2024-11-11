@@ -4,11 +4,10 @@ import PasswordStrengthMeter from "../PasswordStrengthMeter/PasswordStregthMeter
 import {PiUserLight} from "react-icons/pi";
 import {GoMail} from "react-icons/go";
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import { MdErrorOutline } from "react-icons/md";
+import {MdErrorOutline} from "react-icons/md";
 import {LuLoader2} from "react-icons/lu";
 import {useAuthStore} from "../../store/authStore";
 import Role from '../Popups/Role';
-import {GoogleLogin} from '@react-oauth/google';
 import {toast} from 'react-toastify';
 
 import axios from "axios";
@@ -40,87 +39,83 @@ const Signin = () => {
     const [role, setRole] = useState('buyer'); // Default to buyer
     const [isRoleSelectionVisible, setIsRoleSelectionVisible] = useState(false);
 
-    // Function to decode JWT tokens
-    const decodeJwt = (token) => {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url
-            .replace(/-/g, '+')
-            .replace(/_/g, '/');
-        return JSON.parse(window.atob(base64));
-    };
+//Function to extract the access token from the URL
+const getTokenFromUrl = () => {
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    return hashParams.get("access_token");
+};
 
-    // Handle successful Google login
-    const handleGoogleLoginSuccess = async (credentialResponse) => {
-        try {
-            const token = credentialResponse.credential;
+// Function to initialize Google login process after Google redirects
+const initGoogleSignIn = () => {
+    const token = getTokenFromUrl();
+    if (token) {
+        handleGoogleLoginSuccess(token);
+        // Clear both the hash and query parameters in the URL
+        window.history.replaceState(null, '', window.location.pathname);
+    }
+};
 
-            // Decode the JWT token to get user information
-            const decodedToken = decodeJwt(token);
-            const userEmail = decodedToken.email;
 
-            // Check if user exists in database
-            const userExists = await checkUserInDatabase(userEmail);
+// Initialize after Google redirect
+window.onload = () => {
+    initGoogleSignIn();
+};
 
-            if (userExists) {
-                // User exists, directly sign in
-                await googleSignIn(token);
-                window.scrollTo(0, 0);
-                navigate("/"); // Redirect to home
-            } else {
-                // New user, show role selection
-                setIsRoleSelectionVisible(true);
-                localStorage.setItem("googleToken", token); // Temporarily store token
-                window.scrollTo(0, 0);
-            }
-        } catch (error) {
-            console.error("Error during Google Sign-In:", error);
-            toast.error("Failed to sign in. Please try again.");
+// Fetch user profile data from Google using the access token
+const fetchGoogleUserProfile = async (token) => {
+    const response = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+        headers: {
+            Authorization: `Bearer ${token}`
         }
-    };
+    });
+    if (!response.ok) throw new Error("Failed to fetch Google user profile");
+    return await response.json();
+};
 
-    // Function to check if user exists in the database
-    const checkUserInDatabase = async (email) => {
-        try {
-            const response = await axios.get(`${API_URL}/google-check`, {params: {
-                    email
-                }});
+// Check if the user exists in the database
+const checkUserInDatabase = async (email) => {
+    const response = await axios.get(`${API_URL}/google-check`, { params: { email } });
+    if (response.status !== 200) throw new Error("User check failed");
+    return response.data.user ? true : false;
+};
 
-            // Check if the response status is OK (200)
-            if (response.status !== 200) {
-                throw new Error('Failed to check user');
-            }
+// Main function to handle Google login
+const handleGoogleLoginSuccess = async (token) => {
+    try {
+        // Fetch user profile directly using the access token
+        const userProfile = await fetchGoogleUserProfile(token);
+        const userEmail = userProfile.email;
 
-            // Explicitly check if the user exists
-            return response.data.user
-                ? true
-                : false; // Return true if user exists, false otherwise
-        } catch (error) {
-            console.error("Error checking user in database:", error);
-            throw error; // Re-throw the error to handle it in the calling function
+        // Check if user exists in database
+        const userExists = await checkUserInDatabase(userEmail);
+
+        if (userExists) {
+            await googleSignIn(token); // Sign in existing user
+            navigate("/"); // Redirect to home
+        } else {
+            setIsRoleSelectionVisible(true); // Show role selection for new user
+            localStorage.setItem("googleToken", token);
         }
-    };
+    } catch (error) {
+        console.error("Error during Google Sign-In:", error);
+        toast.error("Failed to sign in. Please try again.");
+    }
+};
 
-    // Handle role selection after new user sign-in
-    const handleRoleSelection = async (selectedRole) => {
-        const token = localStorage.getItem("googleToken");
-        if (token) {
-            try {
-                await googleSignIn(token, selectedRole);
-                localStorage.removeItem("googleToken"); // Clear token from local storage
-                window.scrollTo(0, 0);
-                navigate("/"); // Redirect to home
-            } catch (error) {
-                console.error("Error during role-based Google Sign-In:", error);
-                toast.error("Google Sign-In failed. Please try again.");
-            }
-        }
-        setIsRoleSelectionVisible(false); // Hide role selection modal
-    };
 
-    const handleGoogleLoginError = () => {
-        console.error("Google Sign-In failed");
-        toast.error("Google Sign-In failed. Please try again.");
-    };
+
+// Role selection handler for new users
+const handleRoleSelection = async (selectedRole) => {
+    const token = localStorage.getItem("googleToken");
+    if (token) {
+        await googleSignIn(token, selectedRole);
+        localStorage.removeItem("googleToken");
+        navigate("/"); // Redirect to home
+    }
+    setIsRoleSelectionVisible(false); // Hide role selection
+};
+
+
 
     // Function to toggle password visibility
     const togglePasswordVisibility = () => {
@@ -202,7 +197,8 @@ const Signin = () => {
                             value={name}
                             className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
                             onChange={(e) => setName(e.target.value)}/>
-                        <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
+                        <div
+                            className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
                             <PiUserLight className="fa fa-user text-Gray600 md:text-[1.3vw]"/>
                         </div>
                     </div>
@@ -220,7 +216,8 @@ const Signin = () => {
                     className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
                     onChange={(e) => setEmail(e.target.value)}
                     onBlur={() => setEmail(email.toLowerCase())}/>
-                <div className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
+                <div
+                    className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center">
                     <GoMail className="text-Gray600 md:text-[1.3vw]"/>
                 </div>
             </div>
@@ -271,7 +268,10 @@ const Signin = () => {
             }
 
             {/* Show error only for the specific mode */}
-            {error && <p className='text-red-500 flex items-start gap-1 font-medium text-[4vw] md:text-[1vw] mt-2 font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1.2vw]'/> {error}</p>}
+            {
+                error && <p
+                        className='text-red-500 flex items-start gap-1 font-medium text-[4vw] md:text-[1vw] mt-2 font-Poppins'><MdErrorOutline className='text-[5vw] md:text-[1.2vw]'/> {error}</p>
+            }
 
             {/* Password Strength Meter only in register mode */}
             {isRegister && <PasswordStrengthMeter password={password}/>}
@@ -318,7 +318,7 @@ const Signin = () => {
             <button
                 className={`mt-[4vw] md:mt-[1vw] ${isLoading || (isRegister && !termsAccepted)
                     ? 'bg-Gray500 cursor-not-allowed'
-                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[11vw] md:h-[2.5vw] rounded-lg md:rounded-xl`}
+                    : 'bg-Primary hover:bg-HardPrimary'} text-White font-Poppins h-[11vw] md:h-[2.5vw] rounded-lg`}
                 onClick={() => {
                     if (isRegister) {
                         handleRegister();
@@ -326,7 +326,8 @@ const Signin = () => {
                         handleLogin();
                     }
                 }}
-                disabled={isLoading || (isRegister && !termsAccepted)}> {/* Disable if loading or terms are not accepted */}
+                disabled={isLoading || (isRegister && !termsAccepted)}>
+                {/* Disable if loading or terms are not accepted */}
                 {
                     isLoading
                         ? (
@@ -347,20 +348,24 @@ const Signin = () => {
                 }
             </button>
 
-            {/* Sign in with Google button */}
             <div className="flex flex-col mt-[4vw] md:mt-[1vw]">
                 <div className="flex items-center mb-[4vw] md:mb-[1vw]">
                     <div className="flex-1 border-t border-Gray300 mr-2"></div>
                     <span className='text-Gray700 text-[3.5vw] md:text-[1vw] font-Poppins'>OR</span>
                     <div className="flex-1 border-t border-Gray300 ml-2"></div>
                 </div>
-                <GoogleLogin
-                    onSuccess={handleGoogleLoginSuccess}
-                    onError={handleGoogleLoginError}
-                    useOneTap={true}
-                    theme="outline"
-                    text="Sign in with Google"
-                    shape="rectangular"/>
+            {/* Sign in with Google button */}
+            <button
+                    onClick={() => {
+                        window.location.href = `https://accounts.google.com/o/oauth2/auth?client_id=${import.meta.env.VITE_GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(window.location)}&response_type=token&scope=profile email`;
+                    }}
+                    className="bg-transparent py-2 px-4 flex justify-center items-center space-x-4 border border-Gray200 rounded-md">
+                    <img
+                        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                        alt="Google icon"
+                        className="w-5 h-5"/>
+                    <span className='text-Gray700 text-[4vw] md:text-[1vw] font-Poppins'>Sign in with Google</span>
+                </button>
 
             </div>
 
