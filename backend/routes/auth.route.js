@@ -9,6 +9,7 @@ import {
 	checkAuth,
 	googleSignIn,
 	googleCheck,
+	countdownDate,
 } from "../controllers/auth.controller.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 
@@ -21,9 +22,9 @@ router.get("/google-check", googleCheck);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/google-signin", googleSignIn);
-
 router.post("/verify-email", verifyEmail);
 router.post("/forgot-password", forgotPassword);
+router.get("/get-countdown-date", countdownDate)
 
 router.post("/reset-password/:token", resetPassword);
 
