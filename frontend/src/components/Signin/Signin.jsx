@@ -37,7 +37,7 @@ const Signin = () => {
     const [termsAccepted, setTermsAccepted] = useState(false);
     const navigate = useNavigate();
     const [isPasswordVisible, setPasswordVisible] = useState(false);
-    const [role, setRole] = useState('buyer'); // Default to buyer
+    const [role, setRole] = useState('user'); // Default to user
     const [isRoleSelectionVisible, setIsRoleSelectionVisible] = useState(false);
 
 // Function to decode JWT tokens
@@ -62,10 +62,17 @@ const handleGoogleLoginSuccess = async (credentialResponse) => {
         const userExists = await checkUserInDatabase(userEmail);
 
         if (userExists) {
-            // User exists, directly sign in
-            await googleSignIn(token);
+           // User exists, sign in and get user role
+           const role = await googleSignIn(token); // Retrieve role from server
+
+            // Redirect based on role
+            if (role === "admin") {
+                navigate("/admin-dashboard");
+            } else {
+                navigate("/"); // Redirect to home for non-admin users
+            }
+
             window.scrollTo(0, 0);
-            navigate("/"); // Redirect to home
         } else {
             // New user, show role selection
             setIsRoleSelectionVisible(true);
@@ -103,12 +110,24 @@ const checkUserInDatabase = async (email) => {
 // Handle role selection after new user sign-in
 const handleRoleSelection = async (selectedRole) => {
     const token = localStorage.getItem("googleToken");
+    if (!token) {
+        toast.error("Session expired. Please sign in again.");
+        navigate("/signup"); // Redirect to login if no token is found
+        return;
+    }
     if (token) {
         try {
             await googleSignIn(token, selectedRole);
+            // Navigate based on the selected role
+            if (selectedRole === "admin") {
+                navigate("/admin-dashboard"); // Redirect to admin dashboard
+                window.scrollTo(0, 0);
+            } else {
+                navigate("/"); // Redirect to home for regular users
+                window.scrollTo(0, 0);
+            }
+
             localStorage.removeItem("googleToken"); // Clear token from local storage
-            window.scrollTo(0, 0);
-            navigate("/"); // Redirect to home
         } catch (error) {
             console.error("Error during role-based Google Sign-In:", error);
             toast.error("Google Sign-In failed. Please try again.");
@@ -161,7 +180,7 @@ const handleGoogleLoginError = () => {
     // Register handler
     const handleRegister = async () => {
         try {
-            await signup(email, password, name);
+            await signup(email, password, name, role);
             navigate("/verify-email");
             window.scrollTo(0, 0);
         } catch (error) {
@@ -171,17 +190,36 @@ const handleGoogleLoginError = () => {
 
     // Login handler
     const handleLogin = async () => {
-        try {
-            await login(email, password);
-            navigate("/");
-            window.scrollTo(0, 0);
-        } catch (error) {
-            console.log(error);
+    try {
+        // Call the login function with email and password
+        const user = await login(email, password);
+        console.log("User role in frontend:", user?.role); // Log the user role for debugging
+
+        // Check if the role exists in the response
+        if (!user?.role) {
+            throw new Error("User role not found"); // Handle missing role
         }
-    };
+
+        // Navigate based on the user's role
+        if (user.role === "admin") {
+            navigate("/admin-dashboard"); // Navigate to the admin dashboard
+        } else {
+            navigate("/"); // Navigate to the home page for non-admin users
+        }
+
+        // Scroll to the top of the page after navigation
+        window.scrollTo(0, 0);
+    } catch (error) {
+        console.error("Login error:", error.message); // Log the error
+    }
+};
+
+    
+    
 
     return (
-        <div
+        <div className={`flex justify-center items-center h-screen ${isRegister ? 'my-[8vw]' : ''}`}>
+            <div
             className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
             <h2
                 className='text-center font-Poppins text-[7vw] md:text-[2.5vw] font-semibold text-Gray900 mb-[1vw]'>
@@ -341,7 +379,7 @@ const handleGoogleLoginError = () => {
                                 <span>{
                                         isRegister
                                             ? 'Creating Account...'
-                                            : 'Please Wait...'
+                                            : 'Authenticating...'
                                     }</span>
                             </div>
                         )
@@ -385,6 +423,8 @@ const handleGoogleLoginError = () => {
                 }
             </button>
         </div>
+        </div>
+        
     );
 };
 

@@ -50,7 +50,8 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div
+        <div className='flex justify-center items-center h-screen'>
+             <div
             className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
             <h2
                 className='text-center font-Poppins text-[7vw] md:text-[2.5vw] font-semibold text-Gray900 mb-[1vw]'>
@@ -120,6 +121,8 @@ const ForgotPassword = () => {
                 </button>
             </form>
         </div>
+        </div>
+       
     );
 };
 

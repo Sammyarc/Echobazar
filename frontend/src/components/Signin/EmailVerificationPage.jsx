@@ -47,8 +47,15 @@ const EmailVerificationPage = () => {
 		e.preventDefault();
 		const verificationCode = code.join("");
 		try {
-			await verifyEmail(verificationCode);
-			navigate("/");
+			const user = await verifyEmail(verificationCode);
+			console.log("User role in frontend:", user?.role); // Log the user role for debugging
+			
+			// Navigate based on the user's role
+			if (user.role === "admin") {
+				navigate("/admin-dashboard"); // Navigate to the admin dashboard
+			} else {
+				navigate("/"); // Navigate to the home page for non-admin users
+			}
 			toast.success("Email verified successfully, Continue Shopping!", {
 				position: toast.POSITION.TOP_CENTER,
 				style: {
@@ -72,7 +79,8 @@ const EmailVerificationPage = () => {
 	}, [code]);
 
 	return (
-		<div className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
+		<div className='flex justify-center items-center h-screen'>
+			<div className='w-[90vw] md:w-[30vw] flex flex-col mx-auto my-[8vw] bg-White shadow-xl px-[2.5vw] py-[7vw] md:p-[2vw] rounded-[0.5vw]'>
 				<h2 className='text-[6vw] md:text-[2vw] font-bold mb-6 text-center text-Primary font-Poppins'>
 					Verify Your Email
 				</h2>
@@ -103,6 +111,8 @@ const EmailVerificationPage = () => {
 					</button>
 				</form>
 		</div>
+		</div>
+
 	);
 };
 export default EmailVerificationPage;

@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema(
 		},
 		password: {
 			type: String,
-			required: function() { return !this.isGoogleUser; }, // Optional if user is from Google
+			required: function () {
+				return !this.isGoogleUser;
+			}, // Password is optional if user signs up via Google
 		},
 		name: {
 			type: String,
@@ -34,9 +36,48 @@ const userSchema = new mongoose.Schema(
 		},
 		role: {
 			type: String,
-			enum: ['user', 'admin'], // Restrict role values to 'buyer' or 'seller'
-			required: true, // Ensure that a role is provided
-			default: 'user', // Default role can be 'buyer' if not specified
+			enum: ['user', 'admin'], // Restricted to 'user' or 'admin'
+			required: true, // Role is required
+			default: 'user', // Default role
+		},
+		phone: {
+			type: String,
+		},
+		country: {
+			type: String,
+		},
+		localGovernment: {
+			type: String,
+		},
+		address: {
+			type: String,
+		},
+		state: {
+			type: String,
+		},
+		city: {
+			type: String,
+		},
+		dateOfBirth: {
+			type: String,
+		},
+		gender: {
+			type: String,
+		},
+		twitter: {
+			type: String,
+		},
+		instagram: {
+			type: String,
+		},
+		facebook: {
+			type: String,
+		},
+		tiktok: {
+			type: String,
+		},
+		profileImage: {
+			type: String, // URL of the profile picture
 		},
 	},
 	{ timestamps: true }

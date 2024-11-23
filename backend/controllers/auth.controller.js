@@ -1,7 +1,6 @@
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
 import { OAuth2Client } from "google-auth-library";
-import axios from "axios";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -85,7 +84,7 @@ export const googleSignIn = async (req, res) => {
 			user = new User({
 				email,
 				name,
-				role, // Assign the role (buyer/seller) during account creation
+				role, // Assign the role (user/admin) during account creation
 				isVerified: true, // Automatically verify Google users
 				isGoogleUser: true, // Indicate that this user signed up via Google
 			});
@@ -153,39 +152,40 @@ export const verifyEmail = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-	const { email, password } = req.body;
-	try {
-		const user = await User.findOne({ email });
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
 
-		if (!email || !password ) {
-			throw new Error("All fields are required");
-		}
+        if (!email || !password) {
+            throw new Error("All fields are required");
+        }
 
-		if (!user) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
-		}
-		const isPasswordValid = await bcryptjs.compare(password, user.password);
-		if (!isPasswordValid) {
-			return res.status(400).json({ success: false, message: "Invalid credentials" });
-		}
+        if (!user) {
+            return res.status(400).json({ success: false, message: "Invalid credentials" });
+        }
 
-		generateTokenAndSetCookie(res, user._id);
+        const isPasswordValid = await bcryptjs.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({ success: false, message: "Invalid credentials" });
+        }
 
-		user.lastLogin = new Date();
-		await user.save();
+        generateTokenAndSetCookie(res, user._id);
 
-		res.status(200).json({
-			success: true,
-			message: "Logged in successfully",
-			user: {
-				...user._doc,
-				password: undefined,
-			},
-		});
-	} catch (error) {
-		console.log("Error in login ", error);
-		res.status(400).json({ success: false, message: error.message });
-	}
+        user.lastLogin = new Date();
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Logged in successfully",
+            user: {
+                ...user._doc,
+                password: undefined,  // Hide password
+            },
+        });
+    } catch (error) {
+        console.log("Error in login ", error);
+        res.status(400).json({ success: false, message: error.message });
+    }
 };
 
 export const logout = async (req, res) => {
@@ -292,3 +292,58 @@ export const countdownDate = (req, res) => {
     const targetDate = getTargetDate();
     res.json({ targetDate });
 };
+
+export const getProfile = async (req, res) => {
+	try {
+	  const userId = req.user.id; // Assuming `req.user` contains authenticated user's ID
+	  const user = await User.findById(userId).select("-password"); // Exclude password
+  
+	  if (!user) {
+		return res.status(404).json({ message: "User not found" });
+	  }
+  
+	  res.status(200).json(user);
+	} catch (error) {
+	  res.status(500).json({ message: "Error retrieving profile", error });
+	}
+  };
+  
+export const updateProfile = async (req, res) => {
+	try {
+	  const userId = req.user.id; // Assuming `req.user` contains authenticated user's ID
+	  const { name, phone, address, state, city, country, gender, dateOfBirth, localGovernment, twitter, instagram, facebook, tiktok  } = req.body;
+  
+	  const profileImageUrl = req.file ? req.file.path : ''; 
+  
+	  // Update user details
+	  const updatedUser = await User.findByIdAndUpdate(
+		userId,
+		{
+		  name,
+		  phone,
+		  address,
+		  state,
+		  city,
+		  country,
+		  gender,
+		  dateOfBirth,
+		  localGovernment,
+		  twitter,
+		  instagram,
+		  facebook,
+		  tiktok,
+		  ...(profileImageUrl && { profileImage: profileImageUrl }), // Update profileImage if new URL exists
+		},
+		{ new: true, runValidators: true } // Return updated document and validate
+	  ).select("-password"); // Exclude password
+  
+	  if (!updatedUser) {
+		return res.status(404).json({ message: "User not found" });
+	  }
+  
+	  res.status(200).json(updatedUser);
+	} catch (error) {
+	  res.status(500).json({ message: "Error updating profile", error });
+	}
+};
+

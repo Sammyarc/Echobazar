@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Logo from '../../assets/logo/Logo (1).svg';
 import Cart from '../../assets/Icons/Bag.svg';
 import {useAuthStore} from "../../store/authStore";
+import useCartStore from "../../store/useCartStore";
 
 const Menu = [
     {
@@ -49,7 +50,7 @@ const Navbar = () => {
         setIsDropdownOpen2(false);
     };
 
-    const [cartCount] = useState(0);
+    const totalItemCount = useCartStore((state) => state.totalItemCount);
     const [wishlistCount] = useState(0);
 
     const {user, isAuthenticated, logout} = useAuthStore();
@@ -322,11 +323,11 @@ const Navbar = () => {
                             {/* Cart Image */}
                             <img src={Cart} className="ml-[1vw] w-[8.5vw] md:w-[1.8vw] md:h-[1.8vw]"/> 
                             {/* Cart Count Badge */}
-                            <span
-                                className="absolute top-[0.3vw] md:-top-[0.15vw] right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[4.8vw] md:w-[1vw] h-[4.8vw] md:h-[1vw] flex items-center justify-center font-Poppins">
-                                {cartCount}
-                                {/* Replace cartCount with the actual cart count from state */}
-                            </span>
+                               <span
+                                className="absolute top-[0.3vw] md:-top-[0.15vw] right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[4.8vw] md:w-[1vw] h-[4.8vw] md:h-[1vw] flex items-center justify-center font-Poppins"
+                                >
+                                {totalItemCount}
+                                </span>
                         </div>
                         {/* Cart Label */}
                         <span className="hidden md:block md:text-[1vw] font-Poppins ml-[2vw]">Cart</span>

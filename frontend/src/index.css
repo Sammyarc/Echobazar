@@ -31,6 +31,41 @@ body {
   font-family: 'Poppins';
 }
 
+/* Hide increment/decrement arrows for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide increment/decrement arrows for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;  /* Scrollbar width */
+  height: 4px; /* Scrollbar height */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Track background color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #999999; /* Thumb background color */
+  border-radius: 3px;
+  border: 3px solid #999999; /* Space between thumb and track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555555; /* Thumb color on hover */
+}
+
+
 
 .search-input::-webkit-search-cancel-button {
   -webkit-appearance: none;
@@ -58,6 +93,65 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+.spinner-border {
+  border-color: transparent;
+  border-top-color: #fff;
+}
+
+/* Range input container */
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px; /* Set the track height */
+  background: #ddd; /* Background color of the track */
+  border-radius: 5px; /* Optional: rounded corners for the track */
+  outline: none; /* Remove focus outline */
+  transition: background 0.3s ease; /* Smooth background transition on hover */
+}
+
+input[type="range"]:hover {
+  background: #e4e4e4; /* Change track color on hover */
+}
+
+/* Range thumb (the draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Thumb width */
+  height: 20px; /* Thumb height */
+  border-radius: 50%; /* Circular thumb */
+  background: #4CAF50; /* Thumb color */
+  cursor: pointer; /* Cursor on hover */
+  transition: background 0.3s ease; /* Smooth thumb color transition */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  background: #388E3C; /* Change thumb color when active */
+}
+
+input[type="range"]:active::-moz-range-thumb {
+  background: #388E3C;
+}
+
+/* Range input: Focus */
+input[type="range"]:focus {
+  outline: none;
+  border: none;
+}
+
+
+
 
 @media (max-width: 768px) {
   .search-input::-webkit-search-cancel-button {
