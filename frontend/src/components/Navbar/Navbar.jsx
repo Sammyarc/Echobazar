@@ -63,9 +63,9 @@ const Navbar = () => {
     if (hours < 12) {
         timeOfDay = "morning"
     } else if (hours >= 12 && hours <= 17) {
-        timeOfDay = "Afternoon"
+        timeOfDay = "afternoon"
     } else {
-        timeOfDay = "Evening"
+        timeOfDay = "evening"
     }
 
     return (
