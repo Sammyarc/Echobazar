@@ -1,36 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import Image from '../../assets/image 1.png';
-import Image1 from '../../assets/image 1 (1).png';
 import Image2 from '../../assets/image 1 (2).png';
-import Image3 from '../../assets/image 1 (3).png';
 import Image4 from '../../assets/image 1 (4).png';
 import Image5 from '../../assets/image 1 (5).png';
 import Image6 from '../../assets/image 1 (6).png';
-import Image7 from '../../assets/image 1 (7).png';
-import Image8 from '../../assets/image 1 (8).png';
 import Image9 from '../../assets/image 1 (9).png';
-import Image10 from '../../assets/image 1 (10).png';
-import Image11 from '../../assets/image 1 (11).png';
 import { Link } from 'react-router-dom';
 import { BsArrowRight } from "react-icons/bs";
 
 const categories = [
     {
-        name: 'Fresh Fruit',
+        name: 'Fruit & Vegetables',
         image: Image,
         link: '/'
-    }, {
-        name: 'Fresh Vegetables',
-        image: Image1,
-        link: '/'
-    }, {
+    },{
         name: 'Meat & Fish',
         image: Image2,
-        link: '/'
-    }, {
-        name: 'Snacks',
-        image: Image3,
         link: '/'
     }, {
         name: 'Beverages',
@@ -45,24 +31,8 @@ const categories = [
         image: Image6,
         link: '/'
     }, {
-        name: 'Baking Needs',
-        image: Image7,
-        link: '/'
-    }, {
-        name: 'Cooking',
-        image: Image8,
-        link: '/'
-    }, {
         name: 'Diabetic Food',
         image: Image9,
-        link: '/'
-    }, {
-        name: 'Dish Detergents',
-        image: Image10,
-        link: '/'
-    }, {
-        name: 'Oil',
-        image: Image11,
         link: '/'
     }
 ];
