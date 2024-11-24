@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import axios from 'axios';
 import useCartStore from "../../store/useCartStore";
 import {FiMinus, FiPlus} from "react-icons/fi";
@@ -20,6 +20,7 @@ const ProductDescription = () => {
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
     const addItemToCart = useCartStore((state) => state.addToCart);
     const increaseCount = useCartStore((state) => state.increaseCount);
@@ -71,7 +72,7 @@ const ProductDescription = () => {
     const productName = decodeURIComponent(pathParts[pathParts.length - 1]);
 
     useEffect(() => {
-        const fetchProductDetails = async () => {
+        const fetchProductDetailsAndRelatedProducts = async () => {
             try {
                 // Fetch the product by name
                 const response = await axios.get(`${API_URL}/products`, {
@@ -88,21 +89,38 @@ const ProductDescription = () => {
 
                 // Fetch the product details using the ID
                 const productResponse = await axios.get(`${API_URL}/products/${productId}`);
+                const productData = productResponse.data;
 
-                setProduct(productResponse.data);
-                setSelectedImage(productResponse.data.images[0] || null); // Set default image
+                setProduct(productData);
+                setSelectedImage(productData.images[0] || null); // Set default image
+
+                // Fetch related products only if categories exist
+                if (productData.categories.length > 0) {
+                    const relatedResponse = await axios.get(`${API_URL}/related-products`, {
+                        params: {
+                            categories: productData
+                                .categories
+                                .join(',') // Send categories as a comma-separated string
+                        }
+                    });
+                    setRelatedProducts(relatedResponse.data);
+                }
+
                 setLoading(false);
             } catch (err) {
-                console.error('Error fetching product details:', err.message);
+                console.error(
+                    'Error fetching product details or related products:',
+                    err.message
+                );
                 setError('Failed to fetch product details');
                 setLoading(false);
             }
         };
 
         if (productName) {
-            fetchProductDetails();
+            fetchProductDetailsAndRelatedProducts();
         }
-    }, [productName]); // Only run when productName changes
+    }, [productName]); // Trigger when productName changes
 
     if (loading) {
         return (
@@ -287,6 +305,8 @@ const ProductDescription = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Product Description */}
             <div className=' mt-[7vw]'>
                 <h2
                     className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800 md:text-center'>Product Description</h2>
@@ -311,7 +331,50 @@ const ProductDescription = () => {
                     </div>
                     <p className='font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700'>{product.additionalDescription}</p>
                 </div>
+            </div>
 
+            {/* Related Products */}
+
+            <div className='mt-[7vw]'>
+                <h2
+                    className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800 md:text-center'>
+                    Related Products
+                </h2>
+                <div
+                    className='grid grid-cols-2 md:grid-cols-4 gap-[3vw] md:gap-[2vw] mt-[3vw]'>
+                    {
+                        relatedProducts.length > 0
+                            ? (relatedProducts.map((relatedProduct) => (
+                                <div key={relatedProduct.id} className='border rounded-lg relative overflow-hidden'>
+                                    <Link
+                                        to={`/product/${encodeURIComponent(relatedProduct.name)}`}
+                                        onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                                        <img
+                                            src={relatedProduct.images[0]}
+                                            alt={relatedProduct.name}
+                                            className='w-full h-[30vw] md:h-[15vw] object-cover rounded-t-lg hover:scale-105'/>
+                                    </Link>
+                                    <div className="mt-1 p-[1vw]">
+                                        <div className="h-[17vw] md:h-[5vw]">
+                                            <h3 className="font-Poppins text-[3.5vw] md:text-[1.1vw] text-Gray800">{relatedProduct.name}</h3>
+                                            <span className="font-semibold font-Poppins md:text-[1vw] text-Gray800">
+                                                ${
+                                                    relatedProduct
+                                                        .salePrice
+                                                        .toFixed(2)
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )))
+                            : (
+                                <p className='text-center text-[4vw] md:text-[1.5vw] text-gray-500'>
+                                    No related products found.
+                                </p>
+                            )
+                    }
+                </div>
             </div>
 
         </div>
