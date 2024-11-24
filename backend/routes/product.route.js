@@ -5,6 +5,7 @@ import {
     deleteProductById,
     getAllProducts,
     getCategoryCount,
+    getNewestProducts,
     getProductById,
     getProductsByCategory,
     getProductsByName,
@@ -54,5 +55,7 @@ router.get("/products-total", getProductTotal);
 // Get the related products of a particular category
 router.get("/related-products", getRelatedProducts);
 
+// Get the newest products
+router.get("/products-newest", getNewestProducts);
 
 export default router;

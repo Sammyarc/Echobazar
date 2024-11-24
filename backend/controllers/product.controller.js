@@ -327,14 +327,21 @@ export const getRelatedProducts = async (req, res) => {
         const relatedProducts = await Product.find({ 
             categories: { $in: categories.split(',') }, 
             _id: { $ne: req.query.excludeId } // Optional: Exclude current product
-        }).limit(4); // Limit results to 4 related products
+        });
         res.json(relatedProducts);
     } catch (error) {
         res.status(500).json({ message: 'Failed to fetch related products' });
     }
 };
   
-
+export const getNewestProducts = async (req, res) => {
+    try {
+        const products = await Product.find().sort({ createdAt: -1 }).limit(8);
+        res.json(products);
+      } catch (error) {
+        res.status(500).send('Server error');
+      }
+};
   
   
 
