@@ -20,7 +20,7 @@ const SummerSaleBanner = () => {
                     }}>
                     <div className="md:ml-16 text-white">
                         <p className="md:text-[1.2vw] text-center md:text-start mb-2 font-Poppins">SUMMER SALE</p>
-                        <div className="flex justify-center md:justify-normal md:items-baseline mb-4 font-Poppins mx-auto w-[40vw] md:w-0 md:mx-0 px-[2vw] py-[1vw] bg-gradient-to-l from-neutral-700 via-neutral-800 to-transparent rounded-md md:px-0 md:py-0 md:bg-transparent md:rounded-none">
+                        <div className="flex justify-center md:justify-normal md:items-baseline mb-4 font-Poppins mx-auto w-[40vw] md:w-0 md:mx-0 px-[2vw] py-[1vw] bg-gradient-to-l from-neutral-800 via-neutral-850 to-transparent rounded-md md:px-0 md:py-0 md:bg-transparent md:rounded-none">
                             <span className="text-[6vw] md:text-[3vw] font-bold text-orange-500">37%</span>
                             <span className="text-[6vw] md:text-[3vw] font-bold ml-2">OFF</span>
                         </div>
