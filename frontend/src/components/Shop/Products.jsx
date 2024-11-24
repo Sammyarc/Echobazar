@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { IoOptionsOutline, IoArrowForwardSharp } from 'react-icons/io5';
-import { FaCartPlus } from 'react-icons/fa6';
 import BgImage from '../../assets/Bannar.png';
+import { Heart, ShoppingCart } from 'lucide-react';
 
 const API_URL = import.meta.env.MODE === 'development'
   ? 'http://localhost:5000/api'
@@ -207,32 +207,49 @@ const Products = () => {
               </div>
 
               {/* Products Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-[6vw] md:gap-[3vw]">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-[6vw] md:gap-[1.5vw]">
                 {paginatedProducts.map((product) => (
-                  <div key={product._id} className="border rounded-lg relative overflow-hidden">
-                    <Link to={`/product/${encodeURIComponent(product.name)}`}
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    >
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      className="w-full h-[30vw] md:h-[15vw] object-cover rounded-t-lg hover:scale-105"
-                    /></Link>
-                    <div className="mt-1 p-[1vw]">
-                      <div className="h-[17vw] md:h-[5vw]">
-                        <h3 className="font-Poppins text-[3.5vw] md:text-[1.1vw] text-Gray800">{product.name}</h3>
-                        <span className="font-semibold font-Poppins md:text-[1vw] text-Gray800">
-                          ${product.salePrice.toFixed(2)}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-1 mt-[0.5vw]">
-                        <button className="bg-Primary w-[70vw] h-[8vw] md:h-[2.5vw] rounded-lg flex items-center justify-center space-x-1 text-White">
-                          <FaCartPlus className="w-[5vw] h-[5vw] md:w-5 md:h-5" />
-                          <span className="font-Poppins text-[3.5vw] md:text-[1.1vw]">Add to cart</span>
+                  <div key={product._id}>
+                    <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg overflow-hidden">
+            <div className="relative aspect-square ">
+                <Link to={`/product/${encodeURIComponent(product.name)}`} onClick={() => window.scrollTo(0,0)}>
+                    <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover rounded-t-lg" />
+                </Link>
+                <div className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full" title='Add to wishlist'>
+                    <Heart className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer" />
+                </div>
+            </div>
+            <div className="p-2 md:p-4">
+            <h3 className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins overflow-hidden text-ellipsis whitespace-nowrap">
+            {product.name}
+           </h3>
+
+                <div className="flex space-x-[2vw] md:space-x-[0.5vw] items-center mt-[1vw] md:mt-0">
+                    <span className="text-Gray900 text-[4vw] md:text-[1vw] font-semibold font-Poppins">
+                        ${product.salePrice.toFixed(2)}
+                    </span>
+                    <p className="text-[4vw] md:text-[1vw] font-Poppins line-through text-Gray500">
+                            ${
+                                product
+                                    .regularPrice
+                                    .toFixed(2)
+                            }
+                        </p>
+                </div>
+                    <div className="flex items-center justify-between mt-[1vw] md:mt-0">
+                        <div className="flex mr-2">
+                            {[...Array(5)].map((_, i) => (
+                                <span key={i} className={`text-[5vw] md:text-[1.3vw] ${i < product.rating ? 'text-yellow-400' : 'text-Gray300'}`}>
+                                    ★
+                                </span>
+                            ))}
+                        </div>
+                        <button className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
+                            <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white" />
                         </button>
-                        
-                      </div>
                     </div>
+            </div>
+        </div>
                   </div>
                 ))}
               </div>

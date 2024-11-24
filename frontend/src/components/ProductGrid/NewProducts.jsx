@@ -1,115 +1,144 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
-import {Heart, ShoppingCart} from 'lucide-react';
-import Img1 from '../../assets/Image.png'
-import Img2 from '../../assets/Image (1).png'
-import Img3 from '../../assets/Image (2).png'
-import Img4 from '../../assets/Image (3).png'
-import Img5 from '../../assets/Image (4).png'
-import {Link} from 'react-router-dom';
-import {BsArrowRight} from 'react-icons/bs';
+import { useEffect, useState, useRef } from 'react';
+import { Heart, ShoppingCart } from 'lucide-react';
+import Slider from 'react-slick';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { BsArrowRight } from 'react-icons/bs';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import "../Slider/Customdots.css";  // Ensure this file exists
+
+const API_URL = import.meta.env.MODE === 'development'
+    ? 'http://localhost:5000/api'
+    : '/api';
+
+axios.defaults.withCredentials = true;
 
 const NewProducts = () => {
-    const products = [
-        {
-            id: 1,
-            name: 'Green Apple',
-            price: 14.99,
-            rating: 4,
-            image: Img1,
-            link: '/'
-        }, {
-            id: 2,
-            name: 'Chinese Cabbage',
-            price: 14.99,
-            rating: 4,
-            image: Img2,
-            link: '/'
-        }, {
-            id: 3,
-            name: 'Green Lettuce',
-            price: 14.99,
-            rating: 4,
-            image: Img3,
-            link: '/'
-        }, {
-            id: 4,
-            name: 'Green Chili',
-            price: 14.99,
-            rating: 4,
-            image: Img4,
-            link: '/'
-        }, {
-            id: 5,
-            name: 'Corn',
-            price: 14.99,
-            rating: 4,
-            image: Img5,
-            link: '/'
-        }
-    ];
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [activeSlide, setActiveSlide] = useState(0);
+    const sliderRef = useRef(null);
+
+    // Fetch products from the backend
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/products-newest`);
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    // Slider settings
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        beforeChange: (_, newIndex) => setActiveSlide(newIndex),
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: { slidesToShow: 2 }
+            },
+            {
+                breakpoint: 480,
+                settings: { slidesToShow: 2 }
+            }
+        ]
+    };
 
     return (
-        <div>
-            <section className='mt-[6vw] md:mt-[3vw] px-[2vw] md:px-[8vw]'>
-                <div className='flex justify-between items-center mb-[0.7vw]'>
-                    <h2 className='font-Poppins text-[6vw] md:text-[2vw] font-semibold'>New Products</h2>
-                    <Link to='/' className='flex gap-1 md:gap-2 items-center text-Primary text-[4vw] md:text-[1.2vw] font-Poppins'>View All
-                        <BsArrowRight className='text-[5vw] md:text-[1.2vw]'/></Link>
-                </div>
-                <div
-                    className="grid grid-cols-2 md:grid-cols-5 gap-4 md:mt-[1vw] mt-[6vw]">
-                    {products.map((product) => (<ProductCard key={product.id} product={product}/>))}
-                </div>
-            </section>
-        </div>
+        <section className='my-[8vw] md:my-[3vw] px-[2vw] md:px-[8vw]'>
+            <div className='flex justify-between items-center mb-[4vw] md:mb-0'>
+                <h2 className='font-Poppins text-[6vw] md:text-[2vw] font-semibold'>New Products</h2>
+                <Link to='/shop' onClick={() => window.scrollTo(0,0)}  className='flex gap-1 md:gap-2 items-center text-Primary text-[4vw] md:text-[1.2vw] font-Poppins'>
+                    View All <BsArrowRight className='text-[5vw] md:text-[1.2vw]' />
+                </Link>
+            </div>
 
+            {loading ? (
+                <div className="flex flex-col justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-Primary"></div>
+                <p
+                    className="mt-4 text-Primary text-[3.7vw] md:text-[1.2vw] font-semibold font-Poppins">Loading product details...</p>
+            </div>
+            ) : (
+                <>
+                    <Slider {...sliderSettings} ref={sliderRef} className="my-[2vw]">
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                    </Slider>
+
+                    {/* Custom Dots */}
+                    <div className="slick-dots">
+                        {products.map((_, index) => (
+                            <button
+                                key={index}
+                                className={`dot ${activeSlide === index ? "slick-active" : ""}`}
+                                onClick={() => sliderRef.current.slickGoTo(index)}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
+        </section>
     );
 };
 
-const ProductCard = ({product}) => {
-    return (
-        <a
-        href={product.link}
-            className="group relative bg-white p-2 md:p-4 rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg">
-            <div className="relative aspect-square mb-4">
-                <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover rounded-lg"/>
-                <div
-                    className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Heart className="w-6 h-6 text-Gray600 hover:text-Primary cursor-pointer"/>
+// Product Card Component
+const ProductCard = ({ product }) => (
+    <div className="px-2 md:px-4">
+        <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg overflow-hidden">
+            <div className="relative aspect-square ">
+                <Link to={`/product/${encodeURIComponent(product.name)}`} onClick={() => window.scrollTo(0,0)}>
+                    <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover rounded-t-lg" />
+                </Link>
+                <div className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full" title='Add to wishlist'>
+                    <Heart className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer" />
                 </div>
             </div>
+            <div className="p-2 md:p-4">
+            <h3 className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins overflow-hidden text-ellipsis whitespace-nowrap">
+    {product.name}
+</h3>
 
-            <h3 className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins">{product.name}</h3>
-
-            <div className="lg:flex justify-between items-center">
-                <span className="text-Gray900 text-[4vw] md:text-[1vw] font-semibold font-Poppins">${product.price}</span>
-                <div className="flex justify-between items-center">
-                    <div className="flex mr-2">
-                        {
-                            [...Array(5)].map((_, i) => (
-                                <span
-                                    key={i}
-                                    className={`text-[5vw] md:text-[1.3vw] ${
-                                    i < product.rating
-                                        ? 'text-yellow-400'
-                                        : 'text-Gray300'}`}>
+                <div className="flex space-x-[2vw] md:space-x-[0.5vw] items-center mt-[1vw] md:mt-0">
+                    <span className="text-Gray900 text-[4vw] md:text-[1vw] font-semibold font-Poppins">
+                        ${product.salePrice.toFixed(2)}
+                    </span>
+                    <p className="text-[4vw] md:text-[1vw] font-Poppins line-through text-Gray500">
+                            ${
+                                product
+                                    .regularPrice
+                                    .toFixed(2)
+                            }
+                        </p>
+                </div>
+                    <div className="flex items-center justify-between mt-[1vw] md:mt-0">
+                        <div className="flex mr-2">
+                            {[...Array(5)].map((_, i) => (
+                                <span key={i} className={`text-[5vw] md:text-[1.3vw] ${i < product.rating ? 'text-yellow-400' : 'text-Gray300'}`}>
                                     ★
                                 </span>
-                            ))
-                        }
+                            ))}
+                        </div>
+                        <button className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
+                            <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white" />
+                        </button>
                     </div>
-                    <button
-                        className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
-                        <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white"/>
-                    </button>
-                </div>
             </div>
-        </a>
-    );
-}
+        </div>
+    </div>
+);
 
-export default NewProducts
+export default NewProducts;

@@ -1,12 +1,18 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import axios from 'axios';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../Slider/Customdots.css";
 import useCartStore from "../../store/useCartStore";
 import {FiMinus, FiPlus} from "react-icons/fi";
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {FaCartPlus} from 'react-icons/fa6';
 import {FaCheckCircle, FaExclamationTriangle, FaTimesCircle} from 'react-icons/fa';
 import {toast} from 'react-toastify';
+import flexImage from '../../assets/product-image.png'
+import {Heart, ShoppingCart} from 'lucide-react';
 
 const API_URL = import.meta.env.MODE === 'development'
     ? 'http://localhost:5000/api'
@@ -21,6 +27,8 @@ const ProductDescription = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [activeSlide, setActiveSlide] = useState(0);
+    const sliderRef = useRef(null); // Create a reference to access slider methods
 
     const addItemToCart = useCartStore((state) => state.addToCart);
     const increaseCount = useCartStore((state) => state.increaseCount);
@@ -139,6 +147,28 @@ const ProductDescription = () => {
     if (!product) {
         return <div>Product not found</div>;
     }
+
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4, // Number of slides visible
+        slidesToScroll: 1,
+        beforeChange: (oldIndex, newIndex) => setActiveSlide(newIndex),
+        responsive: [
+            {
+                breakpoint: 768, // For tablets
+                settings: {
+                    slidesToShow: 2
+                }
+            }, {
+                breakpoint: 480, // For mobile
+                settings: {
+                    slidesToShow: 2
+                }
+            }
+        ]
+    };
 
     return (
         <div className='my-[10vw] px-[2vw] md:my-[6vw] md:px-[8vw]'>
@@ -307,30 +337,41 @@ const ProductDescription = () => {
             </div>
 
             {/* Product Description */}
-            <div className=' mt-[7vw]'>
-                <h2
-                    className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800 md:text-center'>Product Description</h2>
-                <div className='flex flex-col justify-center md:w-[70vw] md:mx-auto'>
-                    <p className='mt-[1vw] font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700'>{product.description}</p>
-                    <div className='my-[3vw] md:my-[0.5vw]'>
-                        <ul className="list-none px-[1vw] w-full">
-                            {
-                                product
-                                    .benefits
-                                    .map((item, index) => (
-                                        <li
-                                            key={index}
-                                            className="font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700 flex space-x-[0.15vw] py-[1.5vw] md:py-[0.5vw]">
-                                            <FaCheckCircle
-                                                className="text-Primary min-w-[5vw] min-h-[5vw] md:min-w-[1.2vw] md:min-h-[1.2vw] mr-2"/>
-                                            <span>{item.trim()}</span>
-                                        </li>
-                                    ))
-                            }
-                        </ul>
+
+            <div className='md:flex md:justify-between mt-[7vw]'>
+                <div className='md:w-[50vw]'>
+                    <h2
+                        className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800'>Product Description</h2>
+                    <div className='flex flex-col justify-center'>
+                        <p className='mt-[1vw] font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700'>{product.description}</p>
+                        <div className='my-[3vw] md:my-[0.5vw]'>
+                            <ul className="list-none px-[1vw] w-full">
+                                {
+                                    product
+                                        .benefits
+                                        .map((item, index) => (
+                                            <li
+                                                key={index}
+                                                className="font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700 flex space-x-[0.15vw] py-[1.5vw] md:py-[0.5vw]">
+                                                <FaCheckCircle
+                                                    className="text-Primary min-w-[5vw] min-h-[5vw] md:min-w-[1.2vw] md:min-h-[1.2vw] mr-2"/>
+                                                <span>{item.trim()}</span>
+                                            </li>
+                                        ))
+                                }
+                            </ul>
+                        </div>
+                        <p className='font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700'>{product.additionalDescription}</p>
                     </div>
-                    <p className='font-Poppins text-[3.7vw] md:text-[1vw] text-Gray700'>{product.additionalDescription}</p>
                 </div>
+
+                <div className='hidden md:flex md:w-[50vw]'>
+                    <img
+                        src={flexImage}
+                        alt='A man carrying a basket full of products'
+                        className='w-[40vw] h-[30vw] object-cover'/>
+                </div>
+
             </div>
 
             {/* Related Products */}
@@ -340,41 +381,98 @@ const ProductDescription = () => {
                     className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800 md:text-center'>
                     Related Products
                 </h2>
-                <div
-                    className='grid grid-cols-2 md:grid-cols-4 gap-[3vw] md:gap-[2vw] mt-[3vw]'>
+                <Slider {...sliderSettings} ref={sliderRef} className="my-[3vw] md:my-[1.5vw]">
                     {
                         relatedProducts.length > 0
                             ? (relatedProducts.map((relatedProduct) => (
-                                <div key={relatedProduct.id} className='border rounded-lg relative overflow-hidden'>
-                                    <Link
-                                        to={`/product/${encodeURIComponent(relatedProduct.name)}`}
-                                        onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-                                        <img
-                                            src={relatedProduct.images[0]}
-                                            alt={relatedProduct.name}
-                                            className='w-full h-[30vw] md:h-[15vw] object-cover rounded-t-lg hover:scale-105'/>
-                                    </Link>
-                                    <div className="mt-1 p-[1vw]">
-                                        <div className="h-[17vw] md:h-[5vw]">
-                                            <h3 className="font-Poppins text-[3.5vw] md:text-[1.1vw] text-Gray800">{relatedProduct.name}</h3>
-                                            <span className="font-semibold font-Poppins md:text-[1vw] text-Gray800">
-                                                ${
-                                                    relatedProduct
-                                                        .salePrice
-                                                        .toFixed(2)
-                                                }
-                                            </span>
+                                <div key={relatedProduct.id} className='px-2 md:px-4'>
+                                    <div
+                                        className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg ">
+                                        <div className="relative aspect-square ">
+                                            <Link
+                                                to={`/product/${encodeURIComponent(relatedProduct.name)}`}
+                                                onClick={() => window.scrollTo(0,0)}>
+                                                <img
+                                                    src={relatedProduct.images[0]}
+                                                    alt={relatedProduct.name}
+                                                    className="w-full h-full object-cover rounded-t-lg"/>
+                                            </Link>
+                                            <div
+                                                className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full"
+                                                title='Add to wishlist'>
+                                                <Heart
+                                                    className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer"/>
+                                            </div>
+                                        </div>
+                                        <div className="p-2 md:p-4">
+                                            <h3
+                                                className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins overflow-hidden text-ellipsis whitespace-nowrap">
+                                                {relatedProduct.name}
+                                            </h3>
+
+                                            <div
+                                                className="flex space-x-[2vw] md:space-x-[0.5vw] items-center mt-[1vw] md:mt-0">
+                                                <span
+                                                    className="text-Gray900 text-[4vw] md:text-[1vw] font-semibold font-Poppins">
+                                                    ${
+                                                        relatedProduct
+                                                            .salePrice
+                                                            .toFixed(2)
+                                                    }
+                                                </span>
+                                                <p className="text-[4vw] md:text-[1vw] font-Poppins line-through text-Gray500">
+                                                    ${
+                                                        relatedProduct
+                                                            .regularPrice
+                                                            .toFixed(2)
+                                                    }
+                                                </p>
+                                            </div>
+                                            <div className="flex items-center justify-between mt-[1vw] md:mt-0">
+                                                <div className="flex mr-2">
+                                                    {
+                                                        [...Array(5)].map((_, i) => (
+                                                            <span
+                                                                key={i}
+                                                                className={`text-[5vw] md:text-[1.3vw] ${i < relatedProduct.rating
+                                                                    ? 'text-yellow-400'
+                                                                    : 'text-Gray300'}`}>
+                                                                ★
+                                                            </span>
+                                                        ))
+                                                    }
+                                                </div>
+                                                <button
+                                                    className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
+                                                    <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white"/>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             )))
                             : (
-                                <p className='text-center text-[4vw] md:text-[1.5vw] text-gray-500'>
+                                <p
+                                    className='text-center text-[4vw] md:text-[1.5vw] font-Poppins text-gray-500'>
                                     No related products found.
                                 </p>
                             )
                     }
-                </div>
+                </Slider>
+            </div>
+
+            {/* Custom Dots */}
+            <div className="slick-dots">
+                {
+                    relatedProducts.map((_, index) => (
+                        <button key={index} className={`dot ${activeSlide === index
+                                ? "slick-active"
+                                : ""}`} onClick={() => sliderRef.current.slickGoTo(index)}
+                            // Navigate to the clicked slide
+/>
+                    ))
+                }
             </div>
 
         </div>
