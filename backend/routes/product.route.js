@@ -10,6 +10,7 @@ import {
     getProductsByName,
     getProductsByUser,
     getProductTotal,
+    getRelatedProducts,
     updateProductById
 } from '../controllers/product.controller.js';
 import {uploadProducts} from '../middleware/multer.js';
@@ -49,6 +50,9 @@ router.get("/category-count", getCategoryCount);
 
 // Get the total number of products
 router.get("/products-total", getProductTotal);
+
+// Get the related products of a particular category
+router.get("/related-products", getRelatedProducts);
 
 
 export default router;

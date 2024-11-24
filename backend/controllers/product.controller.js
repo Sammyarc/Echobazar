@@ -321,6 +321,18 @@ export const getProductTotal = async (req, res) => {
 };
   
 
+export const getRelatedProducts = async (req, res) => {
+    const { categories } = req.query;
+    try {
+        const relatedProducts = await Product.find({ 
+            categories: { $in: categories.split(',') }, 
+            _id: { $ne: req.query.excludeId } // Optional: Exclude current product
+        }).limit(4); // Limit results to 4 related products
+        res.json(relatedProducts);
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to fetch related products' });
+    }
+};
   
 
   
