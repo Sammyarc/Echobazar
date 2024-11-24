@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { IoOptionsOutline, IoArrowForwardSharp } from 'react-icons/io5';
 import { FaCartPlus } from 'react-icons/fa6';
-import { IoMdHeartEmpty } from 'react-icons/io';
 import BgImage from '../../assets/Bannar.png';
 
 const API_URL = import.meta.env.MODE === 'development'
@@ -210,14 +209,14 @@ const Products = () => {
               {/* Products Grid */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-[6vw] md:gap-[3vw]">
                 {paginatedProducts.map((product) => (
-                  <div key={product._id} className="border rounded-lg relative">
+                  <div key={product._id} className="border rounded-lg relative overflow-hidden">
                     <Link to={`/product/${encodeURIComponent(product.name)}`}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
                     <img
                       src={product.images[0]}
                       alt={product.name}
-                      className="w-full h-[30vw] md:h-[15vw] object-cover rounded-t-lg"
+                      className="w-full h-[30vw] md:h-[15vw] object-cover rounded-t-lg hover:scale-105"
                     /></Link>
                     <div className="mt-1 p-[1vw]">
                       <div className="h-[17vw] md:h-[5vw]">
@@ -231,9 +230,7 @@ const Products = () => {
                           <FaCartPlus className="w-[5vw] h-[5vw] md:w-5 md:h-5" />
                           <span className="font-Poppins text-[3.5vw] md:text-[1.1vw]">Add to cart</span>
                         </button>
-                        <button className="p-2 bg-GreenGray100 text-Primary rounded-full">
-                          <IoMdHeartEmpty className="w-[6vw] h-[6vw] md:w-5 md:h-5" />
-                        </button>
+                        
                       </div>
                     </div>
                   </div>
