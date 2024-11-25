@@ -7,7 +7,7 @@ const Footer = () => {
     const footerSections = [
         {
             title: 'Account',
-            links: ['My Account', 'Order History', 'Shopping Cart', 'Wishlist']
+            links: ['My Account', 'Order History', 'Cart', 'Wishlist']
         }, {
             title: 'Help',
             links: ['Contact', 'Faqs', 'Terms & Condition', 'Privacy Policy']
@@ -58,6 +58,7 @@ const Footer = () => {
                                                         <Link to={`/${link
                                                                 .replace(/\s+/g, '-')
                                                                 .toLowerCase()}`}
+                                                                onClick={() => window.scrollTo(0,0)}
                                                             // Creates a slug for each link
                                                             className="hover:text-Primary text-[4vw] md:text-[0.9vw]  transition-colors font-Poppins">
                                                             {link}
