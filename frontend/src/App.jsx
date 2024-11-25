@@ -15,6 +15,7 @@ import ProductDetail from "./pages/ProductDetail";
 import RedirectIfAuthenticated from "./components/Routes/RedirectIfAuthenticated";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import RedirectIfAdmin from "./components/Routes/RedirectIfAdmin";
+import Cart from "./pages/Cart";
 
 
 const App = () => {
@@ -72,6 +73,7 @@ const App = () => {
 
       <Route path="/shop" element={<ProductsLists />} />
       <Route path="/product/:name" element={<ProductDetail />} />
+      <Route path="/cart" element={<Cart />} />
 
       {/* Protected Admin Route */}
       <Route
