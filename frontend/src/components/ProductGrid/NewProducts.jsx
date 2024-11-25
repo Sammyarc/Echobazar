@@ -73,7 +73,7 @@ const NewProducts = () => {
             </div>
             ) : (
                 <>
-                    <Slider {...sliderSettings} ref={sliderRef} className="my-[2vw]">
+                    <Slider {...sliderSettings} ref={sliderRef} className="my-[2vw] overflow-hidden">
                         {products.map((product) => (
                             <ProductCard key={product._id} product={product} />
                         ))}
@@ -98,7 +98,7 @@ const NewProducts = () => {
 // Product Card Component
 const ProductCard = ({ product }) => (
     <div className="px-2 md:px-4">
-        <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg overflow-hidden">
+        <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg">
             <div className="relative aspect-square ">
                 <Link to={`/product/${encodeURIComponent(product.name)}`} onClick={() => window.scrollTo(0,0)}>
                     <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover rounded-t-lg" />

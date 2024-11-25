@@ -20,7 +20,26 @@ const Products = () => {
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const [itemsPerPage, setitemsPerPage] = useState(9);
+
+  useEffect(() => {
+    const updateProductsPerPage = () => {
+        if (window.innerWidth < 768) { // Mobile screens
+          setitemsPerPage(10);
+        } else { // Tablets and laptops
+          setitemsPerPage(9);
+        }
+    };
+
+    // Set initial value
+    updateProductsPerPage();
+
+    // Update on resize
+    window.addEventListener('resize', updateProductsPerPage);
+
+    // Cleanup the event listener on unmount
+    return() => window.removeEventListener('resize', updateProductsPerPage);
+}, []);
 
   // Fetch categories
   useEffect(() => {

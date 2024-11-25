@@ -381,13 +381,13 @@ const ProductDescription = () => {
                     className='font-Poppins text-[6vw] md:text-[2.5vw] font-semibold text-Gray800 md:text-center'>
                     Related Products
                 </h2>
-                <Slider {...sliderSettings} ref={sliderRef} className="my-[3vw] md:my-[1.5vw]">
+                <Slider {...sliderSettings} ref={sliderRef} className="my-[3vw] md:my-[1.5vw] overflow-hidden">
                     {
                         relatedProducts.length > 0
                             ? (relatedProducts.map((relatedProduct) => (
                                 <div key={relatedProduct.id} className='px-2 md:px-4'>
                                     <div
-                                        className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg ">
+                                        className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg">
                                         <div className="relative aspect-square ">
                                             <Link
                                                 to={`/product/${encodeURIComponent(relatedProduct.name)}`}
