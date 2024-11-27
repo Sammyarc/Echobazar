@@ -12,10 +12,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminDashboard from "./pages/AdminDashboard";
 import ProductsLists from "./pages/ProductsLists";
 import ProductDetail from "./pages/ProductDetail";
-import RedirectIfAuthenticated from "./components/Routes/RedirectIfAuthenticated";
-import ProtectedRoute from "./components/Routes/ProtectedRoute";
-import RedirectIfAdmin from "./components/Routes/RedirectIfAdmin";
+import RedirectIfAuthenticated from "../src/Routes/RedirectIfAuthenticated";
+import ProtectedRoute from "../src/Routes/ProtectedRoute";
+import RedirectIfAdmin from "../src/Routes/RedirectIfAdmin";
 import Cart from "./pages/Cart";
+import FaQ from "./pages/FaQ";
+import ErrorPage from "./pages/ErrorPage";
+import Contact from "./pages/Contact";
 
 
 const App = () => {
@@ -73,7 +76,9 @@ const App = () => {
 
       <Route path="/shop" element={<ProductsLists />} />
       <Route path="/product/:name" element={<ProductDetail />} />
+      <Route path="/faqs" element={<FaQ />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/contact" element={<Contact />} />
 
       {/* Protected Admin Route */}
       <Route
@@ -84,6 +89,9 @@ const App = () => {
           </ProtectedRoute>
         }
       />
+
+      {/* Error Pages */}
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
     <ToastContainer
       autoClose={5000}
