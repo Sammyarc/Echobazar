@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { BsArrowRight } from 'react-icons/bs';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import "../Slider/Customdots.css";  // Ensure this file exists
+import "../Slider/Customdots.css"; 
+import useCartStore from '../../store/useCartStore';
+import {toast} from 'react-toastify';
 
 const API_URL = import.meta.env.MODE === 'development'
     ? 'http://localhost:5000/api'
@@ -19,6 +21,13 @@ const NewProducts = () => {
     const [loading, setLoading] = useState(true);
     const [activeSlide, setActiveSlide] = useState(0);
     const sliderRef = useRef(null);
+
+    const { addToCart } = useCartStore();
+
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        toast.success(`${product.name} has been added to your cart!`);
+    };
 
     // Fetch products from the backend
     useEffect(() => {
@@ -75,7 +84,7 @@ const NewProducts = () => {
                 <>
                     <Slider {...sliderSettings} ref={sliderRef} className="my-[2vw] overflow-hidden">
                         {products.map((product) => (
-                            <ProductCard key={product._id} product={product} />
+                            <ProductCard key={product._id} product={product} handleAddToCart={handleAddToCart} />
                         ))}
                     </Slider>
 
@@ -96,7 +105,7 @@ const NewProducts = () => {
 };
 
 // Product Card Component
-const ProductCard = ({ product }) => (
+const ProductCard = ({ product, handleAddToCart }) => (
     <div className="px-2 md:px-4">
         <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg">
             <div className="relative aspect-square ">
@@ -132,7 +141,9 @@ const ProductCard = ({ product }) => (
                                 </span>
                             ))}
                         </div>
-                        <button className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
+                        <button
+                        onClick={() => handleAddToCart(product)}
+                         className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
                             <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white" />
                         </button>
                     </div>
