@@ -50,7 +50,7 @@ const Navbar = () => {
         setIsDropdownOpen2(false);
     };
 
-    const totalItemCount = useCartStore((state) => state.totalItemCount);
+    const { cartCount } = useCartStore();
     const [wishlistCount] = useState(0);
 
     const {user, isAuthenticated, logout} = useAuthStore();
@@ -326,7 +326,7 @@ const Navbar = () => {
                                <span
                                 className="absolute top-[0.3vw] md:-top-[0.15vw] right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[4.8vw] md:w-[1vw] h-[4.8vw] md:h-[1vw] flex items-center justify-center font-Poppins"
                                 >
-                                {totalItemCount}
+                                { cartCount }
                                 </span>
                         </div>
                         {/* Cart Label */}
