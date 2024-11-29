@@ -2,9 +2,11 @@ import {FiMinus, FiPlus} from 'react-icons/fi';
 import useCartStore from '../../store/useCartStore';
 import {IoIosClose} from "react-icons/io";
 import Empty from "../../assets/Group 1 (1).svg";
+import { Link } from 'react-router-dom';
 
 const CartPage = () => {
-    const {cart, updateQuantity, removeFromCart, clearCart} = useCartStore();
+    const {cart, removeFromCart, clearCart, updateQuantity} = useCartStore();
+    
 
     // Calculate subtotal
     const subtotal = cart.reduce(
@@ -18,8 +20,8 @@ const CartPage = () => {
                 {/* Cart Items Section */}
                 <div className="w-full h-full md:w-2/3 border rounded-lg p-[1vw]">
   {cart.length === 0 ? (
-    <div className='flex flex-col justify-center items-center py-[5vw] md:py-0'>
-      <div className='w-[70vw] h-[65vw] md:w-[20vw] md:h-[18vw]'>
+    <div className='flex flex-col justify-center items-center py-[5vw] md:py-[3vw]'>
+      <div className='w-[70vw] h-[65vw] md:w-[25vw] md:h-[24vw]'>
         <img src={Empty} alt='Empty cart' className='w-full h-full object-cover' />
       </div>
       <span className='mt-[1.5vw] font-Poppins font-semibold text-Gray700 md:text-[1.5vw]'>
@@ -43,8 +45,10 @@ const CartPage = () => {
           {cart.map((item) => (
             <tr key={item.id} className="border-b">
               <td className="p-2 flex items-center">
-                <img src={item.images[0]} alt={item.name} className="w-[5vw] h-[4vw] rounded-lg mr-4" />
-                <span className='font-Poppins overflow-hidden text-ellipsis whitespace-nowrap'>{item.name}</span>
+                <img src={item.images[0]} alt={item.name} className="w-[4vw] h-[3vw] rounded-lg mr-4" />
+                <span className='font-Poppins overflow-hidden text-ellipsis whitespace-nowrap'>
+                <Link to={`/product/${encodeURIComponent(item.name)}`} onClick={() => window.scrollTo(0,0)}>{item.name}</Link>
+                  </span>
               </td>
               <td className="p-2 font-Poppins">${item.salePrice.toFixed(2)}</td>
               <td className="p-2">
@@ -77,19 +81,21 @@ const CartPage = () => {
       {/* Mobile Layout */}
       <div className="md:hidden flex flex-col space-y-4">
         {cart.map((item) => (
-          <div key={item.id} className="border-b p-4">
+          <div key={item.id} className="border-b p-4 ">
             <div className="flex items-start">
             <img src={item.images[0]} alt={item.name} className="w-[18vw] h-[18vw] object-cover rounded-lg mr-4" />
             <div className="flex-1">
-              <h3 className="text-[4.5vw] font-Poppins font-semibold overflow-hidden text-ellipsis whitespace-nowrap">{item.name}</h3>
-              <p className="text-Gray500 font-Poppins">Price: ${item.salePrice.toFixed(2)}</p>
+              <h3 className="text-[4.5vw] text-Gray700 font-Poppins font-semibold overflow-hidden text-ellipsis whitespace-wrap">
+              <Link to={`/product/${encodeURIComponent(item.name)}`} onClick={() => window.scrollTo(0,0)}>{item.name}</Link>
+              </h3>
+              <p className="text-Gray500 font-Poppins">${item.salePrice.toFixed(2)}</p>
             </div>
             <button onClick={() => removeFromCart(item.id)} className="text-Gray700 ml-4 p-[0.5vw] border rounded-full">
               <IoIosClose className='text-[8vw]' />
             </button>
             </div>
             <div className='flex justify-between items-center'>
-                <p className="mt-2 font-Poppins">Subtotal: ${(item.salePrice * item.quantity).toFixed(2)}</p>
+                <p className="mt-2 font-Poppins text-Gray600">Total: ${(item.salePrice * item.quantity).toFixed(2)}</p>
               <div className="flex items-center mt-2">
                 <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className={`w-[8vw] h-[8vw] border bg-Gray100 rounded-full text-Gray800 text-[4vw] flex justify-center items-center ${
                   item.quantity === 1 ? "cursor-not-allowed opacity-50" : ""

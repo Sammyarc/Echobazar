@@ -4,6 +4,8 @@ import axios from 'axios';
 import { IoOptionsOutline, IoArrowForwardSharp } from 'react-icons/io5';
 import BgImage from '../../assets/Bannar.png';
 import { Heart, ShoppingCart } from 'lucide-react';
+import useCartStore from '../../store/useCartStore';
+import {toast} from 'react-toastify';
 
 const API_URL = import.meta.env.MODE === 'development'
   ? 'http://localhost:5000/api'
@@ -17,6 +19,8 @@ const Products = () => {
   const [totalProduct, setTotalProduct] = useState(0);
   const [priceRange, setPriceRange] = useState([2, 100]);
   const [loading, setLoading] = useState(false);
+
+  const { addToCart } = useCartStore();
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -213,11 +217,11 @@ const Products = () => {
             <>
               {/* Header */}
               <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center gap-[0.7vw] md:gap-[0.3vw] font-Poppins md:text-[1vw] text-Gray600">
+                <div className="flex items-center gap-[1vw] md:gap-[0.3vw] font-Poppins text-[4.5vw] md:text-[1vw] text-Gray600">
                   {totalProduct}
                   <span>Products Found</span>
                 </div>
-                <select className="border border-Gray300 outline-none font-Poppins focus:border-Primary rounded px-3 py-2">
+                <select className="border border-Gray300 outline-none font-Poppins focus:border-Primary rounded w-[35vw] h-[10vw] md:w-[7vw] md:h-[2vw] text-[4vw] md:text-[0.8vw] px-[1vw] md:px-[0.5vw]">
                   <option className="font-Poppins">Latest</option>
                   <option className="font-Poppins">Price: Low to High</option>
                   <option className="font-Poppins">Price: High to Low</option>
@@ -263,7 +267,12 @@ const Products = () => {
                                 </span>
                             ))}
                         </div>
-                        <button className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
+                        <button
+                           onClick={() => {
+                            addToCart(product);  // Add the product to the cart
+                            toast.success(`${product.name} has been added to your cart!`);  // Show toast notification
+                          }}
+                         className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
                             <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white" />
                         </button>
                     </div>

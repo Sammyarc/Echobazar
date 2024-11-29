@@ -30,22 +30,10 @@ const ProductDescription = () => {
     const [activeSlide, setActiveSlide] = useState(0);
     const sliderRef = useRef(null); // Create a reference to access slider methods
 
-    const addItemToCart = useCartStore((state) => state.addToCart);
-    const increaseCount = useCartStore((state) => state.increaseCount);
-    const cart = useCartStore((state) => state.cart);
+    const { addToCart } = useCartStore();
 
-    const addToCart = () => {
-        const isExisting = cart.some((item) => item.id === product.id);
-
-        addItemToCart({
-            ...product,
-            quantity: 1
-        });
-
-        // Only increase count if the item is not already in the cart
-        if (!isExisting) {
-            increaseCount();
-        }
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
 
         toast.success(`${product.name} has been added to your cart!`);
     };
@@ -309,7 +297,7 @@ const ProductDescription = () => {
                             </button>
                         </div>
                         <button
-                            onClick={addToCart}
+                            onClick={handleAddToCart}
                             className="bg-Primary text-white w-[50vw] h-[10vw] md:w-[20vw] md:h-[2.7vw] rounded-xl md:rounded-full flex items-center justify-center space-x-[2vw] md:space-x-1">
                             <FaCartPlus className="w-[5vw] h-[5vw] md:w-5 md:h-5"/>
                             <span className="font-Poppins text-[3.5vw] md:text-[1.1vw]">Add to cart</span>
@@ -443,6 +431,10 @@ const ProductDescription = () => {
                                                     }
                                                 </div>
                                                 <button
+                                                    onClick={() => {
+                                                        addToCart(relatedProduct);  // Add the product to the cart
+                                                        toast.success(`${relatedProduct.name} has been added to your cart!`);  // Show toast notification
+                                                      }}
                                                     className="group-hover:bg-Primary group-hover:border-Primary group-hover:shadow-md p-2 rounded-full border border-gray-200 transition-all duration-300">
                                                     <ShoppingCart className="w-5 h-5 text-gray-600 group-hover:text-white"/>
                                                 </button>
