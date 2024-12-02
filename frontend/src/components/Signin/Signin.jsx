@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import PasswordStrengthMeter from "../PasswordStrengthMeter/PasswordStregthMeter";
 import {PiUserLight} from "react-icons/pi";
 import {GoMail} from "react-icons/go";
@@ -36,6 +36,7 @@ const Signin = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [termsAccepted, setTermsAccepted] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
     const [isPasswordVisible, setPasswordVisible] = useState(false);
     const [role, setRole] = useState('user'); // Default to user
     const [isRoleSelectionVisible, setIsRoleSelectionVisible] = useState(false);
@@ -69,7 +70,8 @@ const handleGoogleLoginSuccess = async (credentialResponse) => {
             if (role === "admin") {
                 navigate("/admin-dashboard");
             } else {
-                navigate("/"); // Redirect to home for non-admin users
+                const redirectTo = location.state?.from || '/';
+                navigate(redirectTo); // Redirect to home for non-admin users
             }
 
             window.scrollTo(0, 0);
@@ -123,7 +125,8 @@ const handleRoleSelection = async (selectedRole) => {
                 navigate("/admin-dashboard"); // Redirect to admin dashboard
                 window.scrollTo(0, 0);
             } else {
-                navigate("/"); // Redirect to home for regular users
+                const redirectTo = location.state?.from || '/';
+                navigate(redirectTo); // Redirect to home for regular users
                 window.scrollTo(0, 0);
             }
 
@@ -204,7 +207,8 @@ const handleGoogleLoginError = () => {
         if (user.role === "admin") {
             navigate("/admin-dashboard"); // Navigate to the admin dashboard
         } else {
-            navigate("/"); // Navigate to the home page for non-admin users
+            const redirectTo = location.state?.from || '/';
+            navigate(redirectTo); // Navigate to the home page for non-admin users
         }
 
         // Scroll to the top of the page after navigation
