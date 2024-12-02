@@ -12,6 +12,7 @@ import {
 	countdownDate,
 	getProfile,
 	updateProfile,
+	updateUserDetails,
 } from "../controllers/auth.controller.js";
 import { verifyToken } from "../middleware/verifyToken.js";
 import { uploadProfilePicture } from "../middleware/multer.js";
@@ -21,7 +22,7 @@ const router = express.Router();
 router.get("/check-auth", verifyToken, checkAuth);
 router.get("/profile", verifyToken, getProfile);
 router.put("/profile", verifyToken, uploadProfilePicture, updateProfile);
-
+router.put("/user-details", verifyToken, updateUserDetails);
 router.post("/signup", signup);
 router.get("/google-check", googleCheck);
 router.post("/login", login);
