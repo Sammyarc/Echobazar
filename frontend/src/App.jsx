@@ -19,6 +19,9 @@ import Cart from "./pages/Cart";
 import FaQ from "./pages/FaQ";
 import ErrorPage from "./pages/ErrorPage";
 import Contact from "./pages/Contact";
+import Checkout from "./pages/Checkout";
+import CheckoutRoute from "../src/Routes/CheckoutRoute";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 
 const App = () => {
@@ -79,6 +82,21 @@ const App = () => {
       <Route path="/faqs" element={<FaQ />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/order-confirmation" element={<OrderConfirmation />} />
+      <Route path="/checkout" element={
+        <CheckoutRoute>
+          <Checkout />
+        </CheckoutRoute>
+        } />
+
+      <Route
+        path="/reset-password/:token"
+        element={
+          <RedirectIfAuthenticated>
+            <Resetpassword />
+          </RedirectIfAuthenticated>
+        }
+      />
 
       {/* Protected Admin Route */}
       <Route
