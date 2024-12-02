@@ -150,6 +150,39 @@ input[type="range"]:focus {
   border: none;
 }
 
+/* Remove default outline and style the radio button */
+input[type="radio"] {
+  appearance: none;  /* Removes default radio button appearance */
+  -webkit-appearance: none;  /* For Safari */
+  border: 2px solid #ccc;  /* Border around the radio button */
+  border-radius: 50%;  /* Make it circular */
+  background-color: #fff;
+  transition: all 0.3s ease; /* Smooth transition for changes */
+  cursor: pointer;
+}
+
+/* When checked, change the background and border */
+input[type="radio"]:checked {
+  border-color: #4CAF50;  /* Custom border color when checked */
+  background-color: #ffff; /* Custom background color when checked */
+  box-shadow: 0 0 0 2px rgba(0, 128, 0, 0.2);  /* Optional: a subtle green ring */
+}
+
+/* Optionally, remove focus ring or change it */
+input[type="radio"]:focus {
+  outline: none;  /* Remove the default focus outline */
+}
+
+/* Optional: Create a custom inner circle for checked state */
+input[type="radio"]:checked::after {
+  content: '';
+  display: block;
+  width: 65%;
+  height: 65%;
+  background-color: #00B207; /* Inner circle color */
+  border-radius: 50%;
+  margin: 15% 15%; /* Center the inner circle */
+}
 
 
 
@@ -166,5 +199,15 @@ input[type="range"]:focus {
   .Toastify__close-button > svg {
     width: 6vw !important;
     height: 6vw !important;
+  }
+
+  input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 70%;
+    background-color: #00B207; /* Inner circle color */
+    border-radius: 50%;
+    margin: 15% auto; /* Center the inner circle */
   }
 }
