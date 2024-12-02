@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from './db/connectDB.js';
 import authRoutes from './routes/auth.route.js';
 import productRoutes from './routes/product.route.js';
+import orderRoutes from './routes/order.route.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
 import path from "path";
@@ -19,6 +20,7 @@ app.use(cookieParser()); // allows us to parse incoming cookies
 
 app.use("/api/auth", authRoutes);
 app.use('/api', productRoutes);
+app.use('/api/create', orderRoutes);
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
