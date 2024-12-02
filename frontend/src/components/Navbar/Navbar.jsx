@@ -32,22 +32,15 @@ const Menu = [
 ];
 
 const Navbar = () => {
-    const [isDropdownOpen1, setIsDropdownOpen1] = useState(false);
-    const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState('Eng');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState('USD');
 
-    const toggleDropdown1 = () => setIsDropdownOpen1(!isDropdownOpen1);
-    const toggleDropdown2 = () => setIsDropdownOpen2(!isDropdownOpen2);
+    const toggleDropdown2 = () => setIsDropdownOpen(!isDropdownOpen);
 
-    const handleLanguageChange = (language) => {
-        setSelectedLanguage(language);
-        setIsDropdownOpen1(false);
-    };
 
     const handleCurrencyChange = (currency) => {
         setSelectedCurrency(currency);
-        setIsDropdownOpen2(false);
+        setIsDropdownOpen(false);
     };
 
     const { cartCount } = useCartStore();
@@ -83,56 +76,26 @@ const Navbar = () => {
 
                 <div className="flex items-center space-x-[1vw]">
                     <div className="flex items-center gap-[1vw]">
-                        {/* Language Dropdown */}
-                        <div className="relative">
-                            <button
-                                aria-label="Select Language"
-                                onClick={toggleDropdown1}
-                                aria-haspopup="true"
-                                aria-expanded={isDropdownOpen1}
-                                className="flex items-center text-[1.1vw] text-Gray600 font-Poppins transition duration-200">
-                                {selectedLanguage}
-                                <GoChevronDown
-                                    className={`ml-[0.1vw] text-[1vw] text-Gray600 transition-transform duration-200 ${isDropdownOpen1
-                                        ? 'rotate-180'
-                                        : ''}`}/>
-                            </button>
-                            {
-                                isDropdownOpen1 && (
-                                    <div
-                                        className="absolute right-0 mt-1 w-[5vw] bg-white rounded-lg shadow-lg z-10">
-                                        <ul className="text-Gray600">
-                                            <li
-                                                onClick={() => handleLanguageChange('Eng')}
-                                                className="px-[1vw] py-[0.3vw] font-Poppins text-[0.9vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
-                                                Eng
-                                            </li>
-                                            <li
-                                                onClick={() => handleLanguageChange('Den')}
-                                                className="px-[1vw] py-[0.3vw] font-Poppins text-[0.9vw] hover:bg-gray-100 cursor-pointer">
-                                                Den
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )
-                            }
-                        </div>
+                        {/* Language */}
+
+                        <span className='text-[1.1vw] text-Gray600 font-Poppins'>Eng</span>
+                        
                         {/* Currency Dropdown */}
                         <div className="relative">
                             <button
                                 aria-label="Select Currency"
                                 onClick={toggleDropdown2}
                                 aria-haspopup="true"
-                                aria-expanded={isDropdownOpen2}
+                                aria-expanded={isDropdownOpen}
                                 className="flex items-center text-[1.1vw] text-Gray600 font-Poppins transition duration-200">
                                 {selectedCurrency}
                                 <GoChevronDown
-                                    className={`ml-[0.1vw] text-[1vw] text-Gray600 transition-transform duration-200 ${isDropdownOpen2
+                                    className={`ml-[0.1vw] text-[1vw] text-Gray600 transition-transform duration-200 ${isDropdownOpen
                                         ? 'rotate-180'
                                         : ''}`}/>
                             </button>
                             {
-                                isDropdownOpen2 && (
+                                isDropdownOpen && (
                                     <div
                                         className="absolute right-0 mt-1 w-[5vw] bg-white rounded-lg shadow-lg z-10">
                                         <ul className="text-Gray600">
@@ -186,55 +149,24 @@ const Navbar = () => {
             <div
                 className="flex md:hidden items-center justify-between w-full py-[2vw] px-[2vw]">
                 <div className="flex items-center gap-[3vw] mt-[1vw]">
-                    {/* Language Dropdown */}
-                    <div className="relative">
-                        <button
-                            aria-label="Select Language"
-                            onClick={toggleDropdown1}
-                            aria-haspopup="true"
-                            aria-expanded={isDropdownOpen1}
-                            className="flex items-center text-[4.2vw] text-Gray600 font-Poppins transition duration-200">
-                            {selectedLanguage}
-                            <GoChevronDown
-                                className={`ml-[0.1vw] text-[5.5vw] text-Gray600 transition-transform duration-500 ${isDropdownOpen1
-                                    ? 'rotate-180'
-                                    : ''}`}/>
-                        </button>
-                        {
-                            isDropdownOpen1 && (
-                                <div className="absolute mt-1 w-[20vw] bg-white rounded-lg shadow-lg z-10">
-                                    <ul className="text-Gray600">
-                                        <li
-                                            onClick={() => handleLanguageChange('Eng')}
-                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer rounded-t-lg">
-                                            Eng
-                                        </li>
-                                        <li
-                                            onClick={() => handleLanguageChange('Den')}
-                                            className="px-[2vw] py-[2vw] font-Poppins text-[4vw] hover:bg-gray-100 cursor-pointer">
-                                            Den
-                                        </li>
-                                    </ul>
-                                </div>
-                            )
-                        }
-                    </div>
+                    {/* Language  */}
+                    <span className='text-[4.2vw] text-Gray600 font-Poppins'>Eng</span>
                     {/* Currency Dropdown */}
                     <div className="relative">
                         <button
                             aria-label="Select Currency"
                             onClick={toggleDropdown2}
                             aria-haspopup="true"
-                            aria-expanded={isDropdownOpen2}
+                            aria-expanded={isDropdownOpen}
                             className="flex items-center text-[4.2vw] text-Gray600 font-Poppins transition duration-200">
                             {selectedCurrency}
                             <GoChevronDown
-                                className={`ml-[0.1vw] text-[5.5vw] text-Gray600 transition-transform duration-500 ${isDropdownOpen2
+                                className={`ml-[0.1vw] text-[5.5vw] text-Gray600 transition-transform duration-500 ${isDropdownOpen
                                     ? 'rotate-180'
                                     : ''}`}/>
                         </button>
                         {
-                            isDropdownOpen2 && (
+                            isDropdownOpen && (
                                 <div className="absolute mt-1 w-[20vw] bg-white rounded-lg shadow-lg z-10">
                                     <ul className="text-Gray600">
                                         <li
