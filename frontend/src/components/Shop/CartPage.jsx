@@ -2,7 +2,7 @@ import {FiMinus, FiPlus} from 'react-icons/fi';
 import useCartStore from '../../store/useCartStore';
 import {IoIosClose} from "react-icons/io";
 import Empty from "../../assets/Group 1 (1).svg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CartPage = () => {
     const {cart, removeFromCart, clearCart, updateQuantity} = useCartStore();
@@ -13,6 +13,13 @@ const CartPage = () => {
         (sum, item) => sum + item.salePrice * item.quantity,
         0
     );
+
+    const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    window.scrollTo(0, 0);
+    navigate("/checkout"); // Client-side navigation
+  };
 
     return (
         <div className="my-[8vw] md:my-[3vw] px-[2vw] md:px-[8vw]">
@@ -81,21 +88,21 @@ const CartPage = () => {
       {/* Mobile Layout */}
       <div className="md:hidden flex flex-col space-y-4">
         {cart.map((item) => (
-          <div key={item.id} className="border-b p-4 ">
+          <div key={item.id} className="border-b p-4">
             <div className="flex items-start">
             <img src={item.images[0]} alt={item.name} className="w-[18vw] h-[18vw] object-cover rounded-lg mr-4" />
             <div className="flex-1">
               <h3 className="text-[4.5vw] text-Gray700 font-Poppins font-semibold overflow-hidden text-ellipsis whitespace-wrap">
               <Link to={`/product/${encodeURIComponent(item.name)}`} onClick={() => window.scrollTo(0,0)}>{item.name}</Link>
               </h3>
-              <p className="text-Gray500 font-Poppins">${item.salePrice.toFixed(2)}</p>
+              <p className="text-Gray500 text-[4vw] font-Poppins">${item.salePrice.toFixed(2)}</p>
             </div>
             <button onClick={() => removeFromCart(item.id)} className="text-Gray700 ml-4 p-[0.5vw] border rounded-full">
               <IoIosClose className='text-[8vw]' />
             </button>
             </div>
             <div className='flex justify-between items-center'>
-                <p className="mt-2 font-Poppins text-Gray600">Total: ${(item.salePrice * item.quantity).toFixed(2)}</p>
+                <p className="mt-2 font-Poppins text-[4vw] text-Gray600">Total: ${(item.salePrice * item.quantity).toFixed(2)}</p>
               <div className="flex items-center mt-2">
                 <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className={`w-[8vw] h-[8vw] border bg-Gray100 rounded-full text-Gray800 text-[4vw] flex justify-center items-center ${
                   item.quantity === 1 ? "cursor-not-allowed opacity-50" : ""
@@ -116,7 +123,7 @@ const CartPage = () => {
     </>
   )}
   {cart.length > 0 && (
-    <button onClick={clearCart} className="text-[4.5vw] md:text-[0.9vw] my-4 md:mt-4 bg-Gray100 text-Gray700 font-Poppins px-[7vw] py-[2vw] md:py-[0.5vw] md:px-[2vw] flex ml-auto mr-[2vw] md:mr-0 rounded-xl">
+    <button onClick={clearCart} className="text-[4vw] md:text-[0.9vw] my-4 md:mt-4 bg-Gray100 text-Gray700 font-Poppins px-[4.5vw] py-[1.5vw] md:py-[0.5vw] md:px-[2vw] flex ml-auto mr-[2vw] md:mr-0 rounded-lg md:rounded-xl">
       Clear Cart
     </button>
   )}
@@ -129,21 +136,22 @@ const CartPage = () => {
                     <h2
                         className="text-[6vw] md:text-[1.5vw] font-semibold text-Gray700 font-Poppins mb-4">Cart Total</h2>
                     <div className="flex justify-between font-Poppins text-Gray700 mb-2">
-                        <span>Subtotal:</span>
-                        <span>${subtotal.toFixed(2)}</span>
+                        <span className='text-Gray800 font-semibold font-Poppins text-[4.5vw] md:text-[1vw]'>Subtotal:</span>
+                        <span className='text-Gray700 font-Poppins font-semibold text-[4vw] md:text-[1vw]'>${subtotal.toFixed(2)}</span>
                     </div>
-                    <hr className="my-2"/>
+                    <hr className="my-[2.5vw] md:my-2"/>
                     <div className="flex justify-between font-Poppins text-Gray700 mb-2">
-                        <span>Shipping:</span>
-                        <span>Free</span>
+                        <span className='text-Gray800 font-medium  font-Poppins text-[4.5vw] md:text-[1vw]'>Shipping:</span>
+                        <span className='text-Gray700 font-Poppins font-medium text-[4vw] md:text-[1vw]'>Free</span>
                     </div>
-                    <hr className="my-2"/>
-                    <div className="flex justify-between font-Poppins text-Gray900 mb-4">
-                        <span className="font-semibold">Total:</span>
-                        <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                    <hr className="my-[2.5vw] md:my-2"/>
+                    <div className="flex justify-between font-Poppins text-Gray900 mb-2">
+                        <span className='text-Gray800 font-semibold font-Poppins text-[4.5vw] md:text-[1vw]'>Total:</span>
+                        <span className='text-Gray700 font-Poppins font-semibold text-[4vw] md:text-[1vw]'>${subtotal.toFixed(2)}</span>
                     </div>
 
                     <button
+                       onClick={handleCheckout}
                         className={`w-full py-[2.5vw] md:py-[0.6vw] rounded-lg md:rounded-full font-Poppins my-[2vw] md:my-[0.5vw] text-[4.5vw] md:text-[1vw] ${
                         cart.length === 0
                             ? "bg-Gray400 cursor-not-allowed text-Gray100"
@@ -166,7 +174,7 @@ const CartPage = () => {
                         className="w-[90vw] md:w-[40vw] py-[3vw] md:py-3 pl-[3vw] md:pl-[1vw] pr-[37vw] md:pr-[12vw] text-Gray900 text-[4vw] md:text-[1vw] rounded-lg md:rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500 focus:border-Primary"
                         placeholder="Enter code"/>
                     <button
-                        className="absolute right-0 top-0 bottom-0 bg-Gray800 font-Poppins font-semibold text-white rounded-r-lg md:rounded-full px-[5vw] text-[3.5vw] md:text-[1vw] md:px-[2vw]">
+                        className="absolute right-0 top-0 bottom-0 bg-Gray800 font-Poppins font-semibold text-white rounded-r-lg md:rounded-full px-[5vw] text-[3.5vw] md:text-[0.9vw] md:px-[2vw]">
                         Apply Coupon
                     </button>
                 </div>
