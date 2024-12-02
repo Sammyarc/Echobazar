@@ -348,3 +348,45 @@ export const updateProfile = async (req, res) => {
 	}
 };
 
+export const updateUserDetails = async (req, res) => {
+	try {
+	  const userId = req.user.id; // Assuming `req.user` contains authenticated user's ID
+	  const { name, phone, address, state, country, zipCode, email } = req.body;
+  
+	  // Check if the new email already exists in the database
+	  if (email) {
+		const emailExists = await User.findOne({ email: email });
+		if (emailExists && emailExists._id.toString() !== userId) {
+		  return res.status(400).json({ message: "Email is already taken by another user." });
+		}
+	  }
+  
+	  // Update user details
+	  const updatedUser = await User.findByIdAndUpdate(
+		userId,
+		{
+		  name,
+		  phone,
+		  address,
+		  state,
+		  country,
+		  zipCode,
+		  email
+		},
+		{ new: true, runValidators: true } // Return updated document and validate
+	  ).select("-password"); // Exclude password
+  
+	  // Check if user was found and updated
+	  if (!updatedUser) {
+		return res.status(404).json({ message: "User not found" });
+	  }
+  
+	  // Return the updated user
+	  res.status(200).json(updatedUser);
+	} catch (error) {
+	  console.error("Error:", error); // Log the error for debugging
+	  res.status(500).json({ message: "Error updating profile", error });
+	}
+  };
+  
+  
