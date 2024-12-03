@@ -310,7 +310,7 @@ const ProductsRoute = () => {
     return (
         <div className="pr-[2vw]">
             <div className='flex justify-between items-center'>
-                <h2 className='text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
+                <h2 className='text-[4vw] md:text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
                     {
                         isCreating
                             ? 'Edit Product'
@@ -323,8 +323,8 @@ const ProductsRoute = () => {
                     !isCreating && (
                         <button onClick={() => setIsCreating(true)}
                             // Enable creating mode
-                            className="bg-Primary rounded-md font-Poppins text-[1vw] text-White font-medium px-[1vw] h-[2.5vw] flex items-center space-x-[0.5vw]">
-                            <GoPlus className="text-[1.5vw]"/>
+                            className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium px-[2vw] md:px-[1vw] h-[7vw] md:h-[2.5vw] flex items-center space-x-[0.5vw]">
+                            <GoPlus className="text-[4.5vw] md:text-[1.5vw]"/>
                             Add Product
                         </button>
                     )
@@ -336,33 +336,33 @@ const ProductsRoute = () => {
             {
                 !isCreating && (
                     <div
-                        className="w-full bg-White rounded-lg shadow-lg h-[40vw] overflow-scroll mt-[1vw] custom-scrollbar">
+                        className="md:w-full bg-White rounded-lg shadow-lg h-screen md:h-[40vw] overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
                         {
                             loading
                                 ? (
                                     <div className="flex flex-col p-[5vw] justify-center items-center h-full">
                                         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-Primary"></div>
-                                        <h3 className="text-[1.5vw] text-Gray500 font-semibold font-Poppins mt-[2vw]">
+                                        <h3 className="text-[4vw] md:text-[1.5vw] text-Gray500 font-semibold font-Poppins mt-[2vw]">
                                             Loading products, please wait...
                                         </h3>
                                     </div>
                                 )
                                 : products.length > 0
                                     ? (
-                                        <table className="w-full mt-[2vw] rounded-lg">
+                                        <table className="w-[300%] md:w-full mt-[2vw] rounded-lg">
                                             <thead className="border-b border-Gray200">
                                                 <tr>
                                                     {/*<th className="p-3 text-left">
                                                         <input type="checkbox" className='accent-Primary'/>
                                                     </th>*/
                                                     }
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Product</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Categories</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Status</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Stock</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Regular Price</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Sale Price</th>
-                                                    <th className="p-3 text-left font-Poppins text-[1vw] text-Gray700">Action</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Product</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Categories</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Status</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Stock</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Regular Price</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Sale Price</th>
+                                                    <th className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -380,13 +380,13 @@ const ProductsRoute = () => {
                                                                             <img
                                                                                 src={product.images[1]}
                                                                                 alt={product.name}
-                                                                                className="w-[3vw] h-[2.5vw] mr-3 rounded-lg object-cover"/>
+                                                                                className="w-[10vw] h-[10vw] md:w-[3vw] md:h-[2.5vw] mr-3 rounded-lg object-cover"/>
                                                                         )
                                                                         : (<span className="w-10 h-10 mr-3 bg-gray-200 rounded-lg"></span>)
                                                                 }
-                                                                <span className="font-Poppins text-[1vw] text-Gray700">{product.name}</span>
+                                                                <span className="font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">{product.name}</span>
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[1vw] text-Gray700">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">
                                                                 {
                                                                     product
                                                                         .categories
@@ -395,7 +395,7 @@ const ProductsRoute = () => {
                                                             </td>
                                                             <td className="p-3">
                                                                 <span
-                                                                    className={`px-[1vw] py-1 font-medium rounded-lg font-Poppins text-[0.8vw] text-Gray700 ${
+                                                                    className={`px-[2vw] md:px-[1vw] py-[0.5vw] md:py-1 font-medium rounded-lg font-Poppins text-[3vw] md:text-[0.8vw] text-Gray700 ${
                                                                     product.quantity > 10
                                                                         ? 'bg-green-100 text-green-700'
                                                                         : product.quantity === 0
@@ -410,15 +410,15 @@ const ProductsRoute = () => {
                                                                     }
                                                                 </span>
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[1vw] text-Gray700">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">
                                                                 {product.quantity || 'N/A'}
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[1vw] text-Gray700">${
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">${
                                                                     product
                                                                         .regularPrice
                                                                         .toFixed(2)
                                                                 }</td>
-                                                            <td className="p-3 font-Poppins text-[1vw] text-Gray700">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">
                                                                 {
                                                                     product.salePrice
                                                                         ? `$${product
@@ -468,52 +468,52 @@ const ProductsRoute = () => {
                 isCreating && (
                     <form
                         onSubmit={handleSubmit}
-                        className="p-[1.5vw] bg-White rounded-lg shadow-lg ">
-                        <div className='grid grid-cols-2 gap-[5vw]'>
+                        className="p-[4vw] md:p-[1.5vw] bg-White rounded-lg shadow-lg ">
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-[5vw]'>
                             <div>
                                 <div className='flex flex-col'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Name:</label>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Name:</label>
                                     <input
                                         type="text"
                                         value={productData.name}
-                                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             name: e.target.value
                                         })}
                                         required="required"/>
                                 </div>
-                                <div className='flex justify-between items-center space-x-[0.5vw]'>
-                                    <div className='flex flex-col mt-[1.5vw]'>
-                                        <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Regular Price:</label>
+                                <div className='flex flex-col md:flex-row justify-between md:items-center md:space-x-[0.5vw]'>
+                                    <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                        <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Regular Price:</label>
                                         <input
                                             type="number"
                                             value={productData.regularPrice}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 regularPrice: e.target.value
                                             })}
                                             required="required"/>
                                     </div>
-                                    <div className='flex flex-col mt-[1.5vw]'>
-                                        <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Sale Price:</label>
+                                    <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                        <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Sale Price:</label>
                                         <input
                                             type="number"
                                             value={productData.salePrice}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 salePrice: e.target.value
                                             })}
                                             required="required"/>
                                     </div>
-                                    <div className='flex flex-col mt-[1.5vw]'>
-                                        <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Quantity:</label>
+                                    <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                        <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Quantity:</label>
                                         <input
                                             type="number"
                                             value={productData.quantity}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 quantity: e.target.value
@@ -522,35 +522,37 @@ const ProductsRoute = () => {
                                     </div>
                                 </div>
 
-                                <div className='flex flex-col mt-[1.5vw]'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Summary:</label>
+                                <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Summary:</label>
                                     <textarea
                                         value={productData.productSummary}
                                         rows="3"
                                         maxLength="500"
-                                        className='w-full outline-none border border-Gray200 h-[5vw] p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             productSummary: e.target.value
                                         })}
                                         required="required"/>
                                 </div>
-                                <div className='flex flex-col mt-[1.5vw]'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Description:</label>
+                                <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Description:</label>
                                     <textarea
                                         value={productData.description}
-                                        className='w-full outline-none border border-Gray200 h-[10vw] p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        rows="3"
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             description: e.target.value
                                         })}
                                         required="required"/>
                                 </div>
-                                <div className='flex flex-col mt-[1.5vw]'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Additional Description:</label>
+                                <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Additional Description:</label>
                                     <textarea
                                         value={productData.additionalDescription}
-                                        className='w-full outline-none border border-Gray200 h-[10vw] p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        rows="3"
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             additionalDescription: e.target.value
@@ -561,18 +563,18 @@ const ProductsRoute = () => {
 
                             <div>
                                 <div className='flex flex-col'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Health Benefits:</label>
-                                    <span className='flex items-center space-x-[2vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Health Benefits:</label>
+                                    <span className='flex flex-col md:flex-row md:items-center md:space-x-[2vw]'>
                                         <input
                                             type="text"
                                             value={newBenefit}
-                                            className='w-[70vw] outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-[70vw] outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
                                             onChange={(e) => setNewBenefit(e.target.value)}
                                             placeholder="Enter a health benefit"/>
                                         <button
                                             type="button"
                                             onClick={handleAddBenefit}
-                                            className='bg-Primary rounded-md font-Poppins text-[1vw] text-White font-medium w-[30vw] h-[2.5vw] mt-[0.5vw]'>Add Benefit</button>
+                                            className='bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium h-[6vw] w-[30vw] md:h-[2.5vw] mt-[2vw] md:mt-[0.5vw]'>Add Benefit</button>
                                     </span>
                                     <ul>
                                         {
@@ -583,17 +585,17 @@ const ProductsRoute = () => {
                                                                 productData.benefits.map((benefit, index) => (
                                                             <li
                                                                 key={index}
-                                                                className='bg-White shadow-lg rounded-lg p-[0.5vw] font-Poppins text-Gray700 text-[0.9vw] mt-[0.5vw]'>
+                                                                className='bg-White shadow-lg rounded-lg p-[2vw] md:p-[0.5vw] font-Poppins text-Gray700 text-[3vw] md:text-[0.9vw] mt-[2vw] md:mt-[0.5vw]'>
                                                                 {benefit}
                                                             </li>
                                                         )))
-                                                        : (<li className='text-Gray700 text-[0.9vw] font-Poppins'>No health benefits added yet.</li>)
+                                                        : (<li className='text-Gray700 text-[3vw] md:text-[0.9vw] mt-[1vw] md:mt-[0.5vw] font-Poppins'>No health benefits added yet.</li>)
                                         }
                                     </ul>
 
                                 </div>
-                                <div className='mt-[1.5vw]'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Category:</label>
+                                <div className='mt-[4vw] md:mt-[1.5vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Category:</label>
                                     <div className='mt-[0.5vw]'>
                                         <select
                                             value={productData.selectedCategory}
@@ -625,19 +627,19 @@ const ProductsRoute = () => {
                                     </div>
 
                                     {/* Selected categories display */}
-                                    <div className="p-[0.5vw] flex flex-wrap gap-2">
+                                    <div className="p-[0.5vw] flex flex-wrap gap-2 mt-[1vw] md:mt-[0.2vw]">
                                         {
                                             productData
                                                 .categories
                                                 .map((category, index) => (
                                                     <div
                                                         key={index}
-                                                        className="flex items-center px-2 py-1 bg-Gray50 rounded font-Poppins text-[0.9vw]">
+                                                        className="flex items-center px-2 py-1 bg-Gray50 rounded font-Poppins text-[3vw] md:text-[0.9vw]">
                                                         {category}
                                                         <button
                                                             type="button"
                                                             onClick={() => handleRemoveCategory(category)}
-                                                            className="ml-2 text-red-600 text-[1.4vw]">
+                                                            className="ml-2 text-red-600 text-[4.5vw] md:text-[1.4vw]">
                                                             ×
                                                         </button>
                                                     </div>
@@ -646,13 +648,13 @@ const ProductsRoute = () => {
                                     </div>
 
                                 </div>
-                                <div className='flex flex-col mt-[1.5vw]'>
-                                    <label className='text-[4vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Gallery:</label>
+                                <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
+                                    <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Gallery:</label>
                                     <div
                                         className="mt-[0.5vw] flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-SoftPrimary transition"
                                         onClick={() => document.getElementById('fileInput').click()}>
-                                        <FaCloudUploadAlt className="text-[6vw] md:text-[4vw] text-Gray300 mb-2"/>
-                                        <p className="text-[4vw] md:text-[0.8vw] text-center text-Gray500 font-Poppins">
+                                        <FaCloudUploadAlt className="text-[8vw] md:text-[4vw] text-Gray300 mb-2"/>
+                                        <p className="text-[3vw] md:text-[0.8vw] text-center text-Gray500 font-Poppins">
                                             Drag files here to upload or
                                             <span className="text-blue-500 ml-1 underline">browse</span>
                                             <br/>
@@ -684,7 +686,7 @@ const ProductsRoute = () => {
                                                             className="w-[20vw] h-[20vw] md:w-[6vw] md:h-[6vw] object-cover rounded"/>
                                                         <button
                                                             onClick={() => handleRemoveImage(index)}
-                                                            className="absolute -top-[0.5vw] -right-[0.5vw] bg-red-600 text-white rounded-full w-[4vw] h-[4vw] md:w-[1.2vw] md:h-[1.2vw] flex items-center justify-center text-[3vw] md:text-[1.2vw] pb-1">
+                                                            className="absolute -top-[0.5vw] -right-[0.5vw] bg-red-600 text-white rounded-full w-[4.5vw] h-[4.5vw] md:w-[1.2vw] md:h-[1.2vw] flex items-center justify-center text-[4vw] md:text-[1.2vw] pb-1">
                                                             ×
                                                         </button>
                                                     </div>
@@ -697,10 +699,10 @@ const ProductsRoute = () => {
                         </div>
 
                         {/* Buttons Section */}
-                        <div className='flex items-end'>
+                        <div className='flex items-end mt-[4vw] md:mt-0'>
                             <button
                                 type="submit"
-                                className="bg-Primary rounded-md font-Poppins text-[1vw] text-White font-medium w-[10vw] h-[2.5vw] mt-[1.5vw] ml-auto"
+                                className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium w-[30vw] h-[6.5vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-auto"
                                 disabled={isLoading}>
                                 {
                                     isLoading
@@ -722,7 +724,7 @@ const ProductsRoute = () => {
                             {/* Cancel Button */}
                             <button
                                 type="button"
-                                className="bg-gray-300 rounded-md font-Poppins text-[1vw] text-Gray700 font-medium w-[10vw] h-[2.5vw] mt-[1.5vw] ml-[1vw]"
+                                className="bg-gray-300 rounded-md font-Poppins text-[3vw] md:text-[1vw] text-Gray700 font-medium w-[30vw] h-[6.5vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-[1vw]"
                                 onClick={handleCancel}>
                                 Cancel
                             </button>

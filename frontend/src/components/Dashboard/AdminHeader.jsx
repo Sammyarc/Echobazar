@@ -34,18 +34,18 @@ const AdminHeader = () => {
 
   return (
     <div className="py-[1vw] pr-[2vw] mt-[1vw] flex justify-between items-center">
-      {/* Desktop Search bar */}
-      <div className="flex w-[20vw] h-[2.5vw] border border-Gray100 items-center space-x-1 rounded-[0.5vw] focus-within:border-Primary">
+      {/* Search bar */}
+      <div className="flex w-[50vw] h-[8vw] md:w-[20vw] md:h-[2.5vw] border border-Gray100 items-center space-x-1 rounded-[1.5vw] md:rounded-[0.5vw] focus-within:border-Primary">
         {/* Search icon */}
-        <GoSearch className="px-[0.4vw] w-[10%] text-[1.3vw]" />
+        <GoSearch className="px-[0.4vw] w-[15%] md:w-[10%] text-[3vw] md:text-[1.3vw]" />
         {/* Search input */}
         <input
           type="search"
           placeholder="Search"
-          className="search-input h-full text-[1vw] outline-none border-none w-[60%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:text-[1vw]"
+          className="search-input h-full text-[3vw] md:text-[1vw] outline-none border-none w-[60%] font-Poppins text-Gray900 placeholder:text-Gray400 placeholder:md:text-[1vw]"
         />
         {/* Search button */}
-        <button className="bg-Primary w-[30%] h-full border border-Primary rounded-r-[0.5vw] font-Poppins text-White text-[0.9vw]">
+        <button className="bg-Primary w-[40%] md:w-[30%] h-full border border-Primary rounded-r-[1.5vw] md:rounded-r-[0.5vw] font-Poppins text-White text-[3vw] md:text-[0.9vw]">
           Search
         </button>
       </div>
@@ -63,9 +63,9 @@ const AdminHeader = () => {
         <img
           src={profileImage}
           alt="Profile picture"
-          className="w-[2.5vw] h-[2.5vw] border-2 border-SoftPrimary rounded-full object-cover"
+          className="w-[9vw] h-[9vw] md:w-[2.5vw] md:h-[2.5vw] border-2 border-SoftPrimary rounded-full object-cover"
         />
-        <span className="font-Poppins text-[1.1vw] text-Gray600">
+        <span className="hidden md:block font-Poppins text-[1.1vw] text-Gray600">
           Good {timeOfDay}, {user?.name?.split(" ")[0] || "Guest"}
         </span>
       </div>

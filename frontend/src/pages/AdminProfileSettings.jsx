@@ -127,25 +127,25 @@ const AdminProfileSettings = () => {
         <div className="pr-[2vw]">
             <form onSubmit={handleSubmit}>
                 {/* Profile Image Upload */}
-                <div className="w-[40vw]">
-                    <div className="mt-[1.5vw] flex items-center space-x-[2vw]">
+                <div className="w-[90vw] md:w-[40vw]">
+                    <div className="mt-[1.5vw] p-[2vw] md:p-0 flex flex-col md:flex-row md:items-center space-x-[2vw]">
                         {
                             imagePreview
                                 ? (
-                                    <div className="w-[15vw] h-[15vw] rounded-full object-cover">
+                                    <div className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
                                         <img
                                             src={imagePreview}
                                             alt="Profile Preview"
-                                            className="w-[15vw] h-[15vw] rounded-full object-cover mb-2"/>
+                                            className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover mb-2"/>
                                     </div>
                                 )
                                 : (
-                                    <div className="w-[15vw] h-[15vw] rounded-full object-cover">
+                                    <div className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
                                         <img src={Avatar} className="rounded-full object-cover w-full h-full"/>
                                     </div>
                                 )
                         }
-                        <div className="flex items-center space-x-[2vw]">
+                        <div className="flex items-center space-x-[2vw] mt-[3vw] md:mt-0">
                             <button
                                 type="button"
                                 onClick={(e) => {
@@ -154,7 +154,7 @@ const AdminProfileSettings = () => {
                                         .getElementById("fileInput")
                                         .click();
                                 }}
-                                className="bg-Primary rounded-md font-Poppins text-[1vw] text-White font-medium w-[10vw] h-[2.5vw]">
+                                className="bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[30vw] h-[8vw] md:w-[10vw] md:h-[2.5vw]">
                                 {
                                     imagePreview
                                         ? "Change"
@@ -172,7 +172,7 @@ const AdminProfileSettings = () => {
                                                 profileImage: ""
                                             }));
                                         }}
-                                        className="border border-red-500 rounded-md font-Poppins text-[1.2vw] text-red-500 font-medium px-[1vw] h-[2.5vw]">
+                                        className="border border-red-500 rounded-md font-Poppins text-[3.5vw] md:text-[1.2vw] text-red-500 font-medium px-[2vw] h-[8vw] md:px-[1vw] md:h-[2.5vw]">
                                         <FaTrashAlt/>
                                     </button>
                                 )
@@ -189,196 +189,196 @@ const AdminProfileSettings = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 mt-[2vw] shadow-lg rounded-lg">
-                    <div className="p-[2vw]">
-                        <h3 className="text-[4vw] md:text-[1.5vw] text-Gray900 font-Poppins mb-[1vw]">Basic Information</h3>
-                        <div className="grid grid-cols-2 gap-[1vw]">
-                            <div>
-                                <label className="text-Gray700 font-Poppins">Name:</label>
+                <div className="grid md:grid-cols-2 mt-[5vw] md:mt-[2vw] shadow-lg rounded-lg">
+                    <div className="p-[4vw] md:p-[2vw]">
+                        <h3 className="text-[4.5vw] md:text-[1.5vw] text-Gray800 font-Poppins font-bold mb-[1vw]">Basic Information</h3>
+                        <div className="grid md:grid-cols-2 gap-[1vw]">
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Name:</label>
                                 <input
                                     type="text"
                                     name="name"
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.name}
                                     onChange={handleChange}/>
                             </div>
-                            <div>
-                                <label className="text-Gray700 font-Poppins">Email:</label>
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Email:</label>
                                 <input
                                     type="email"
                                     name="email"
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.email}
                                     onChange={handleChange}/>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-[1vw] mt-[1.5vw]">
+                        <div className="grid grid-cols-2 gap-[5vw] md:gap-[1vw] mt-[4vw] md:mt-[1.5vw]">
                             <div>
-                                <label className="text-Gray700 font-Poppins">Date of Birth:</label>
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Date of Birth:</label>
                                 <input
                                     type="date"
                                     name="dateOfBirth"
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.dateOfBirth}
                                     onChange={handleChange}/>
                             </div>
                             <div>
-                                <label className="text-Gray700 font-Poppins">Role:</label>
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Role:</label>
                                 <input
                                     type="text"
                                     name="role"
                                     value={formData.role}
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     onChange={handleChange}
                                     disabled="disabled"/>
                             </div>
                         </div>
 
-                        <div className="mt-[1.5vw]">
-                            <label className="font-Poppins text-[1vw]">Gender:</label>
-                            <div className="mt-[0.5vw] flex items-center space-x-[1.5vw]">
+                        <div className="mt-[4vw] md:mt-[1.5vw]">
+                            <label className="font-Poppins text-[4vw] md:text-[1vw]">Gender:</label>
+                            <div className="mt-[3vw] md:mt-[0.5vw] flex items-center space-x-[3vw] md:space-x-[1.5vw]">
                                 {/* Male */}
-                                <label className="flex items-center space-x-[0.5vw] text-Gray700 font-Poppins">
+                                <label className="flex items-center space-x-[2vw] md:space-x-[0.5vw] text-Gray700 font-Poppins">
                                     <input
                                         type="radio"
                                         name="gender"
                                         value="male"
                                         checked={formData.gender === "male"}
                                         onChange={handleChange}
-                                        className="w-[1vw] h-[1vw] accent-Primary"/>
-                                    <span className="font-Poppins text-[1vw]">Male</span>
+                                        className="w-[5vw] h-[5vw] md:w-[1vw] md:h-[1vw] accent-Primary"/>
+                                    <span className="font-Poppins text-[3.5vw] md:text-[1vw]">Male</span>
                                 </label>
 
                                 {/* Female */}
-                                <label className="flex items-center space-x-[0.5vw] text-Gray700 font-Poppins">
+                                <label className="flex items-center space-x-[2vw] md:space-x-[0.5vw] text-Gray700 font-Poppins">
                                     <input
                                         type="radio"
                                         name="gender"
                                         value="female"
                                         checked={formData.gender === "female"}
                                         onChange={handleChange}
-                                        className="w-[1vw] h-[1vw] accent-Primary"/>
-                                    <span className="font-Poppins text-[1vw]">Female</span>
+                                        className="w-[5vw] h-[5vw] md:w-[1vw] md:h-[1vw] accent-Primary"/>
+                                    <span className="font-Poppins text-[3.5vw] md:text-[1vw]">Female</span>
                                 </label>
 
                                 {/* Other */}
-                                <label className="flex items-center space-x-[0.5vw] text-Gray700 font-Poppins">
+                                <label className="flex items-center space-x-[2vw] md:space-x-[0.5vw] text-Gray700 font-Poppins">
                                     <input
                                         type="radio"
                                         name="gender"
                                         value="other"
                                         checked={formData.gender === "other"}
                                         onChange={handleChange}
-                                        className="w-[1vw] h-[1vw] accent-Primary"/>
-                                    <span className="font-Poppins text-[1vw]">Other</span>
+                                        className="w-[5vw] h-[5vw] md:w-[1vw] md:h-[1vw] accent-Primary"/>
+                                    <span className="font-Poppins text-[3.5vw] md:text-[1vw]">Other</span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                    <div className="p-[2vw]">
-                        <h3 className="text-[4vw] md:text-[1.5vw] text-Gray900 font-Poppins mb-[1vw]">Contact</h3>
-                        <div className="grid grid-cols-2 gap-[1vw]">
-                            <div>
-                                <label className="text-Gray700 font-Poppins">Phone:</label>
+                    <div className="p-[4vw] md:p-[2vw]">
+                        <h3 className="text-[4.5vw] md:text-[1.5vw] text-Gray800 font-Poppins font-bold mb-[1vw]">Contact</h3>
+                        <div className="grid md:grid-cols-2 gap-[1vw]">
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Phone:</label>
                                 <input
                                     type="number"
                                     name="phone"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.phone}
                                     onChange={handleChange}/>
                             </div>
-                            <div>
-                                <label className="text-Gray700 font-Poppins">City:</label>
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">City:</label>
                                 <input
                                     type="text"
                                     name="city"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.city}
                                     onChange={handleChange}/>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-[1vw] mt-[1.5vw]">
+                        <div className="grid md:grid-cols-2 gap-[1vw] mt-[4vw] md:mt-[1.5vw]">
                             <div>
-                                <label className="text-Gray700 font-Poppins">Local Government:</label>
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Local Government:</label>
                                 <input
                                     type="text"
                                     name="localGovernment"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.localGovernment}
                                     onChange={handleChange}/>
                             </div>
-                            <div>
-                                <label className="text-Gray700 font-Poppins">Address:</label>
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Address:</label>
                                 <input
                                     type="text"
                                     name="address"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.address}
                                     onChange={handleChange}/>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-[1vw] mt-[1.5vw]">
+                        <div className="grid md:grid-cols-2 gap-[1vw] mt-[4vw] md:mt-[1.5vw]">
                             <div>
-                                <label className="text-Gray700 font-Poppins">State:</label>
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">State:</label>
                                 <input
                                     type="text"
                                     name="state"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.state}
                                     onChange={handleChange}/>
                             </div>
-                            <div>
-                                <label className="text-Gray700 font-Poppins">Country:</label>
+                            <div className="mt-[2vw] md:mt-0">
+                                <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Country:</label>
                                 <input
                                     type="text"
                                     name="country"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.country}
                                     onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
 
-                    <div className="p-[2vw]">
-                        <h3 className="text-[4vw] md:text-[1.5vw] text-Gray900 font-Poppins mb-[1vw]">Social</h3>
-                        <div className="grid grid-cols-2 gap-[1vw]">
-                            <div>
+                    <div className="p-[4vw] md:p-[2vw]">
+                        <h3 className="text-[4.5vw] md:text-[1.5vw] text-Gray800 font-Poppins font-bold mb-[1vw]">Social</h3>
+                        <div className="grid md:grid-cols-2 gap-[1vw]">
+                            <div className="mt-[2vw] md:mt-0">
                                 <label className="text-Gray700 font-Poppins">Twitter:</label>
                                 <input
                                     type="text"
                                     name="twitter"
                                     value={formData.twitter}
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     onChange={handleChange}/>
                             </div>
-                            <div>
+                            <div className="mt-[2vw] md:mt-0">
                                 <label className="text-Gray700 font-Poppins">Instagram:</label>
                                 <input
                                     type="text"
                                     name="instagram"
                                     value={formData.instagram}
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     onChange={handleChange}/>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-[1vw] mt-[1.5vw]">
+                        <div className="grid md:grid-cols-2 gap-[1vw] mt-[4vw] md:mt-[1.5vw]">
                             <div>
                                 <label className="text-Gray700 font-Poppins">Facebook:</label>
                                 <input
                                     type="text"
                                     name="facebook"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.facebook}
                                     onChange={handleChange}/>
                             </div>
-                            <div>
+                            <div className="mt-[2vw] md:mt-0">
                                 <label className="text-Gray700 font-Poppins">TikTok:</label>
                                 <input
                                     type="text"
                                     name="tiktok"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.tiktok}
                                     onChange={handleChange}/>
                             </div>
@@ -393,7 +393,7 @@ const AdminProfileSettings = () => {
                         className={`${
                         isFormChanged
                             ? 'bg-Primary hover:bg-PrimaryDark'
-                            : 'bg-Gray400 cursor-not-allowed'} rounded-md font-Poppins text-[1vw] text-White font-medium w-[10vw] h-[2.5vw] mt-[1.5vw] ml-auto`}
+                            : 'bg-Gray400 cursor-not-allowed'} rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[40vw] h-[10vw] mt-[4vw] md:w-[10vw] md:h-[2.5vw] md:mt-[1.5vw] ml-auto`}
                         disabled={!isFormChanged || isLoading}>
                         {
                             isLoading

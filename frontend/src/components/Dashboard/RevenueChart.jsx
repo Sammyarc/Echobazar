@@ -90,15 +90,15 @@ const RevenueChart = () => {
     };
 
     return (
-        <div className="bg-white p-[1vw] rounded-lg shadow-lg col-span-2">
-            <h3 className="text-xl font-semibold font-Poppins mb-2">Monthly Revenue</h3>
+        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[80vw] md:w-full md:col-span-2">
+            <h3 className="text-[4.5vw] md:text-[1.5vw] font-semibold text-Gray700 font-Poppins md:mb-2">Monthly Revenue</h3>
             <div className='flex space-x-[1vw] items-center'>
-            <div className="text-2xl font-semibold font-Poppins">$500.00</div>
-            <div className="text-Primary font-Poppins text-sm flex items-center space-x-[0.1vw]">
+            <div className="text-[4.5vw] md:text-[1.2vw] font-semibold text-Gray700 font-Poppins">$500.00</div>
+            <div className="text-Primary font-Poppins text-[3vw] md:text-[0.8vw] flex items-center space-x-[0.1vw]">
                 <FaArrowUpLong /> <span> 2% than last month</span>
             </div>
             </div>
-            <Bar data={data} options={options} />
+            <Bar data={data} options={options} className='mt-[4vw] md:mt-0'/>
         </div>
     );
 };

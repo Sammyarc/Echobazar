@@ -5,7 +5,7 @@ import CustomerAnimation from "../../assets/Animations/customer.json";
 const Customer = () => {
   return (
     <div>
-      <Lottie animationData={CustomerAnimation} loop={false} style={{ width: 500, height: 300 }}/>
+      <Lottie animationData={CustomerAnimation} loop={false} />
     </div>
   )
 }

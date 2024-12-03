@@ -4,13 +4,34 @@ import OverviewRoute from "./OverviewRoute";
 import ProductsRoute from "./ProductsRoute";
 import AdminSidebar from "../components/Dashboard/AdminSidebar";
 import AdminHeader from "../components/Dashboard/AdminHeader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomerList from "./CustomerList";
 import AdminProfileSettings from "./AdminProfileSettings";
 
 const AdminDashboard = () => {
     const year = new Date().getFullYear();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState('true');
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+    // Update window width on resize
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
+    const isMobile = windowWidth < 768;
+    const mainWidth = isMobile ? (isSidebarOpen ? 'calc(100% - 15vw)' : 'calc(100% - 15vw)') : (isSidebarOpen ? 'calc(100% - 17vw)' : 'calc(100% - 6vw)');
+    const mainMarginLeft = isMobile ? (isSidebarOpen ? '15vw' : '15vw'): (isSidebarOpen ? '17vw' : '6vw')
+    
+        useEffect(() => {
+            if (isMobile) {
+                setIsSidebarOpen(false);
+            } else {
+                setIsSidebarOpen(true);
+            }
+        }, [isMobile]);
 
     return (
         <div className="flex h-screen">
@@ -21,11 +42,11 @@ const AdminDashboard = () => {
             <div
                 className={`flex flex-col transition-all duration-200`}
                 style={{
-                    marginLeft: isSidebarOpen ? '17vw' : '6vw',
-                    width: isSidebarOpen ? 'calc(100% - 17vw)' : 'calc(100% - 6vw)'
+                    marginLeft: mainMarginLeft,
+                    width: mainWidth
                 }}>
                 <AdminHeader />
-                <div className="mt-2">
+                <div className="mt-[5vw] md:mt-2">
                     <Routes>
                         <Route path="/" element={<OverviewRoute />} />
                         <Route path="product" element={<ProductsRoute />} />
@@ -34,8 +55,8 @@ const AdminDashboard = () => {
                     </Routes>
                 </div>
                 <div className="pr-[2vw] pb-[1vw] flex justify-center items-center">
-                    <p className="text-[4.2vw] md:text-[1vw] text-Gray500 font-Poppins mt-2 pt-4">
-                        Ecobazar © {year} <span className="text-[4.2vw] md:text-[1vw] font-Poppins">All Rights Reserved</span>
+                    <p className="text-[3.5vw] md:text-[1vw] text-Gray500 font-Poppins mt-2 pt-4">
+                        Ecobazar © {year} <span className="text-[3.5vw] md:text-[1vw] font-Poppins">All Rights Reserved</span>
                     </p>
                 </div>
             </div>
