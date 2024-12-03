@@ -336,7 +336,7 @@ const ProductsRoute = () => {
             {
                 !isCreating && (
                     <div
-                        className="md:w-full bg-White rounded-lg shadow-lg h-screen md:h-[40vw] overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
+                        className="md:w-full bg-White rounded-lg shadow-lg h-screen overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
                         {
                             loading
                                 ? (
@@ -476,7 +476,7 @@ const ProductsRoute = () => {
                                     <input
                                         type="text"
                                         value={productData.name}
-                                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             name: e.target.value
@@ -489,7 +489,7 @@ const ProductsRoute = () => {
                                         <input
                                             type="number"
                                             value={productData.regularPrice}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 regularPrice: e.target.value
@@ -501,7 +501,7 @@ const ProductsRoute = () => {
                                         <input
                                             type="number"
                                             value={productData.salePrice}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 salePrice: e.target.value
@@ -513,7 +513,7 @@ const ProductsRoute = () => {
                                         <input
                                             type="number"
                                             value={productData.quantity}
-                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-full outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                             onChange={(e) => setProductData({
                                                 ...productData,
                                                 quantity: e.target.value
@@ -528,7 +528,7 @@ const ProductsRoute = () => {
                                         value={productData.productSummary}
                                         rows="3"
                                         maxLength="500"
-                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             productSummary: e.target.value
@@ -540,7 +540,7 @@ const ProductsRoute = () => {
                                     <textarea
                                         value={productData.description}
                                         rows="3"
-                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             description: e.target.value
@@ -552,7 +552,7 @@ const ProductsRoute = () => {
                                     <textarea
                                         value={productData.additionalDescription}
                                         rows="3"
-                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                        className='w-full outline-none border border-Gray200 md:h-[5vw] p-[2vw] md:p-[1vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                         onChange={(e) => setProductData({
                                             ...productData,
                                             additionalDescription: e.target.value
@@ -568,13 +568,13 @@ const ProductsRoute = () => {
                                         <input
                                             type="text"
                                             value={newBenefit}
-                                            className='w-[70vw] outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[0.5vw]'
+                                            className='w-[70vw] outline-none border border-Gray200 px-[2.5vw] py-[1.5vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                             onChange={(e) => setNewBenefit(e.target.value)}
                                             placeholder="Enter a health benefit"/>
                                         <button
                                             type="button"
                                             onClick={handleAddBenefit}
-                                            className='bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium h-[6vw] w-[30vw] md:h-[2.5vw] mt-[2vw] md:mt-[0.5vw]'>Add Benefit</button>
+                                            className='bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium h-[8vw] w-[30vw] md:h-[2.5vw] mt-[3vw] md:mt-[0.5vw]'>Add Benefit</button>
                                     </span>
                                     <ul>
                                         {
@@ -585,21 +585,22 @@ const ProductsRoute = () => {
                                                                 productData.benefits.map((benefit, index) => (
                                                             <li
                                                                 key={index}
-                                                                className='bg-White shadow-lg rounded-lg p-[2vw] md:p-[0.5vw] font-Poppins text-Gray700 text-[3vw] md:text-[0.9vw] mt-[2vw] md:mt-[0.5vw]'>
+                                                                className='bg-White shadow-lg rounded-lg p-[2vw] md:p-[0.5vw] font-Poppins text-Gray700 text-[3vw] md:text-[0.9vw] mt-[3vw] md:mt-[0.5vw]'>
                                                                 {benefit}
                                                             </li>
                                                         )))
-                                                        : (<li className='text-Gray700 text-[3vw] md:text-[0.9vw] mt-[1vw] md:mt-[0.5vw] font-Poppins'>No health benefits added yet.</li>)
+                                                        : (<li className='text-Gray700 text-[3vw] md:text-[0.9vw] mt-[2vw] md:mt-[0.5vw] font-Poppins'>No health benefits added yet.</li>)
                                         }
                                     </ul>
 
                                 </div>
                                 <div className='mt-[4vw] md:mt-[1.5vw]'>
                                     <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Category:</label>
-                                    <div className='mt-[0.5vw]'>
+                                    <div className='mt-[2vw] md:mt-[0.5vw]'>
                                         <select
                                             value={productData.selectedCategory}
                                             onChange={handleAddCategory}
+                                            className='text-[3.5vw] md:text-[0.9vw]'
                                             style={{
                                                 backgroundImage: 'none', // Removes the default arrow in most browsers
                                                 WebkitAppearance: 'none', // For Safari
@@ -607,14 +608,13 @@ const ProductsRoute = () => {
                                                 display: 'flex',
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
-                                                paddingLeft: '15px',
+                                                paddingLeft: '10px',
                                                 paddingTop: '5px',
                                                 paddingBottom: '7px',
                                                 outline: 'none',
                                                 border: '1px solid #CCCCCC',
                                                 borderRadius: '5px',
                                                 fontFamily: 'Poppins',
-                                                fontSize: '14px'
                                             }}>
                                             <option value="">Select Category</option>
                                             <option value="Fruit & Vegetables">Fruit & Vegetables</option>
@@ -651,7 +651,7 @@ const ProductsRoute = () => {
                                 <div className='flex flex-col mt-[4vw] md:mt-[1.5vw]'>
                                     <label className='text-[3.5vw] md:text-[1vw] text-Gray700 font-Poppins'>Product Gallery:</label>
                                     <div
-                                        className="mt-[0.5vw] flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-SoftPrimary transition"
+                                        className="mt-[2vw] md:mt-[0.5vw] flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 cursor-pointer hover:border-SoftPrimary transition"
                                         onClick={() => document.getElementById('fileInput').click()}>
                                         <FaCloudUploadAlt className="text-[8vw] md:text-[4vw] text-Gray300 mb-2"/>
                                         <p className="text-[3vw] md:text-[0.8vw] text-center text-Gray500 font-Poppins">
@@ -699,10 +699,10 @@ const ProductsRoute = () => {
                         </div>
 
                         {/* Buttons Section */}
-                        <div className='flex items-end mt-[4vw] md:mt-0'>
+                        <div className='flex items-end space-x-[2vw] md:space-x-[1vw] mt-[4vw] md:mt-0'>
                             <button
                                 type="submit"
-                                className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium w-[30vw] h-[6.5vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-auto"
+                                className="bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[30vw] h-[8vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-auto"
                                 disabled={isLoading}>
                                 {
                                     isLoading
@@ -724,7 +724,7 @@ const ProductsRoute = () => {
                             {/* Cancel Button */}
                             <button
                                 type="button"
-                                className="bg-gray-300 rounded-md font-Poppins text-[3vw] md:text-[1vw] text-Gray700 font-medium w-[30vw] h-[6.5vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-[1vw]"
+                                className="bg-gray-300 rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700 font-medium w-[30vw] h-[8vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-[1vw]"
                                 onClick={handleCancel}>
                                 Cancel
                             </button>
