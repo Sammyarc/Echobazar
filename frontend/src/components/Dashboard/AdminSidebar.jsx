@@ -52,7 +52,6 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
     // Determine styles based on screen width
     const isMobile = windowWidth < 768;
     const sidebarWidth = isOpen ? (isMobile ? '50vw' : '15vw') : (isMobile ? '' : '4vw');
-    const sidebarPosition = isMobile ? 'fixed' : 'fixed';
     const sidebarLinkTop = isOpen ? (isMobile ? '2vw' : '') : (isMobile ? '2vw' : '1vw');
     const sidebarLinkClick = () => {
         if (isMobile && isOpen) {
@@ -64,7 +63,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
         <>
             {/* Sidebar */}
             <div
-                className={`h-screen ${sidebarPosition} bg-white shadow-lg p-4 flex flex-col border-r border-gray-100 transition-transform duration-300 z-50`}
+                className='h-screen fixed bg-white shadow-lg p-4 flex flex-col border-r border-gray-100 transition-transform duration-300 z-50'
                 style={{
                     width: sidebarWidth,
                     paddingTop: isOpen ? '0.5vw' : '2.5vw'

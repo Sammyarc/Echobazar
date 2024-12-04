@@ -111,10 +111,10 @@ const CategoryPieChart = () => {
 
     return (
         <div
-            className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg min-h-[35vw] w-[80vw] md:w-full flex justify-center items-center">
+            className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg min-h-[35vw] w-[78vw] md:w-full flex justify-center items-center">
             {
                 chartData
-                    ? (<Pie data={chartData} options={options}/>)
+                    ? (<Pie data={chartData} options={options}enterKeyHint=""/>)
                     : (
                         <div className="flex flex-col justify-center items-center h-full">
                                 <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-Primary"></div>

@@ -22,8 +22,8 @@ const AdminDashboard = () => {
     }, []);
     
     const isMobile = windowWidth < 768;
-    const mainWidth = isMobile ? (isSidebarOpen ? 'calc(100% - 15vw)' : 'calc(100% - 15vw)') : (isSidebarOpen ? 'calc(100% - 17vw)' : 'calc(100% - 6vw)');
-    const mainMarginLeft = isMobile ? (isSidebarOpen ? '15vw' : '15vw'): (isSidebarOpen ? '17vw' : '6vw')
+    const mainWidth = isMobile ? (isSidebarOpen ? 'calc(100% - 20vw)' : 'calc(100% - 20vw)') : (isSidebarOpen ? 'calc(100% - 17vw)' : 'calc(100% - 6vw)');
+    const mainMarginLeft = isMobile ? (isSidebarOpen ? '20vw' : '20vw'): (isSidebarOpen ? '17vw' : '6vw')
     
         useEffect(() => {
             if (isMobile) {

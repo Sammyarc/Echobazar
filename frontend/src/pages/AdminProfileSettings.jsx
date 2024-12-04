@@ -124,7 +124,7 @@ const AdminProfileSettings = () => {
     };
 
     return (
-        <div className="pr-[2vw]">
+        <div className="p-[2vw] overflow-hidden">
             <form onSubmit={handleSubmit}>
                 {/* Profile Image Upload */}
                 <div className="w-[90vw] md:w-[40vw]">

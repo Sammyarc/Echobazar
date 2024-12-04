@@ -308,7 +308,7 @@ const ProductsRoute = () => {
     };
 
     return (
-        <div className="pr-[2vw]">
+        <div className="p-[2vw]">
             <div className='flex justify-between items-center'>
                 <h2 className='text-[4vw] md:text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
                     {
@@ -323,7 +323,7 @@ const ProductsRoute = () => {
                     !isCreating && (
                         <button onClick={() => setIsCreating(true)}
                             // Enable creating mode
-                            className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium px-[2vw] md:px-[1vw] h-[7vw] md:h-[2.5vw] flex items-center space-x-[0.5vw]">
+                            className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium px-[2vw] md:px-[1vw] h-[8vw] md:h-[2.5vw] flex items-center space-x-[0.5vw]">
                             <GoPlus className="text-[4.5vw] md:text-[1.5vw]"/>
                             Add Product
                         </button>
@@ -349,7 +349,7 @@ const ProductsRoute = () => {
                                 )
                                 : products.length > 0
                                     ? (
-                                        <table className="w-[300%] md:w-full mt-[2vw] rounded-lg">
+                                        <table className="w-[350%] md:w-full mt-[2vw] rounded-lg">
                                             <thead className="border-b border-Gray200">
                                                 <tr>
                                                     {/*<th className="p-3 text-left">
@@ -395,7 +395,7 @@ const ProductsRoute = () => {
                                                             </td>
                                                             <td className="p-3">
                                                                 <span
-                                                                    className={`px-[2vw] md:px-[1vw] py-[0.5vw] md:py-1 font-medium rounded-lg font-Poppins text-[3vw] md:text-[0.8vw] text-Gray700 ${
+                                                                    className={`px-[2.5vw] md:px-[1vw] py-[0.7vw] md:py-1 font-medium rounded-md md:rounded-lg font-Poppins text-[3vw] md:text-[0.8vw] text-Gray700 ${
                                                                     product.quantity > 10
                                                                         ? 'bg-green-100 text-green-700'
                                                                         : product.quantity === 0
