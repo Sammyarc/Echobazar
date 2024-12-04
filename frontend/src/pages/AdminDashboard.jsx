@@ -10,7 +10,7 @@ import AdminProfileSettings from "./AdminProfileSettings";
 
 const AdminDashboard = () => {
     const year = new Date().getFullYear();
-    const [isSidebarOpen, setIsSidebarOpen] = useState('true');
+    const [isSidebarOpen, setIsSidebarOpen] = useState('false');
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     
