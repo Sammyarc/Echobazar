@@ -37,7 +37,7 @@ const RevenueChart = () => {
                 data: [
                      100, 250, 550, 600, 130, 40, 200, 500, 700, 150, 340, 140
                 ],
-                backgroundColor: '#84D290',
+                backgroundColor: '#84D187',
                 barThickness: barThicknessSize 
             },
             {
