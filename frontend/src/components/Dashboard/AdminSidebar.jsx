@@ -77,7 +77,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
                     </button>
                 </div>
                 {/* Sidebar Items */}
-                <div className='flex-grow' style={{
+                <div style={{
                     marginTop : sidebarLinkTop
                 }} >
                     {SIDEBAR_ITEMS.map((item, index) => {
@@ -97,7 +97,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
                     })}
                 </div>
                 {/* Logout Button */}
-                <div className="relative bottom-[2vw]">
+                <div className="mt-auto">
                     <button
                         className="font-Poppins text-Gray600 flex items-center space-x-1.5 hover:text-Primary"
                         onClick={() => {
