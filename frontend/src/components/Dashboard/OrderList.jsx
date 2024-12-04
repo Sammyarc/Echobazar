@@ -2,7 +2,7 @@ import bg from "../../assets/Icons/emptystates-empty-cart.svg";
 
 const OrderList = ({ orders }) => {
   return (
-    <div className="p-4 bg-white rounded-lg shadow-lg mt-[2vw] h-[70vw] md:h-[40vw]">
+    <div className="p-[6vw] md:p-4 bg-white rounded-lg shadow-lg mt-[2vw] h-[100vw] md:h-[40vw]">
       <h2 className="text-[4.5vw] md:text-[1.5vw] text-Gray700 font-semibold font-Poppins">Order List</h2>
       <div className="flex flex-col justify-center items-center h-full">
             <img src={bg} alt="Empty Cart" className="mx-auto md:w-[20vw] md:h-[20vw]" />

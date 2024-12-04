@@ -9,10 +9,26 @@ import {
     Legend,
 } from 'chart.js';
 import { FaArrowUpLong } from "react-icons/fa6";
+import { useEffect, useState } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const RevenueChart = () => {
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+    // Update window width on resize
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const isMobile = windowWidth < 768;
+    const labelFontSize = isMobile ? '10px' : '14px';
+    const barThicknessSize = isMobile ? '25' : '40';
+
+
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [
@@ -22,15 +38,15 @@ const RevenueChart = () => {
                      100, 250, 550, 600, 130, 40, 200, 500, 700, 150, 340, 140
                 ],
                 backgroundColor: '#84D290',
-                barThickness: 40, // Adjust bar thickness here
+                barThickness: barThicknessSize 
             },
             {
                 label: 'Loss',
                 data: [
                     15, 0, 25, 50, 0, 100, 10, 0, 80, 0, 0, 0
                 ],
-                backgroundColor: '#DAE5DA',
-                barThickness: 40, // Adjust bar thickness here
+                backgroundColor: '#EDF2EE',
+                barThickness: barThicknessSize
             },
         ],
     };
@@ -44,8 +60,10 @@ const RevenueChart = () => {
                 labels: {
                     font: {
                         family: 'Poppins',
-                        size: 12,
+                        size: labelFontSize
                     },
+                    boxWidth: 15, // Reducing box size helps with overall width
+                    padding: 10, // Adjust padding
                     color: '#333',
                 },
             },
@@ -90,7 +108,7 @@ const RevenueChart = () => {
     };
 
     return (
-        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[78vw] md:w-full md:col-span-2">
+        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[78vw] md:w-full md:col-span-2 overflow-scroll custom-scrollbar">
             <h3 className="text-[4.5vw] md:text-[1.5vw] font-semibold text-Gray700 font-Poppins md:mb-2">Monthly Revenue</h3>
             <div className='flex space-x-[1vw] items-center'>
             <div className="text-[4.5vw] md:text-[1.2vw] font-semibold text-Gray700 font-Poppins">$500.00</div>
@@ -98,7 +116,10 @@ const RevenueChart = () => {
                 <FaArrowUpLong /> <span> 2% than last month</span>
             </div>
             </div>
-            <Bar data={data} options={options} className='mt-[4vw] md:mt-0'/>
+            <div className='w-[200%] md:w-full'>
+            <Bar data={data} options={options} className='mt-[4vw] md:mt-[2vw]'/>
+            </div>
+          
         </div>
     );
 };

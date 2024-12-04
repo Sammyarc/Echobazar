@@ -220,7 +220,12 @@ const AdminProfileSettings = () => {
                                     name="dateOfBirth"
                                     className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.dateOfBirth}
-                                    onChange={handleChange}/>
+                                    onChange={handleChange}
+                                    style={{
+                                        backgroundImage: 'none', // Removes the default arrow in most browsers
+                                        WebkitAppearance: 'none', // For Safari
+                                        MozAppearance: 'none', // For Firefox
+                                    }}/>
                             </div>
                             <div>
                                 <label className="text-Gray700 font-Poppins text-[4vw] md:text-[1vw]">Role:</label>

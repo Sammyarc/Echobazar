@@ -308,7 +308,7 @@ const ProductsRoute = () => {
     };
 
     return (
-        <div className="p-[2vw]">
+        <div className="pr-[2vw]">
             <div className='flex justify-between items-center'>
                 <h2 className='text-[4vw] md:text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
                     {

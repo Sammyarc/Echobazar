@@ -14,6 +14,20 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 const CategoryPieChart = () => {
     const [chartData, setChartData] = useState('');
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    
+    // Update window width on resize
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const isMobile = windowWidth < 768;
+
+    const headerFontSize = isMobile ? '15px' : '20px';
+    const labelFontSize = isMobile ? '10px' : '14px';
+
     const fetchCategoryStats = async () => {
         try {
             const response = await axios.get(`${API_URL}/admin/category-stats`);
@@ -81,18 +95,22 @@ const CategoryPieChart = () => {
                 text: "Product Distribution by Category",
                 font: {
                     family: "Poppins",
-                    size: '20'
+                    size: headerFontSize
                 }
                 
             },
             legend: {
                 labels: {
                     font: {
-                        family: "Poppins", // Custom font family for legend labels
-                        size: 12, // Optional: Adjust font size if needed
-                    }
-                }
-            },
+                        family: "Poppins", // Custom font family
+                        size: labelFontSize
+                    },
+                    boxWidth: 15, // Reducing box size helps with overall width
+                    padding: 10, // Adjust padding
+                },
+                display: true,
+                position: 'bottom', // or 'bottom', 'left', 'right'
+            },            
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
