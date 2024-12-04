@@ -574,7 +574,7 @@ const ProductsRoute = () => {
                                         <button
                                             type="button"
                                             onClick={handleAddBenefit}
-                                            className='bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium h-[8vw] w-[30vw] md:h-[2.5vw] mt-[3vw] md:mt-[0.5vw]'>Add Benefit</button>
+                                            className='bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium h-[8vw] w-[30vw] md:h-[2.5vw] mt-[3vw] md:mt-[0.5vw]'>Add Benefit</button>
                                     </span>
                                     <ul>
                                         {
@@ -702,7 +702,7 @@ const ProductsRoute = () => {
                         <div className='flex items-end space-x-[2vw] md:space-x-[1vw] mt-[4vw] md:mt-0'>
                             <button
                                 type="submit"
-                                className="bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[30vw] h-[8vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-auto"
+                                className="bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[35vw] h-[8vw] md:w-[10vw] md:h-[2.5vw] mt-[1.5vw] ml-auto"
                                 disabled={isLoading}>
                                 {
                                     isLoading
