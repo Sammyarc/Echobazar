@@ -38,6 +38,7 @@ const RevenueChart = () => {
                      100, 250, 550, 600, 130, 40, 200, 500, 700, 150, 340, 140
                 ],
                 backgroundColor: '#84D187',
+                hoverBackgroundColor: '#00B207',
                 barThickness: barThicknessSize 
             },
             {
@@ -108,7 +109,7 @@ const RevenueChart = () => {
     };
 
     return (
-        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[78vw] md:w-full md:col-span-2 overflow-scroll custom-scrollbar">
+        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[80vw] md:w-full md:col-span-2 overflow-scroll custom-scrollbar">
             <h3 className="text-[4.5vw] md:text-[1.5vw] font-semibold text-Gray700 font-Poppins md:mb-2">Monthly Revenue</h3>
             <div className='flex space-x-[1vw] items-center'>
             <div className="text-[4.5vw] md:text-[1.2vw] font-semibold text-Gray700 font-Poppins">$500.00</div>
