@@ -323,7 +323,7 @@ const ProductsRoute = () => {
                     !isCreating && (
                         <button onClick={() => setIsCreating(true)}
                             // Enable creating mode
-                            className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium px-[2vw] md:px-[1vw] h-[8vw] md:h-[2.5vw] flex items-center space-x-[0.5vw]">
+                            className="bg-Primary rounded-md font-Poppins text-[3vw] md:text-[1vw] text-White font-medium px-[3vw] md:px-[1vw] h-[8vw] md:h-[2.5vw] flex items-center space-x-[0.5vw]">
                             <GoPlus className="text-[4.5vw] md:text-[1.5vw]"/>
                             Add Product
                         </button>
@@ -600,7 +600,7 @@ const ProductsRoute = () => {
                                         <select
                                             value={productData.selectedCategory}
                                             onChange={handleAddCategory}
-                                            className='text-[3.5vw] md:text-[0.9vw]'
+                                            className='text-[3vw] md:text-[0.9vw] bg-transparent'
                                             style={{
                                                 backgroundImage: 'none', // Removes the default arrow in most browsers
                                                 WebkitAppearance: 'none', // For Safari
