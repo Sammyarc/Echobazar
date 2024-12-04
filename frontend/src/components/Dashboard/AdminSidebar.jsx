@@ -97,7 +97,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
                     })}
                 </div>
                 {/* Logout Button */}
-                <div className="mt-auto">
+                <div className="mt-[5vw] md:mt-auto">
                     <button
                         className="font-Poppins text-Gray600 flex items-center space-x-1.5 hover:text-Primary"
                         onClick={() => {
