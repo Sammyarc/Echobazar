@@ -63,7 +63,7 @@ const AdminHeader = () => {
         <img
           src={profileImage}
           alt="Profile picture"
-          className="w-[9vw] h-[9vw] md:w-[2.5vw] md:h-[2.5vw] border-2 border-SoftPrimary rounded-full object-cover"
+          className="w-[9vw] h-[9vw] md:w-[2.5vw] md:h-[2.5vw] border-2 border-GreenGray50 rounded-full object-cover"
         />
         <span className="hidden md:block font-Poppins text-[1.1vw] text-Gray600">
           Good {timeOfDay}, {user?.name?.split(" ")[0] || "Guest"}
