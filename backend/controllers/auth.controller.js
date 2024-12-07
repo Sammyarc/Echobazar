@@ -387,6 +387,5 @@ export const updateUserDetails = async (req, res) => {
 	  console.error("Error:", error); // Log the error for debugging
 	  res.status(500).json({ message: "Error updating profile", error });
 	}
-  };
-  
+};
   
