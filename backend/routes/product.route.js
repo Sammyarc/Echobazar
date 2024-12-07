@@ -12,7 +12,11 @@ import {
     getProductsByUser,
     getProductTotal,
     getRelatedProducts,
-    updateProductById
+    updateProductById,
+    wishlist,
+    toggleProductInWishlist,
+    removeFromWishlist,
+    isInWishlist
 } from '../controllers/product.controller.js';
 import {uploadProducts} from '../middleware/multer.js';
 import {verifyToken} from "../middleware/verifyToken.js";
@@ -57,5 +61,13 @@ router.get("/related-products", getRelatedProducts);
 
 // Get the newest products
 router.get("/products-newest", getNewestProducts);
+
+router.put("/add-to-wishlist", verifyToken, toggleProductInWishlist);
+
+router.delete("/wishlist/:productId", verifyToken, removeFromWishlist);
+
+router.get("/wishlist/:productId", verifyToken, isInWishlist);
+
+router.get("/wishlist-details", verifyToken, wishlist)
 
 export default router;
