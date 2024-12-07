@@ -49,14 +49,43 @@ const orderSchema = new mongoose.Schema({
     paymentStatus: {
         type: String,
         required: true
-    }, // e.g., 'successful'
+    }, 
     orderDate: {
         type: Date,
         default: Date.now
-    }, // Auto-set order date
-    paymentDate: {
+    },
+    deliveryDate: {
         type: Date
-      }
+    },
+    orderedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } 
 }, {timestamps: true}); // Adds createdAt, updatedAt
+
+
+// Format deliveryDate when converting to JSON
+orderSchema.methods.toJSON = function () {
+    const order = this.toObject();  // Get the plain JS object from Mongoose doc
+
+    // Format deliveryDate
+    if (order.deliveryDate) {
+        order.deliveryDate = new Date(order.deliveryDate).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    // Format orderDate
+    if (order.orderDate) {
+        order.orderDate = new Date(order.orderDate).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+    return order;
+};
+
+
 
 export const Order = mongoose.model('Order', orderSchema);
