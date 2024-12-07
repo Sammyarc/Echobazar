@@ -26,33 +26,33 @@ const Wishlist = () => {
 
 
     return (
-        <div className="md:w-full border rounded-lg h-full">
+        <div className="md:w-full border rounded-[2vw] md:rounded-[0.5vw] h-[80vw] md:h-[25vw] overflow-scroll custom-scrollbar">
             {
                 loading
                     ? (
-                        <div className="flex flex-col p-[5vw] justify-center items-center h-full">
+                        <div className="flex flex-col p-[10vw] md:p-[5vw] justify-center items-center h-full">
                             <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-Primary"></div>
                             <h3
-                                className="text-[4vw] md:text-[1.3vw] text-Gray500 font-semibold font-Poppins mt-[2vw]">
+                                className="text-[3.5vw] md:text-[1.3vw] text-Gray500 font-semibold font-Poppins mt-[2vw]">
                                 Loading products, please wait...
                             </h3>
                         </div>
                     )
                     : wishlist.length > 0
                         ? (
-                            <table className="w-full mt-[0.5vw] rounded-lg">
+                            <table className="w-[200%] md:w-full mt-[0.5vw] rounded-lg">
                                 <thead className="border-b border-Gray200">
                                     <tr>
                                         <th
-                                            className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Product</th>
+                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Product</th>
                                         <th
-                                            className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Categories</th>
+                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Categories</th>
                                         <th
-                                            className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Regular Price</th>
+                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Regular Price</th>
                                         <th
-                                            className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Sale Price</th>
+                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Sale Price</th>
                                         <th
-                                            className="p-2 md:p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Action</th>
+                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,8 +108,8 @@ const Wishlist = () => {
                                                 <td className="p-3">
                                                     <button  onClick={() => handleRemove(product)}
                                                         title='Remove from Wishlist'
-                                                        className="text-Gray700 ml-4 p-[0.2vw] border rounded-full">
-                                                        <IoIosClose className='text-[1.5vw]'/>
+                                                        className="text-Gray700 ml-4 p-[0.5vw] md:p-[0.2vw] border rounded-full">
+                                                        <IoIosClose className='text-[6vw] md:text-[1.5vw]'/>
                                                     </button>
                                                 </td>
                                             </tr>
