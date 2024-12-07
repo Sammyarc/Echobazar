@@ -1,11 +1,13 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {GoLocation, GoChevronDown, GoSearch, GoHeart} from 'react-icons/go';
 import {PiPhoneCallLight} from "react-icons/pi";
 import {Link} from "react-router-dom";
 import Logo from '../../assets/logo/Logo (1).svg';
 import Cart from '../../assets/Icons/Bag.svg';
+import Avatar from "../../assets/Avatar/download (3).png";
 import {useAuthStore} from "../../store/authStore";
 import useCartStore from "../../store/useCartStore";
+import useWishlistStore from '../../store/useWishlistStore';
 
 const Menu = [
     {
@@ -44,9 +46,21 @@ const Navbar = () => {
     };
 
     const { cartCount } = useCartStore();
-    const [wishlistCount] = useState(0);
 
-    const {user, isAuthenticated, logout} = useAuthStore();
+    const { wishlistCount } = useWishlistStore();
+
+    const {user, isAuthenticated} = useAuthStore();
+
+  const [profileImage, setProfileImage] = useState(Avatar); // Default to Avatar initially
+
+  useEffect(() => {
+    // Check if `user` and `user.profileImage` exist before setting
+    if (user && user.profileImage) {
+      setProfileImage(user.profileImage);
+    } else {
+      setProfileImage(Avatar); // Use default avatar if not logged in or no image
+    }
+  }, [user]); // Watch `user` for changes
 
     const date = new Date();
     const hours = date.getHours();
@@ -121,19 +135,14 @@ const Navbar = () => {
                         isAuthenticated
                             ? (
                                 <div className="flex items-center space-x-3">
+                                    <img
+          src={profileImage}
+          alt="Profile picture"
+          className="w-[9vw] h-[9vw] md:w-[2.5vw] md:h-[2.5vw] border-2 border-GreenGray50 rounded-full object-cover"
+        />
                                     <span className="font-Poppins text-[1.1vw] text-Gray600">
                                         Good {timeOfDay}, {user?.name?.split(" ")[0]}
                                     </span>
-                                    <button
-                                    className="font-Poppins text-[1.1vw] text-Gray600 hover:underline"
-                                    onClick={() => {
-                                        window
-                                            .location
-                                            .reload();
-                                        logout();
-                                    }}>
-                                    Logout
-                                </button>
                                 </div>
                             )
                             : (
@@ -236,14 +245,14 @@ const Navbar = () => {
                 {/* Wishlist and cart icon */}
                 <div className='flex items-center md:space-x-1'>
 
-                    <Link to="/wishlist" className="flex items-end space-x-1 relative">
+                    <Link to="/my-account/wishlist" className="flex items-end space-x-1 relative">
                         <div className="relative">
                             {/* Wishlist Icon */}
                             <GoHeart className="w-[12vw] h-[8vw] md:w-[1.8vw] md:h-[1.8vw]"/> 
                             {/* Wishlist Count Badge */}
                             <span
                                 className="absolute -top-[0.15vw] right-[1.5vw] md:right-[0.1vw] bg-Primary text-White text-[3vw] md:text-[0.6vw] rounded-full w-[5vw] md:w-[1vw] h-[5vw] md:h-[1vw] flex items-center justify-center font-Poppins">
-                                {wishlistCount}
+                                { wishlistCount }
                             </span>
                         </div>
                         {/* Wishlist Label */}
