@@ -43,7 +43,7 @@ export default {
         GreenGray300: "#96B297",
         GreenGray200: "#B4CCB4",
         GreenGray100: "#DAE5DA",
-        GreenGray50: "#EDF2EE",
+        GreenGray50: "F2F9FF",
     },
     },
   },
