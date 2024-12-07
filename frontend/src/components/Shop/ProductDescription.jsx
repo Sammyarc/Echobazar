@@ -7,12 +7,14 @@ import "slick-carousel/slick/slick-theme.css";
 import "../Slider/Customdots.css";
 import useCartStore from "../../store/useCartStore";
 import {FiMinus, FiPlus} from "react-icons/fi";
-import {IoMdHeartEmpty} from 'react-icons/io';
 import {FaCartPlus} from 'react-icons/fa6';
 import {FaCheckCircle, FaExclamationTriangle, FaTimesCircle} from 'react-icons/fa';
 import {toast} from 'react-toastify';
 import flexImage from '../../assets/product-image.png'
-import {Heart, ShoppingCart} from 'lucide-react';
+import {ShoppingCart} from 'lucide-react';
+import useWishlistStore from '../../store/useWishlistStore';
+import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
+import RelatedWishlistButton from '../Wishlist/RelatedWishlistButton';
 
 const API_URL = import.meta.env.MODE === 'development'
     ? 'http://localhost:5000/api'
@@ -29,6 +31,8 @@ const ProductDescription = () => {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [activeSlide, setActiveSlide] = useState(0);
     const sliderRef = useRef(null); // Create a reference to access slider methods
+    const { addToWishlist, initializeWishlist } = useWishlistStore();
+    const [isInWishlist, setIsInWishlist] = useState(false);
 
     const { addToCart } = useCartStore();
 
@@ -37,6 +41,53 @@ const ProductDescription = () => {
 
         toast.success(`${product.name} has been added to your cart!`);
     };
+
+
+  // Fetch wishlist status from the database on initial load
+  useEffect(() => {
+    const checkProductInWishlist = async () => {
+      try {
+        // Check if the product is in the wishlist by making an API request
+        const response = await axios.get(`${API_URL}/wishlist/${product._id}`);
+        
+        if (response.data && response.data.isInWishlist) {
+          setIsInWishlist(true);
+        } else {
+          setIsInWishlist(false);
+        }
+      } catch (error) {
+        console.error("Error fetching wishlist status:", error);
+      }
+    };
+    
+    checkProductInWishlist(); // Check on component mount
+
+  }, [product]);
+
+  // Handle the add/remove wishlist toggle
+  const handleWishlistToggle = async () => {
+    try {
+      // Add or remove the product from the wishlist by calling the store action
+      await addToWishlist(product); 
+
+      // After toggling, check the status again and update state
+      setIsInWishlist((prev) => !prev);
+
+      // Show appropriate toast message
+      if (!isInWishlist) {
+        toast.success(`${product.name} has been added to your wishlist!`);
+      } else {
+        toast.error(`${product.name} has been removed from your wishlist!`);
+      }
+
+      // Optionally, re-fetch the updated wishlist from the server if needed
+      initializeWishlist();
+
+    } catch (error) {
+      console.error("Error updating wishlist:", error);
+      toast.error("An error occurred while updating the wishlist.");
+    }
+  };
 
     // Handle increment
     const handleIncrement = () => {
@@ -302,10 +353,22 @@ const ProductDescription = () => {
                             <FaCartPlus className="w-[5vw] h-[5vw] md:w-5 md:h-5"/>
                             <span className="font-Poppins text-[3.5vw] md:text-[1.1vw]">Add to cart</span>
                         </button>
-                        <button
-                            className="w-[10vw] h-[10vw] md:w-[2.5vw] md:h-[2.5vw] flex justify-center items-center bg-GreenGray100 text-Primary rounded-full">
-                            <IoMdHeartEmpty className="w-[6vw] h-[6vw] md:w-5 md:h-5"/>
-                        </button>
+                        <div
+      className={` p-[2vw] md:p-[0.5vw] bg-Gray50 rounded-full cursor-pointer
+        ${isInWishlist ? 'text-Primary' : 'text-white'} transition-colors`}
+      title={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+      onClick={handleWishlistToggle}
+    >
+      {isInWishlist ? (
+        <IoIosHeart
+          className="w-[5vw] h-[5vw] md:w-[1.3vw] md:h-[1.3vw]"
+        />
+      ) : (
+        <IoIosHeartEmpty
+          className="w-[5vw] h-[5vw] md:w-[1.3vw] md:h-[1.3vw] text-Primary hover:text-Primary"
+        />
+      )}
+    </div>
                     </div>
 
                     {/* Categories & Tags */}
@@ -385,12 +448,7 @@ const ProductDescription = () => {
                                                     alt={relatedProduct.name}
                                                     className="w-full h-full object-cover rounded-t-lg"/>
                                             </Link>
-                                            <div
-                                                className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full"
-                                                title='Add to wishlist'>
-                                                <Heart
-                                                    className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer"/>
-                                            </div>
+                                            <RelatedWishlistButton relatedProduct={relatedProduct} />
                                         </div>
                                         <div className="p-2 md:p-4">
                                             <h3

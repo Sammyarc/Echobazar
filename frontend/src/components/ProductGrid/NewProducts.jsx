@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import Slider from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import "../Slider/Customdots.css"; 
 import useCartStore from '../../store/useCartStore';
 import {toast} from 'react-toastify';
+import WishlistButton from '../Wishlist/WishlistButton';
 
 const API_URL = import.meta.env.MODE === 'development'
     ? 'http://localhost:5000/api'
@@ -112,9 +113,7 @@ const ProductCard = ({ product, handleAddToCart }) => (
                 <Link to={`/product/${encodeURIComponent(product.name)}`} onClick={() => window.scrollTo(0,0)}>
                     <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover rounded-t-lg" />
                 </Link>
-                <div className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full" title='Add to wishlist'>
-                    <Heart className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer" />
-                </div>
+                <WishlistButton product={product} />
             </div>
             <div className="p-2 md:p-4">
             <h3 className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins overflow-hidden text-ellipsis whitespace-nowrap">

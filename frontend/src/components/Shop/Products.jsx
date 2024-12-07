@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { IoOptionsOutline, IoArrowForwardSharp } from 'react-icons/io5';
 import BgImage from '../../assets/Bannar.png';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 import {toast} from 'react-toastify';
+import WishlistButton from '../Wishlist/WishlistButton';
+
 
 const API_URL = import.meta.env.MODE === 'development'
   ? 'http://localhost:5000/api'
@@ -21,7 +23,8 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
 
   const { addToCart } = useCartStore();
-
+  
+  
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(9);
@@ -33,17 +36,17 @@ const Products = () => {
         } else { // Tablets and laptops
           setitemsPerPage(9);
         }
-    };
+      };
 
     // Set initial value
     updateProductsPerPage();
 
     // Update on resize
     window.addEventListener('resize', updateProductsPerPage);
-
+    
     // Cleanup the event listener on unmount
     return() => window.removeEventListener('resize', updateProductsPerPage);
-}, []);
+  }, []);
 
   // Fetch categories
   useEffect(() => {
@@ -59,10 +62,10 @@ const Products = () => {
         console.error('Error fetching categories:', error);
       }
     };
-
+    
     fetchCategories();
   }, []);
-
+  
   // Fetch all products
   useEffect(() => {
     const fetchProducts = async () => {
@@ -80,10 +83,10 @@ const Products = () => {
         setLoading(false); // Hide loading indicator
       }
     };
-
+    
     fetchProducts();
   }, []);
-
+  
   // Fetch total of all products
   useEffect(() => {
     const fetchTotalProducts = async () => {
@@ -101,6 +104,7 @@ const Products = () => {
 
     fetchTotalProducts();
   }, []);
+  
 
   // Calculate paginated products
   const indexOfLastProduct = currentPage * itemsPerPage;
@@ -124,7 +128,7 @@ const Products = () => {
     }, 2000);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
+  
   // Generate page numbers
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
@@ -138,7 +142,7 @@ const Products = () => {
         <div className="hidden md:flex md:flex-col md:col-span-1">
           {/* Filter Button */}
           <button className="bg-Primary text-white w-[6.5vw] h-[2.5vw] rounded-full flex justify-center items-center font-Poppins mb-6">
-            <span>Filter</span>
+            <span className='text-[4vw] md:text-[1vw]'>Filter</span>
             <IoOptionsOutline className="w-[2vw] h-[1.3vw]" />
           </button>
 
@@ -231,16 +235,15 @@ const Products = () => {
 
               {/* Products Grid */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-[6vw] md:gap-[1.5vw]">
-                {paginatedProducts.map((product) => (
+                {paginatedProducts.map((product) =>
+          (
                   <div key={product._id}>
                     <div className="group relative bg-white rounded-lg transition-all duration-300 border border-Gray100 hover:border-Primary hover:shadow-lg overflow-hidden">
             <div className="relative aspect-square ">
                 <Link to={`/product/${encodeURIComponent(product.name)}`} onClick={() => window.scrollTo(0,0)}>
                     <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover rounded-t-lg" />
                 </Link>
-                <div className="absolute top-2 right-2 z-10 p-[2vw] md:p-[0.5vw] bg-white rounded-full" title='Add to wishlist'>
-                    <Heart className="w-[5vw] h-[5vw] md:w-[1.2vw] md:h-[1.2vw] text-Gray600 hover:text-Primary cursor-pointer" />
-                </div>
+                <WishlistButton product={product} />
             </div>
             <div className="p-2 md:p-4">
             <h3 className="text-Gray800 text-[4vw] md:text-[1vw] font-medium mb-1 md:mb-2 font-Poppins overflow-hidden text-ellipsis whitespace-nowrap">
@@ -279,7 +282,8 @@ const Products = () => {
             </div>
         </div>
                   </div>
-                ))}
+                 )
+                )}
               </div>
 
               {/* Pagination */}
