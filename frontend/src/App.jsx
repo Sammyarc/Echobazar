@@ -22,14 +22,26 @@ import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
 import CheckoutRoute from "../src/Routes/CheckoutRoute";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import UserDashboard from "./pages/UserDashboard";
+import useWishlistStore from "./store/useWishlistStore";
+
 
 
 const App = () => {
-  const { isCheckingAuth, checkAuth } = useAuthStore();
-
+  const { isCheckingAuth, isAuthenticated, checkAuth } = useAuthStore();
+  const { initializeWishlist } = useWishlistStore();
+  
   useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+    const initialize = async () => {
+      await checkAuth(); // Check if the user is authenticated
+      if (isAuthenticated) {
+        initializeWishlist(); // Initialize the wishlist only if authenticated
+      }
+    };
+  
+    initialize();
+  }, [checkAuth, isAuthenticated, initializeWishlist]);
+  
 
   if (isCheckingAuth) return <LoadingSpinner />;
 
@@ -82,6 +94,7 @@ const App = () => {
       <Route path="/faqs" element={<FaQ />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/my-account/*" element={<UserDashboard />} />
       <Route path="/order-confirmation" element={<OrderConfirmation />} />
       <Route path="/checkout" element={
         <CheckoutRoute>
