@@ -41,10 +41,10 @@ const CartPage = () => {
       <table className="hidden md:table w-full">
         <thead>
           <tr className="text-left border-b">
-            <th className="p-2 font-Poppins text-Gray500 uppercase">Product</th>
-            <th className="p-2 font-Poppins text-Gray500 uppercase">Price</th>
-            <th className="p-2 font-Poppins text-Gray500 uppercase">Quantity</th>
-            <th className="p-2 font-Poppins text-Gray500 uppercase">Subtotal</th>
+            <th className="p-2 font-Poppins text-Gray500 uppercase text-[1vw]">Product</th>
+            <th className="p-2 font-Poppins text-Gray500 uppercase text-[1vw]">Price</th>
+            <th className="p-2 font-Poppins text-Gray500 uppercase text-[1vw]">Quantity</th>
+            <th className="p-2 font-Poppins text-Gray500 uppercase text-[1vw]">Subtotal</th>
             <th className="p-2"></th>
           </tr>
         </thead>
@@ -53,28 +53,28 @@ const CartPage = () => {
             <tr key={item.id} className="border-b">
               <td className="p-2 flex items-center">
                 <img src={item.images[0]} alt={item.name} className="w-[4vw] h-[3vw] rounded-lg mr-4" />
-                <span className='font-Poppins overflow-hidden text-ellipsis whitespace-nowrap'>
+                <span className='font-Poppins overflow-hidden text-ellipsis whitespace-nowrap text-[1vw]'>
                 <Link to={`/product/${encodeURIComponent(item.name)}`} onClick={() => window.scrollTo(0,0)}>{item.name}</Link>
                   </span>
               </td>
-              <td className="p-2 font-Poppins">${item.salePrice.toFixed(2)}</td>
+              <td className="p-2 font-Poppins text-[1vw]">${item.salePrice.toFixed(2)}</td>
               <td className="p-2">
                 {/* Quantity Control */}
-                <div className='flex justify-around items-center border rounded-3xl py-[0.2vw] w-[30vw] h-[10vw] md:w-[7vw] md:h-[2.7vw]'>
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className={`w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] border bg-Gray100 rounded-full text-Gray800 text-[4vw] md:text-[1.2vw] flex justify-center items-center ${
+                <div className='flex justify-around items-center border rounded-3xl py-[0.2vw] w-[7vw] h-[2.7vw]'>
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className={`w-[2vw] h-[2vw] border bg-Gray100 rounded-full text-Gray800 text-[1vw] flex justify-center items-center ${
                     item.quantity === 1 ? "cursor-not-allowed opacity-50" : ""
                   }`} disabled={item.quantity <= 1}>
                     <FiMinus />
                   </button>
-                  <span className="font-Poppins">{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className={`w-[8vw] h-[8vw] md:w-[2vw] md:h-[2vw] border bg-Gray100 rounded-full text-Gray800 text-[4vw] md:text-[1.2vw] flex justify-center items-center ${
+                  <span className="font-Poppins text-[1vw]">{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className={`w-[2vw] h-[2vw] border bg-Gray100 rounded-full text-Gray800 text-[1vw] flex justify-center items-center ${
                     item.quantity >= item.stock ? "cursor-not-allowed opacity-50" : ""
                   }`} disabled={item.quantity >= item.stock}>
                     <FiPlus />
                   </button>
                 </div>
               </td>
-              <td className="p-2 font-Poppins">${(item.salePrice * item.quantity).toFixed(2)}</td>
+              <td className="p-2 font-Poppins text-[1vw]">${(item.salePrice * item.quantity).toFixed(2)}</td>
               <td className="p-2">
                 <button onClick={() => removeFromCart(item.id)} className="text-Gray700 p-[0.1vw] border border-Gray600 rounded-full">
                   <IoIosClose className='text-[1.5vw]' />
