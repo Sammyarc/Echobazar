@@ -25,7 +25,7 @@ const RevenueChart = () => {
     }, []);
 
     const isMobile = windowWidth < 768;
-    const labelFontSize = isMobile ? '10px' : '14px';
+    const labelFontSize = isMobile ? '8px' : '12px';
     const barThicknessSize = isMobile ? '25' : '40';
 
 

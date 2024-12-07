@@ -26,7 +26,7 @@ const CategoryPieChart = () => {
     const isMobile = windowWidth < 768;
 
     const headerFontSize = isMobile ? '15px' : '20px';
-    const labelFontSize = isMobile ? '10px' : '14px';
+    const labelFontSize = isMobile ? '8px' : '12px';
 
     const fetchCategoryStats = async () => {
         try {
