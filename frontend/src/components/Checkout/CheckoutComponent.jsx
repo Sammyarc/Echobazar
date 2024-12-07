@@ -272,11 +272,16 @@ const CheckoutComponent = () => {
             const trackingId = generateRandomTrackingId();
 
             const deliveryDate = new Date();
-            deliveryDate.setDate(deliveryDate.getDate() + 7);
-
-            const formattedDate = deliveryDate
-                .toISOString()
-                .split('T')[0];
+            deliveryDate.setDate(deliveryDate.getDate() + 7);  // Add 7 days to the current date
+            
+            const formattedDate = new Date(deliveryDate).toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            console.log(formattedDate);  // Output example: "1 December 2024"
+            
 
             const orderData = {
                 orderId,
@@ -291,7 +296,7 @@ const CheckoutComponent = () => {
                 paymentReference: paymentResponse.reference || paymentResponse.tx_ref,
                 paymentStatus: 'successful',
                 paymentMethod,
-                deliveryDate: formattedDate
+                deliveryDate: formattedDate, 
             };
 
             const response = await axios.post(`${API_URL2}/orders`, orderData);
@@ -379,7 +384,7 @@ const CheckoutComponent = () => {
                                         WebkitAppearance: 'none', // For Safari
                                         MozAppearance: 'none', // For Firefox
                                     }}
-                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary cursor-pointer"
+                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary cursor-pointer"
                                     onChange={handleCountryChange}
                                     value={selectedCountry}>
                                     <option>Select</option>
@@ -399,7 +404,7 @@ const CheckoutComponent = () => {
                                         backgroundImage: 'none', // Removes the default arrow in most browsers
                                         WebkitAppearance: 'none', // For Safari
                                         MozAppearance: 'none', // For Firefox
-                                    }} className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary cursor-pointer" disabled={selectedCountry !== 'Nigeria'}
+                                    }} className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary cursor-pointer" disabled={selectedCountry !== 'Nigeria'}
                                     // Only enable for Nigeria
                                     value={selectedState} onChange={(e) => setSelectedState(e.target.value)}>
                                     <option value="">Select State</option>
