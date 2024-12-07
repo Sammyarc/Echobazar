@@ -34,20 +34,20 @@ const FAQSection = () => {
         <h1 className="text-[6vw] md:text-[2vw] md:w-[20ch] font-Poppins font-bold mb-[4vw] md:mb-[2vw] leading-tight">
           Welcome, Let’s Talk About Our Ecobazar
         </h1>
-        <div className="space-y-[3vw] md:space-y-[1vw]">
+        <div className="space-y-[7vw] md:space-y-[1vw]">
           {faqs.map((faq, index) => (
             <div key={index} className={`border rounded-lg overflow-hidden ${openIndex === index ? 'border-Primary bg-White' : 'border-none'}`}>
               <button
                 onClick={() => toggleFAQ(index)}
                 className={`w-full text-left py-[3vw] px-[3vw] md:py-[0.7vw] md:px-[1vw] flex justify-between items-center space-x-[2.5vw] md:space-x-0 ${openIndex === index ? 'text-Primary border-Primary border-b' : 'bg-Gray50'}`}
               >
-                <span className="text-[4.5vw] md:text-[1.1vw] font-Poppins font-medium">{faq.question}</span>
-                <span className={`text-[4.5vw] md:text-[1vw] p-[1vw] md:p-[0.5vw] rounded-full ${openIndex === index ? 'text-Gray800 bg-Gray100' : 'bg-White'}`}>
+                <span className="text-[4vw] md:text-[1.1vw] font-Poppins font-medium">{faq.question}</span>
+                <span className={`text-[5vw] md:text-[1vw] p-[1vw] md:p-[0.5vw] rounded-full ${openIndex === index ? 'text-Gray800 bg-Gray100' : 'bg-White'}`}>
                   {openIndex === index ? (<FiMinus />) : (<FiPlus />)}
                 </span>
               </button>
               {openIndex === index && faq.answer && (
-                <div className="text-[4vw] p-[2.5vw] md:p-[1vw] font-Poppins font-normal text-Gray600 md:text-[1vw]">
+                <div className="text-[3.5vw] p-[2.5vw] md:p-[1vw] font-Poppins font-normal text-Gray600 md:text-[1vw]">
                   {faq.answer}
                 </div>
               )}
