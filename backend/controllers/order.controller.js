@@ -96,3 +96,20 @@ export const sendOrderConfirmationEmail = async (
     }
   };
   
+export const getOrdersByUser = async (req, res) => {
+  try {
+    const userId = req.user.id;  // Extract the user ID from the token
+
+    // Fetch orders belonging to the logged-in user
+    const userOrders = await Order.find({ orderedBy: userId }).sort({ createdAt: -1 });
+
+    if (userOrders.length === 0) {
+      return res.status(404).json({ message: 'No orders found for this user.' });
+    }
+
+    res.status(200).json(userOrders);  // Return the orders
+  } catch (error) {
+    console.error('Error fetching user orders:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
