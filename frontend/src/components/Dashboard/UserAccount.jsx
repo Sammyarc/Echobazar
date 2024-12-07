@@ -41,7 +41,7 @@ const UserAccount = () => {
     return (
         <div className="md:flex md:space-x-[2vw] px-[2vw] md:px-[8vw] my-5 md:my-12">
                     <button
-                        className="text-Gray600 text-[6vw] md:hidden p-4 flex space-x-[2vw] items-center"
+                        className="text-Gray600 text-[6vw] md:hidden py-4 flex space-x-[2vw] items-center"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                         {isDropdownOpen ? <IoMdClose size={24} /> : <CiMenuBurger size={24} />}
                     <h1 className="text-Gray700 font-Poppins font-medium text-[4vw]">Menu</h1>
