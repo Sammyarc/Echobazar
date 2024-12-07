@@ -24,6 +24,7 @@ import CheckoutRoute from "../src/Routes/CheckoutRoute";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import UserDashboard from "./pages/UserDashboard";
 import useWishlistStore from "./store/useWishlistStore";
+import AccountRoute from "./Routes/AccountRoute";
 
 
 
@@ -94,7 +95,6 @@ const App = () => {
       <Route path="/faqs" element={<FaQ />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/my-account/*" element={<UserDashboard />} />
       <Route path="/order-confirmation" element={<OrderConfirmation />} />
       <Route path="/checkout" element={
         <CheckoutRoute>
@@ -102,6 +102,7 @@ const App = () => {
         </CheckoutRoute>
         } />
 
+        <Route path="/my-account/*" element={<AccountRoute><UserDashboard /></AccountRoute>} />
       <Route
         path="/reset-password/:token"
         element={
