@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { Product } from '../models/product.model.js';
 import { User } from "../models/user.model.js";
 import mongoose from "mongoose";
@@ -342,6 +343,114 @@ export const getNewestProducts = async (req, res) => {
         res.status(500).send('Server error');
       }
 };
+    
+export const toggleProductInWishlist = async (req, res) => {
+    const userId = req.user.id; // Retrieved from middleware
+    const { productId } = req.body;
   
+    if (!productId) {
+      return res.status(400).json({ message: "Product ID is required" });
+    }
   
+    try {
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      // Ensure the wishlist is initialized as an array
+      if (!Array.isArray(user.wishlist)) {
+        user.wishlist = [];
+      }
+  
+      const productExists = user.wishlist.some((id) => id.toString() === productId.toString());
+  
+      if (productExists) {
+        // Remove product if it exists
+        user.wishlist = user.wishlist.filter((id) => id.toString() !== productId.toString());
+      } else {
+        // Add product if it doesn't exist
+        user.wishlist.push(productId);
+      }
+  
+      await user.save();
+  
+      return res.status(200).json({
+        message: productExists ? "Product removed from wishlist" : "Product added to wishlist",
+        wishlist: user.wishlist,
+        wishlistCount: user.wishlist.length, // Include updated count
+      });
+    } catch (error) {
+      console.error("Error toggling wishlist:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  };
+  
+  export const removeFromWishlist = async (req, res) => {
+    try {
+        const { productId } = req.params;
+        const userId = req.user.id; // Get user ID from authenticated session or token
+    
+        // Find the user and remove the product from their wishlist
+        const user = await User.findById(userId);
+    
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+    
+        // Remove the product from the wishlist
+        user.wishlist = user.wishlist.filter((id) => id.toString() !== productId.toString());
+    
+        await user.save(); // Save the updated user document
+    
+        return res.status(200).json({ 
+            message: 'Product removed from wishlist',
+            wishlist: user.wishlist,
+            wishlistCount: user.wishlist.length, // Include updated count
+         });
+      } catch (error) {
+        return res.status(500).json({ message: 'Server error' });
+      }
 
+  };
+
+  export const isInWishlist = async (req, res) => {
+    try {
+        const userId = req.user.id; // User from authenticated session or token
+        const { productId } = req.params;
+        
+        const user = await User.findById(userId);
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+    
+        const isInWishlist = user.wishlist.some(item => item._id.toString() === productId);
+        res.status(200).json({ isInWishlist });
+      } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+      }
+  };
+  
+  export const wishlist = async (req, res) => {
+    try {
+      const userId = req.user.id;
+  
+      // Fetch the user's wishlist (array of product IDs)
+      const user = await User.findById(userId).select('wishlist');
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Populate wishlist with product details
+      const products = await Product.find({ _id: { $in: user.wishlist } });
+  
+      res.status(200).json({
+        wishlist: products, // Send product details
+        wishlistCount: user.wishlist.length, // Include the count
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch wishlist products', error: error.message });
+    }
+  };
+  
