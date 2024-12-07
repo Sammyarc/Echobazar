@@ -156,7 +156,7 @@ const AdminProfileSettings = () => {
                                 }}
                                 className="bg-Primary rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[30vw] h-[8vw] md:w-[10vw] md:h-[2.5vw]">
                                 {
-                                    imagePreview
+                                    imagePreview 
                                         ? "Change"
                                         : "Upload"
                                 }
