@@ -129,24 +129,24 @@ const UserSettings = () => {
     <form onSubmit={handleSubmit}>
         {/* Profile Image Upload */}
         <div className="w-[90vw] md:w-[40vw]">
-            <div className="mt-[1.5vw] p-[2vw] md:p-0 flex flex-col md:flex-row md:items-center space-x-[2vw]">
+            <div className="mt-[1.5vw] p-[2vw] md:p-0 flex flex-col md:flex-row items-center space-x-[2vw]">
                 {
                     imagePreview
                         ? (
-                            <div className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
+                            <div className="w-[50vw] h-[50vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
                                 <img
                                     src={imagePreview}
                                     alt="Profile Preview"
-                                    className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover mb-2"/>
+                                    className="w-[50vw] h-[50vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover mb-2"/>
                             </div>
                         )
                         : (
-                            <div className="w-[30vw] h-[30vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
+                            <div className="w-[50vw] h-[50vw] md:w-[15vw] md:h-[15vw] rounded-full object-cover">
                                 <img src={Avatar} className="rounded-full object-cover w-full h-full"/>
                             </div>
                         )
                 }
-                <div className="flex items-center space-x-[2vw] mt-[3vw] md:mt-0">
+                <div className="flex items-center space-x-[2vw] mt-[5vw] md:mt-0">
                     <button
                         type="button"
                         onClick={(e) => {
@@ -191,7 +191,7 @@ const UserSettings = () => {
         </div>
 
         <div className="grid md:grid-cols-2 mt-[5vw] md:mt-[2vw]">
-            <div className="p-[4vw] md:p-[2vw]">
+            <div className="p-[2vw]">
                 <h3 className="text-[4.5vw] md:text-[1.5vw] text-Gray800 font-Poppins font-bold mb-[1vw]">Basic Information</h3>
                 <div className="grid md:grid-cols-2 gap-[1vw]">
                     <div className="mt-[2vw] md:mt-0">
