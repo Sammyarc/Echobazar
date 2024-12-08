@@ -97,7 +97,7 @@ const EmailVerificationPage = () => {
 								value={digit}
 								onChange={(e) => handleChange(index, e.target.value)}
 								onKeyDown={(e) => handleKeyDown(index, e)}
-								className='w-12 h-12 text-center text-2xl font-Poppins font-bold bg-Gray50 text-Gray800 border-2 border-Gray100 rounded-lg focus:border-Primary focus:outline-none'
+								className='w-12 h-12 text-center text-2xl font-Poppins font-bold bg-transparent text-Gray800 border-2 border-Gray100 rounded-lg focus:border-Primary focus:outline-none'
 							/>
 						))}
 					</div>

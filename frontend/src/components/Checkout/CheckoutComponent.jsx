@@ -358,7 +358,7 @@ const CheckoutComponent = () => {
                                     ...userDetails,
                                     name: e.target.value
                                 })}
-                                className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.name && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.name}</p>}
+                                className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.name && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.name}</p>}
                         </div>
 
                         <div className="mt-4">
@@ -371,7 +371,7 @@ const CheckoutComponent = () => {
                                     ...userDetails,
                                     address: e.target.value
                                 })}
-                                className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.address && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.address}</p>}
+                                className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.address && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.address}</p>}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
@@ -428,7 +428,7 @@ const CheckoutComponent = () => {
                                         ...userDetails,
                                         zipCode: e.target.value
                                     })}
-                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.zipCode && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.zipCode}</p>}
+                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.zipCode && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.zipCode}</p>}
                             </div>
                         </div>
 
@@ -443,7 +443,7 @@ const CheckoutComponent = () => {
                                         ...userDetails,
                                         email: e.target.value
                                     })}
-                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.email && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.email}</p>}
+                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.email && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.email}</p>}
                             </div>
                             <div>
                                 <label className="block text-Gray800 font-Poppins text-[4.5vw] md:text-[1vw]">Phone:</label>
@@ -455,7 +455,7 @@ const CheckoutComponent = () => {
                                         ...userDetails,
                                         phone: e.target.value
                                     })}
-                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.phone && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.phone}</p>}
+                                    className="w-full text-[4vw] md:text-[1vw] mt-[2vw] md:mt-[0.5vw] border border-Gray200 bg-transparent rounded-lg px-[3vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] font-Poppins focus:outline-none focus:border-Primary"/> {errors.phone && <p className="text-red-600 font-Poppins text-[4vw] md:text-[0.9vw] mt-[0.5vw]">{errors.phone}</p>}
                             </div>
                         </div>
                     </form>

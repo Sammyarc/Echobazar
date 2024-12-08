@@ -29,7 +29,7 @@ const SummerSaleBanner = () => {
                         </p>
                         <Link
                             to='/'
-                            className="bg-Primary transition-colors text-white py-2 px-4 mx-auto md:mx-0 md:px-4 md:py-2 rounded-xl md:rounded-full flex w-[35vw] md:w-[9.5vw] text-[4vw] md:text-[1vw] items-center gap-1 font-meduim font-Poppins">
+                            className="bg-Primary transition-colors text-white py-2 px-4 mx-auto md:mx-0 md:px-4 md:py-2 rounded-lg md:rounded-full flex w-[35vw] md:w-[10vw] text-[4vw] md:text-[1vw] justify-center items-center gap-1 font-meduim font-Poppins">
                             Shop Now
                             <BsArrowRight className='text-[5vw] md:text-[1.3vw]'/>
                         </Link>

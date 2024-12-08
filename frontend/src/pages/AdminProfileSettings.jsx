@@ -198,7 +198,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="name"
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.name}
                                     onChange={handleChange}/>
                             </div>
@@ -207,7 +207,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     value={formData.email}
                                     onChange={handleChange}/>
                             </div>
@@ -233,7 +233,7 @@ const AdminProfileSettings = () => {
                                     type="text"
                                     name="role"
                                     value={formData.role}
-                                    className="w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
+                                    className="w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]"
                                     onChange={handleChange}
                                     disabled="disabled"/>
                             </div>
@@ -289,7 +289,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="number"
                                     name="phone"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.phone}
                                     onChange={handleChange}/>
                             </div>
@@ -298,7 +298,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="city"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.city}
                                     onChange={handleChange}/>
                             </div>
@@ -309,7 +309,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="localGovernment"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.localGovernment}
                                     onChange={handleChange}/>
                             </div>
@@ -318,7 +318,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="address"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.address}
                                     onChange={handleChange}/>
                             </div>
@@ -330,7 +330,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="state"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.state}
                                     onChange={handleChange}/>
                             </div>
@@ -339,7 +339,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="country"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.country}
                                     onChange={handleChange}/>
                             </div>
@@ -355,7 +355,7 @@ const AdminProfileSettings = () => {
                                     type="text"
                                     name="twitter"
                                     value={formData.twitter}
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     onChange={handleChange}/>
                             </div>
                             <div className="mt-[2vw] md:mt-0">
@@ -364,7 +364,7 @@ const AdminProfileSettings = () => {
                                     type="text"
                                     name="instagram"
                                     value={formData.instagram}
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     onChange={handleChange}/>
                             </div>
                         </div>
@@ -374,7 +374,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="facebook"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.facebook}
                                     onChange={handleChange}/>
                             </div>
@@ -383,7 +383,7 @@ const AdminProfileSettings = () => {
                                 <input
                                     type="text"
                                     name="tiktok"
-                                    className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.5vw] text-[3.5vw] md:text-[1vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins focus:border-Primary mt-[2vw] md:mt-[0.5vw]'
                                     value={formData.tiktok}
                                     onChange={handleChange}/>
                             </div>

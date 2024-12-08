@@ -68,7 +68,7 @@ const ForgotPassword = () => {
                             : 'password'}
                         placeholder="Password"
                         value={password}
-                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
+                        className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
                         onChange={(e) => setPassword(e.target.value)}/>
                     <div
                         className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"
@@ -88,7 +88,7 @@ const ForgotPassword = () => {
                             : 'password'}
                         placeholder="Confirm Password"
                         value={confirmPassword}
-                        className='w-full outline-none border border-Gray200 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
+                        className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
                         onChange={(e) => setConfirmPassword(e.target.value)}/>
                     <div
                         className="absolute inset-y-0 right-[3vw] md:right-[1vw] flex items-center cursor-pointer"

@@ -171,7 +171,7 @@ const CartPage = () => {
                 <div className="relative w-full md:w-auto">
                     <input
                         type="text"
-                        className="w-[90vw] md:w-[40vw] py-[3vw] md:py-3 pl-[3vw] md:pl-[1vw] pr-[37vw] md:pr-[12vw] text-Gray900 text-[4vw] md:text-[1vw] rounded-lg md:rounded-full border border-Gray200 outline-none placeholder:font-Poppins placeholder:text-Gray500 focus:border-Primary"
+                        className="w-[90vw] md:w-[40vw] py-[3vw] md:py-3 pl-[3vw] md:pl-[1vw] pr-[37vw] md:pr-[12vw] text-Gray900 text-[4vw] md:text-[1vw] rounded-lg md:rounded-full border border-Gray200 bg-transparent outline-none placeholder:font-Poppins placeholder:text-Gray500 focus:border-Primary"
                         placeholder="Enter code"/>
                     <button
                         className="absolute right-0 top-0 bottom-0 bg-Gray800 font-Poppins font-semibold text-white rounded-r-lg md:rounded-full px-[5vw] text-[3.5vw] md:text-[0.9vw] md:px-[2vw]">

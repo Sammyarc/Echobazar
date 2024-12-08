@@ -44,7 +44,7 @@ const PasswordReset = () => {
                                     type="email"
                                     placeholder="Email Address"
                                     value={email}
-                                    className='w-full outline-none border border-Gray300 px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
+                                    className='w-full outline-none border border-Gray200 bg-transparent px-[2.5vw] py-[3vw] md:px-[1vw] md:py-[0.8vw] rounded-[1.5vw] md:rounded-[0.5vw] font-Poppins pr-[9vw] md:pr-[3vw] focus:border-Primary'
                                     onChange={(e) => setEmail(e.target.value)}
                                     onBlur={() => setEmail(email.toLowerCase())}/>
                                 <div
