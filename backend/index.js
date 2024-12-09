@@ -6,15 +6,24 @@ import productRoutes from './routes/product.route.js';
 import orderRoutes from './routes/order.route.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
-import path from "path";
 
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
-const __dirname = path.resolve();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL, // Hosted frontend from .env
+  ];
+  
+  app.use(
+    cors({
+      origin: allowedOrigins,
+      credentials: true,
+    })
+  );
+
 app.use(express.json()); // allows us to parse incoming requests:req.body
 app.use(cookieParser()); // allows us to parse incoming cookies
 
