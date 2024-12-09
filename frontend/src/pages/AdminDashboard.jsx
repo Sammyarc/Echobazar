@@ -7,6 +7,7 @@ import AdminHeader from "../components/Dashboard/AdminHeader";
 import { useEffect, useState } from "react";
 import CustomerList from "./CustomerList";
 import AdminProfileSettings from "./AdminProfileSettings";
+import OrderHistory from "./OrderHistory";
 
 const AdminDashboard = () => {
     const year = new Date().getFullYear();
@@ -50,6 +51,7 @@ const AdminDashboard = () => {
                     <Routes>
                         <Route path="/" element={<OverviewRoute />} />
                         <Route path="product" element={<ProductsRoute />} />
+                        <Route path="orders" element={<OrderHistory />} />
                         <Route path="customers" element={<CustomerList />} />
                         <Route path="settings" element={<AdminProfileSettings />} />
                     </Routes>
