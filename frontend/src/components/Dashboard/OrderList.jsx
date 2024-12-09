@@ -129,7 +129,7 @@ const OrderList = () => {
                         search && (
                             <button
                                 onClick={clearSearch}
-                                className="bg-red-400 rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[35vw] h-[8vw] md:w-[9vw] md:h-[2.5vw] ml-4">
+                                className="bg-red-400 rounded-md font-Poppins text-[3.5vw] md:text-[1vw] text-White font-medium w-[35vw] h-[8vw] md:w-[5vw] md:h-[2.5vw] ml-4">
                                 Clear
                             </button>
                         )
