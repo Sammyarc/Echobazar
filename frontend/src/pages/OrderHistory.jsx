@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import axios from "axios";
-import bg from "../../assets/Icons/emptystates-empty-cart.svg";
+import bg from "../../src/assets/Icons/emptystates-empty-cart.svg";
 import {IoIosArrowDown} from "react-icons/io";
 
 // Set the API URL based on the environment
@@ -10,7 +10,7 @@ const API_URL = import.meta.env.MODE === "development"
 
 axios.defaults.withCredentials = true;
 
-const OrderList = () => {
+const OrderHistory = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pagination, setPagination] = useState({page: 1, limit: 10, total: 0});
@@ -100,7 +100,7 @@ const OrderList = () => {
 
     return (
         <div
-            className="px-4 pt-4 border border-Gray200 rounded-lg mt-[10vw] md:mt-[2vw] h-auto">
+            className="px-4 pt-4 border border-Gray200 rounded-lg mr-[3vw] md:mr-[1vw] h-auto">
             <h2
                 className="text-[4.5vw] md:text-[1.5vw] text-Gray700 font-semibold font-Poppins">
                 Order List
@@ -293,7 +293,7 @@ const OrderList = () => {
                             : (
                                 // No Orders State
                                 <div className="flex flex-col justify-center items-center h-[100vw] md:h-full">
-                                    <img src={bg} alt="Empty Cart" className="mx-auto md:w-[20vw] md:h-[20vw]"/>
+                                    <img src={bg} alt="Empty Cart" className="mx-auto md:w-[20vw] md:h-[25vw]"/>
                                     <p
                                         className="text-[4vw] md:text-[1.5vw] text-Gray500 font-semibold font-Poppins mt-[2vw]">
                                         No orders available.
@@ -326,4 +326,5 @@ const OrderList = () => {
     );
 };
 
-export default OrderList;
+export default OrderHistory;
+
