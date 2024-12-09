@@ -7,10 +7,10 @@ import NoProduct from "../Animations/NoProduct";
 // Set the API URL based on the environment
 const API_URL1 = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/auth"
-    : "/api/auth";
+    : "https://echobazar.onrender.com/api/auth";
 const API_URL2 = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/create"
-    : "/api/create";
+    : "https://echobazar.onrender.com/api/create";
 
 axios.defaults.withCredentials = true;
 

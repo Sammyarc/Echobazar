@@ -5,7 +5,7 @@ import NoProduct from "../Animations/NoProduct";
 
 const API_URL = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/create"
-    : "/api/create";
+    : "https://echobazar.onrender.com/api/create";
 
 axios.defaults.withCredentials = true;
 
