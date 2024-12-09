@@ -1,6 +1,7 @@
 import { Order } from '../models/order.model.js';  // Assuming you have an Order model
 import createTransporter from '../mails/email.config.js';
 import { ORDER_CONFIRMATION_EMAIL_TEMPLATE } from '../mails/emailTemplates.js';
+import mongoose from "mongoose";
 
 export const createOrder = async (req, res) => {
   try {
@@ -113,3 +114,132 @@ export const getOrdersByUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+export const getOrderHistoryForSellers = async (req, res) => {
+  const userId = req.user.id;
+  const { page = 1, limit = 10, search = "", sort = "orderDate", order = "desc" } = req.query;
+
+  try {
+    const skip = (page - 1) * limit;
+
+    const orders = await Order.aggregate([
+      { $unwind: "$orderItems" },
+      {
+        $lookup: {
+          from: "products",
+          localField: "orderItems._id",
+          foreignField: "_id",
+          as: "productDetails",
+        },
+      },
+      { $unwind: "$productDetails" },
+      {
+        $match: {
+          "productDetails.postedBy": new mongoose.Types.ObjectId(userId),
+          ...(search && {
+            "productDetails.name": { $regex: search, $options: "i" },
+          }),
+        },
+      },
+      {
+        $addFields: {
+          "orderItems.totalAmount": {
+            $multiply: ["$orderItems.salePrice", "$orderItems.quantity"], // price * quantity
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "orderedBy",
+          foreignField: "_id",
+          as: "buyerDetails",
+        },
+      },
+      { $unwind: "$buyerDetails" },
+      {
+        $sort: { [sort]: order === "desc" ? -1 : 1 },
+      },
+      // Group by orderId to merge items with the same order
+      {
+        $group: {
+          _id: "$_id", // Order ID
+          orderId: { $first: "$orderId" },
+          trackingId: { $first: "$trackingId" },
+          orderDate: { $first: "$orderDate" },
+          paymentStatus: { $first: "$paymentStatus" },
+          orderedBy: { $first: "$orderedBy" },
+          buyerDetails: { $first: "$buyerDetails" },
+          orderItems: { $push: "$orderItems" },
+        },
+      },
+      {
+        $sort: { [sort]: order === "desc" ? -1 : 1 },
+      },
+      {
+        $facet: {
+          metadata: [{ $count: "total" }, { $addFields: { page: Number(page) } }],
+          data: [{ $skip: skip }, { $limit: Number(limit) }],
+        },
+      },
+    ]);
+
+    res.json(orders[0] || { metadata: { total: 0, page: 1 }, data: [] });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch orders", details: error.message });
+  }
+};
+
+export const getCustomersForSeller = async (req, res) => {
+  const userId = req.user.id; 
+  const { search = "" } = req.query;
+
+  try {
+    const customers = await Order.aggregate([
+      { $unwind: "$orderItems" },
+      {
+        $lookup: {
+          from: "products",
+          localField: "orderItems._id", // Match the order item with the product
+          foreignField: "_id",
+          as: "productDetails",
+        },
+      },
+      { $unwind: "$productDetails" },
+      {
+        $match: {
+          "productDetails.postedBy": new mongoose.Types.ObjectId(userId), // Filter orders with products posted by the seller
+          ...(search && {
+            "productDetails.name": { $regex: search, $options: "i" }, // Search filter on product name
+          }),
+        },
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "orderedBy",
+          foreignField: "_id",
+          as: "buyerDetails", // Get the buyer's details
+        },
+      },
+      { $unwind: "$buyerDetails" },
+      {
+        $group: {
+          _id: "$buyerDetails._id", // Group by buyer ID to get unique customers
+          buyerDetails: { $first: "$buyerDetails" },
+          totalOrders: { $sum: 1 }, // Count how many orders each customer has made
+          totalSpent: {
+            $sum: {
+              $multiply: ["$orderItems.salePrice", "$orderItems.quantity"], // Calculate the total spent by the customer
+            },
+          },
+        },
+      },
+    ]);
+
+    res.json(customers || { data: [] });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch customers", details: error.message });
+  }
+};
+
