@@ -26,7 +26,7 @@ const CategoryPieChart = () => {
     const isMobile = windowWidth < 768;
 
     const headerFontSize = isMobile ? '15px' : '20px';
-    const labelFontSize = isMobile ? '8px' : '12px';
+    const labelFontSize = isMobile ? '9px' : '13px';
 
     const fetchCategoryStats = async () => {
         try {
@@ -129,7 +129,7 @@ const CategoryPieChart = () => {
 
     return (
         <div
-            className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg min-h-[35vw] w-[80vw] md:w-full flex justify-center items-center">
+            className="p-[4vw] md:p-[1vw] border border-Gray200 rounded-xl min-h-[35vw] w-[80vw] md:w-full flex justify-center items-center">
             {
                 chartData
                     ? (<Pie data={chartData} options={options}enterKeyHint=""/>)

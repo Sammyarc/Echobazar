@@ -25,7 +25,7 @@ const RevenueChart = () => {
     }, []);
 
     const isMobile = windowWidth < 768;
-    const labelFontSize = isMobile ? '8px' : '12px';
+    const labelFontSize = isMobile ? '9px' : '13px';
     const barThicknessSize = isMobile ? '25' : '40';
 
 
@@ -109,7 +109,7 @@ const RevenueChart = () => {
     };
 
     return (
-        <div className="bg-white p-[4vw] md:p-[1vw] rounded-lg shadow-lg w-[80vw] md:w-full md:col-span-2 overflow-scroll custom-scrollbar">
+        <div className="p-[4vw] md:p-[1vw] border border-Gray200 rounded-xl w-[80vw] md:w-full md:col-span-2 overflow-scroll custom-scrollbar">
             <h3 className="text-[4.5vw] md:text-[1.5vw] font-semibold text-Gray700 font-Poppins md:mb-2">Monthly Revenue</h3>
             <div className='flex space-x-[1vw] items-center'>
             <div className="text-[4.5vw] md:text-[1.2vw] font-semibold text-Gray700 font-Poppins">$500.00</div>

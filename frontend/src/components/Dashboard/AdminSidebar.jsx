@@ -59,20 +59,25 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
     }
    };
 
+  
+
     return (
         <>
             {/* Sidebar */}
             <div
-                className='h-screen fixed bg-white shadow-lg p-4 flex flex-col border-r border-gray-100 transition-transform duration-300 z-50'
+                className='h-screen fixed bg-White p-4 flex flex-col transition-transform duration-300 z-50'
                 style={{
                     width: sidebarWidth,
-                    paddingTop: isOpen ? '0.5vw' : '2.5vw'
+                    paddingTop: isOpen ? '0.5vw' : '2.5vw',
+                    borderRight: '1px solid #CCCCCC'
                 }}
             >
                 {/* Sidebar content here */}
                 <div className="flex justify-between items-center">
                     {isOpen && <img src={Logo} className='w-[30vw] h-[10vw] md:w-[10vw] md:h-[5vw]' />}
-                    <button onClick={toggleSidebar} className="text-[6vw] md:text-[1.5vw] rounded-full">
+                    <button onClick={toggleSidebar} className="text-[6vw] md:text-[1.8vw] rounded-full"
+                    title={isOpen ? 'Close Sidebar' : 'Open Sidebar'}
+                    >
                         {isOpen ? <IoMdClose /> : <CiMenuBurger />}
                     </button>
                 </div>

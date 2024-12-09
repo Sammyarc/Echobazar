@@ -336,7 +336,7 @@ const ProductsRoute = () => {
             {
                 !isCreating && (
                     <div
-                        className="md:w-full bg-White rounded-lg shadow-lg h-screen overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
+                        className="md:w-full border border-Gray200 rounded-lg h-screen overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
                         {
                             loading
                                 ? (
@@ -468,7 +468,7 @@ const ProductsRoute = () => {
                 isCreating && (
                     <form
                         onSubmit={handleSubmit}
-                        className="p-[4vw] md:p-[1.5vw] bg-White rounded-lg shadow-lg ">
+                        className="p-[4vw] md:p-[1.5vw] border border-Gray200 rounded-lg mt-[3vw] md:mt-[1vw]">
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-[5vw]'>
                             <div>
                                 <div className='flex flex-col'>
