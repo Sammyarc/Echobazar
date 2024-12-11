@@ -189,7 +189,7 @@ const AdminProfileSettings = () => {
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 mt-[5vw] md:mt-[2vw] border border-Gray200 rounded-lg">
+                <div className="grid md:grid-cols-2 mt-[5vw] md:mt-[2vw]  rounded-lg">
                     <div className="p-[4vw] md:p-[2vw]">
                         <h3 className="text-[4.5vw] md:text-[1.5vw] text-Gray800 font-Poppins font-bold mb-[1vw]">Basic Information</h3>
                         <div className="grid md:grid-cols-2 gap-[1vw]">

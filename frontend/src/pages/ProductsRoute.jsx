@@ -310,7 +310,7 @@ const ProductsRoute = () => {
     return (
         <div className="pr-[2vw]">
             <div className='flex justify-between items-center'>
-                <h2 className='text-[4vw] md:text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
+                <h2 className='text-[5vw] md:text-[1.8vw] text-Gray700 font-semibold font-Poppins'>
                     {
                         isCreating
                             ? 'Edit Product'
@@ -336,7 +336,7 @@ const ProductsRoute = () => {
             {
                 !isCreating && (
                     <div
-                        className="md:w-full border border-Gray200 rounded-lg h-screen overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
+                        className="md:w-full rounded-lg h-screen overflow-scroll mt-[5vw] md:mt-[1vw] custom-scrollbar">
                         {
                             loading
                                 ? (
@@ -350,7 +350,7 @@ const ProductsRoute = () => {
                                 : products.length > 0
                                     ? (
                                         <table className="w-[350%] md:w-full mt-[2vw] rounded-lg">
-                                            <thead className="border-b border-Gray200">
+                                            <thead className=" bg-Gray100">
                                                 <tr>
                                                     {/*<th className="p-3 text-left">
                                                         <input type="checkbox" className='accent-Primary'/>
@@ -428,18 +428,18 @@ const ProductsRoute = () => {
                                                                 }
                                                             </td>
                                                             <td className="p-3">
-                                                                <div className="flex space-x-[1vw]">
+                                                                <div className="flex space-x-[2vw] md:space-x-[0.5vw]">
                                                                     <button
                                                                         className="text-Gray700"
                                                                         title="Delete"
                                                                         onClick={() => handleDelete(product._id)}>
-                                                                        <FaTrashAlt/>
+                                                                        <FaTrashAlt className='text-[4vw] md:text-[1.2vw] text-Gray700'/>
                                                                     </button>
                                                                     <button
                                                                         className="text-Gray700"
                                                                         title="Edit"
                                                                         onClick={() => handleEdit(product)}>
-                                                                        <FaEdit/>
+                                                                        <FaEdit className='text-[4vw] md:text-[1.2vw] text-Gray700'/>
                                                                     </button>
                                                                 </div>
                                                             </td>
@@ -468,7 +468,7 @@ const ProductsRoute = () => {
                 isCreating && (
                     <form
                         onSubmit={handleSubmit}
-                        className="p-[4vw] md:p-[1.5vw] border border-Gray200 rounded-lg mt-[3vw] md:mt-[1vw]">
+                        className="p-[4vw] md:p-[1.5vw]  rounded-lg mt-[3vw] md:mt-[1vw]">
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-[5vw]'>
                             <div>
                                 <div className='flex flex-col'>

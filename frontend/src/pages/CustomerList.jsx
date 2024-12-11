@@ -63,8 +63,10 @@ const CustomerList = () => {
 
     return (
         <div className="pr-[2vw]">
+            <h3
+                className="text-[5vw] md:text-[1.5vw] text-Gray700 font-semibold font-Poppins">Customer List</h3>
             <div
-                className="w-full p-[3vw] md:p-[1vw] border border-Gray200 rounded-lg h-screen md:h-[40vw] mt-[1vw] overflow-scroll custom-scrollbar">
+                className="w-full rounded-lg h-screen md:h-[40vw] mt-[2vw] md:mt-[1vw] overflow-scroll custom-scrollbar">
                 <div>
                     {
                         customers.length === 0
@@ -77,8 +79,6 @@ const CustomerList = () => {
                             )
                             : (
                                 <div className="w-[250%] md:w-full">
-                                    <h3
-                                        className="text-[3.5vw] md:text-[1.5vw] text-Gray700 font-semibold font-Poppins">Customer List</h3>
                                     <table className="w-full mt-4">
                                         <thead>
                                             <tr className="bg-Gray100">

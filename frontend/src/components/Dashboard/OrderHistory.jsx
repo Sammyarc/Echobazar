@@ -38,10 +38,10 @@ const OrderHistory = () => {
 
     return (
         <div>
-            <div className="border rounded-[2vw] md:rounded-[0.5vw]">
+            <div>
                 <h2
                     className="font-Poppins font-semibold text-[4.5vw] md:text-[1.2vw] p-[4vw] md:p-[1vw] text-Gray700">Order History</h2>
-                <div className="overflow-scroll custom-scrollbar h-[50vw] md:h-[15vw]">
+                <div className="overflow-scroll custom-scrollbar h-[60vw] md:h-[15vw]">
                     {
                         loading
                             ? (
@@ -96,14 +96,14 @@ const OrderHistory = () => {
 
                                                     return (
                                                         <tr key={order._id}>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">#{order.orderId}</td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">#{order.orderId}</td>
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 {new Date(order.createdAt).toLocaleDateString()}
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 ${(order.totalAmount / 1700).toFixed(2)}
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">{order.paymentStatus}</td>
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">{order.paymentStatus}</td>
                                                             <td className="p-3">
                                                                 <span
                                                                     className={`px-[2.5vw] md:px-[1vw] py-[0.7vw] md:py-1 font-medium rounded-md md:rounded-lg font-Poppins text-[3.2vw] md:text-[0.9vw] ${
@@ -116,11 +116,11 @@ const OrderHistory = () => {
                                                                 </span>
                                                             </td>
 
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 {new Date(order.deliveryDate).toLocaleDateString()}
                                                             </td>
                                                             <Link to="/" onClick={() => window.scrollTo(0, 0)}>
-                                                                <td className="p-3 font-Poppins text-Primary text-[3.2vw] md:text-[0.9vw]">View Details</td>
+                                                                <td className="p-3 font-Poppins text-Primary text-[3.5vw] md:text-[0.9vw]">View Details</td>
                                                             </Link>
                                                         </tr>
                                                     );

@@ -129,7 +129,7 @@ const CategoryPieChart = () => {
 
     return (
         <div
-            className="p-[4vw] md:p-[1vw] border border-Gray200 rounded-xl min-h-[35vw] w-[80vw] md:w-full flex justify-center items-center">
+            className="p-[4vw] md:p-[1vw] border border-Gray50 rounded-xl min-h-[35vw] w-[80vw] md:w-full flex justify-center items-center">
             {
                 chartData
                     ? (<Pie data={chartData} options={options}enterKeyHint=""/>)

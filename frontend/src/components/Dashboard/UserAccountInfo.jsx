@@ -52,7 +52,7 @@ const UserAccountInfo = () => {
         <div>
             <div className="grid gap-[5vw] md:grid-cols-2 md:gap-[2vw]">
                 <div
-                    className="p-[10vw] md:p-[3vw] flex flex-col items-center space-y-[1.5vw] md:space-y-[0.5vw] border rounded-[2vw] md:rounded-[0.5vw]">
+                    className="p-[10vw] md:p-[3vw] flex flex-col items-center space-y-[1.5vw] md:space-y-[0.5vw]  rounded-[2vw] md:rounded-[0.5vw]">
                     {
                         imagePreview
                             ? (
@@ -79,7 +79,7 @@ const UserAccountInfo = () => {
                     <span className="font-Poppins text-[4vw] md:text-[1vw] text-Gray500 capitalize">{user.role}</span>
                 </div>
                 <div
-                    className="p-[4vw] md:p-[2vw] flex flex-col space-y-[4vw] md:space-y-[1.5vw] border rounded-[2vw] md:rounded-[0.5vw]">
+                    className="p-[4vw] md:p-[2vw] flex flex-col space-y-[4vw] md:space-y-[1.5vw]  rounded-[2vw] md:rounded-[0.5vw]">
                     <h1
                         className="font-Poppins font-semibold text-[4.5vw] md:text-[1.2vw] text-Gray700">Delivery details</h1>
                     <span className="font-Poppins text-[4vw] md:text-[1vw] text-Gray500 capitalize">{user.country}</span>
@@ -89,7 +89,7 @@ const UserAccountInfo = () => {
                     <span className="font-Poppins text-[4vw] md:text-[1vw] text-Gray500">{user.phone}</span>
                 </div>
             </div>
-            <div className="mt-[5vw] md:mt-[1.5vw] border rounded-[2vw] md:rounded-[0.5vw]">
+            <div className="mt-[5vw] md:mt-[1.5vw] rounded-[2vw] md:rounded-[0.5vw]">
                 <div className="flex justify-between items-center p-[4vw] md:p-[1vw]">
                     <h2
                         className="font-Poppins font-semibold text-[4.5vw] md:text-[1.2vw] text-Gray700">Recent Order History</h2>
@@ -153,14 +153,14 @@ const UserAccountInfo = () => {
 
                                                     return (
                                                         <tr key={order._id}>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">#{order.orderId}</td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">#{order.orderId}</td>
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 {new Date(order.createdAt).toLocaleDateString()}
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 ${(order.totalAmount / 1700).toFixed(2)}
                                                             </td>
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">{order.paymentStatus}</td>
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">{order.paymentStatus}</td>
                                                             <td className="p-3">
                                                                 <span
                                                                     className={`px-[2.5vw] md:px-[0.7vw] py-[0.7vw] md:py-1 font-medium rounded-md md:rounded-lg font-Poppins text-[3.2vw] md:text-[0.8vw] ${
@@ -173,11 +173,11 @@ const UserAccountInfo = () => {
                                                                 </span>
                                                             </td>
 
-                                                            <td className="p-3 font-Poppins text-[3.2vw] md:text-[0.9vw]">
+                                                            <td className="p-3 font-Poppins text-[3.5vw] md:text-[0.9vw]">
                                                                 {new Date(order.deliveryDate).toLocaleDateString()}
                                                             </td>
                                                             <Link to="/" onClick={() => window.scrollTo(0, 0)}>
-                                                                <td className="p-3 font-Poppins text-Primary text-[3.2vw] md:text-[0.9vw]">View Details</td>
+                                                                <td className="p-3 font-Poppins text-Primary text-[3.5vw] md:text-[0.9vw]">View Details</td>
                                                             </Link>
                                                         </tr>
                                                     );

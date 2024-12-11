@@ -39,7 +39,7 @@ const UserAccount = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     return (
-        <div className="md:flex md:space-x-[2vw] px-[2vw] md:px-[8vw] my-5 md:my-12">
+        <div className="md:flex md:space-x-[2vw] px-[2vw] md:px-[8vw] my-8 md:my-12">
                     <button
                         className="text-Gray600 text-[6vw] md:hidden py-4 flex space-x-[2vw] items-center"
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
@@ -51,7 +51,7 @@ const UserAccount = () => {
                 {/* Dropdown Sidebar for Mobile */}
                 {
                     isDropdownOpen && (
-                        <div className="absolute -top-[1vw] left-0 bg-white shadow-md w-full z-10">
+                        <div className="absolute -top-[1vw] left-0 bg-white border border-Gray50 rounded-md w-full z-10">
                             <div className="p-4">
                                 {
                                     SIDEBAR_ITEMS.map((item, index) => {

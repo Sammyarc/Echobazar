@@ -26,7 +26,7 @@ const Wishlist = () => {
 
 
     return (
-        <div className="md:w-full border rounded-[2vw] md:rounded-[0.5vw] h-[80vw] md:h-[25vw] overflow-scroll custom-scrollbar">
+        <div className="md:w-full h-[90vw] md:h-[25vw] overflow-scroll custom-scrollbar">
             {
                 loading
                     ? (
@@ -44,15 +44,15 @@ const Wishlist = () => {
                                 <thead className="border-b border-Gray200">
                                     <tr>
                                         <th
-                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Product</th>
+                                            className="p-3 text-left font-Poppins text-[4vw] md:text-[1vw] text-Gray700">Product</th>
                                         <th
-                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Categories</th>
+                                            className="p-3 text-left font-Poppins text-[4vw] md:text-[1vw] text-Gray700">Categories</th>
                                         <th
-                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Regular Price</th>
+                                            className="p-3 text-left font-Poppins text-[4vw] md:text-[1vw] text-Gray700">Regular Price</th>
                                         <th
-                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Sale Price</th>
+                                            className="p-3 text-left font-Poppins text-[4vw] md:text-[1vw] text-Gray700">Sale Price</th>
                                         <th
-                                            className="p-3 text-left font-Poppins text-[3.5vw] md:text-[1vw] text-Gray700">Action</th>
+                                            className="p-3 text-left font-Poppins text-[4vw] md:text-[1vw] text-Gray700">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

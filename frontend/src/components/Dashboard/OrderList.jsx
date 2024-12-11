@@ -100,7 +100,7 @@ const OrderList = () => {
 
     return (
         <div
-            className="px-4 pt-4 border border-Gray200 rounded-lg mt-[10vw] md:mt-[2vw] h-auto">
+            className="px-4 pt-4 border border-Gray50 rounded-lg mt-[10vw] md:mt-[2vw] h-auto">
             <h2
                 className="text-[4.5vw] md:text-[1.5vw] text-Gray700 font-semibold font-Poppins">
                 Order List

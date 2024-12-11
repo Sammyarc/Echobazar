@@ -69,7 +69,7 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
                 style={{
                     width: sidebarWidth,
                     paddingTop: isOpen ? '0.5vw' : '2.5vw',
-                    borderRight: '1px solid #CCCCCC'
+                    borderRight: '1px solid #F2F2F2'
                 }}
             >
                 {/* Sidebar content here */}

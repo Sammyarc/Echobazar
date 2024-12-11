@@ -125,7 +125,7 @@ const UserSettings = () => {
     };
 
   return (
-    <div className="p-[2vw] overflow-hidden border rounded-[0.5vw]">
+    <div className="p-[2vw] overflow-hidden">
     <form onSubmit={handleSubmit}>
         {/* Profile Image Upload */}
         <div className="w-[90vw] md:w-[40vw]">
