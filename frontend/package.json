@@ -16,6 +16,7 @@
     "@mui/x-charts": "^7.22.2",
     "@paystack/inline-js": "^2.22.1",
     "@react-oauth/google": "^0.12.1",
+    "@vercel/analytics": "^1.4.1",
     "axios": "^1.7.7",
     "chart.js": "^4.4.6",
     "dotenv": "^16.4.5",
