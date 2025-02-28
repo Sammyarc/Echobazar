@@ -32,7 +32,19 @@ app.use('/api', productRoutes);
 app.use('/api/create', orderRoutes);
 
 
-app.listen(PORT, () => {
-    connectDB();
-    console.log("listening on port: ", PORT);
-});
+// Connect to database first, then start server
+const startServer = async () => {
+  try {
+    await connectDB();
+    console.log("Database connected successfully");
+    
+    app.listen(PORT, () => {
+      console.log("Server listening on port:", PORT);
+    });
+  } catch (error) {
+    console.error("Failed to connect to database:", error);
+    process.exit(1);
+  }
+};
+
+startServer();
