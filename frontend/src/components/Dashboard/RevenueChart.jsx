@@ -26,7 +26,7 @@ const RevenueChart = () => {
 
     const isMobile = windowWidth < 768;
     const labelFontSize = isMobile ? '9px' : '13px';
-    const barThicknessSize = isMobile ? '25' : '40';
+    const barThicknessSize = isMobile ? '25' : '30';
 
 
     const data = {
@@ -39,7 +39,17 @@ const RevenueChart = () => {
                 ],
                 backgroundColor: '#84D187',
                 hoverBackgroundColor: '#00B207',
-                barThickness: barThicknessSize 
+                barThickness: barThicknessSize,
+                borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 5, bottomRight: 5 }, // Rounded on all sides
+                borderSkipped: false, // Ensures full rounding effect
+                order: 1,  
+            },
+            {
+                label: '', // Invisible padding dataset
+                data: Array(12).fill(15), // Adds vertical spacing (adjust as needed)
+                backgroundColor: 'rgba(0,0,0,0)', // Fully transparent
+                barThickness: barThicknessSize,
+                order: 2,
             },
             {
                 label: 'Loss',
@@ -47,7 +57,17 @@ const RevenueChart = () => {
                     15, 0, 25, 50, 0, 100, 10, 0, 80, 0, 0, 0
                 ],
                 backgroundColor: '#EDF2EE',
-                barThickness: barThicknessSize
+                barThickness: barThicknessSize,
+                borderRadius: 5, 
+                borderSkipped: false, // Keeps the bars visually clean
+                order: 3, 
+            },
+            {
+                label: '', // Invisible padding dataset
+                data: Array(12).fill(20), // Adds vertical spacing (adjust as needed)
+                backgroundColor: 'rgba(0,0,0,0)', // Fully transparent
+                barThickness: barThicknessSize,
+                order: 0, 
             },
         ],
     };
