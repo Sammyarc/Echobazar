@@ -184,6 +184,11 @@ input[type="radio"]:checked::after {
   margin: 15% 15%; /* Center the inner circle */
 }
 
+iframe[src*="accounts.google.com"] { 
+  display: none !important;
+}
+
+
 
 
 @media (max-width: 768px) {
