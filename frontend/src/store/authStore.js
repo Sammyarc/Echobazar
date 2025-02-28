@@ -5,7 +5,7 @@ import axios from "axios";
 const API_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/auth"
-    : "https://echobazar.onrender.com/api/auth";
+    : "https://echobazar-fn59.vercel.app/api/auth";
 
 axios.defaults.withCredentials = true;
 

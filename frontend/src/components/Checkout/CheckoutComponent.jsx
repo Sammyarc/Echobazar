@@ -10,10 +10,10 @@ import useCartStore from '../../store/useCartStore';
 // Set the API URL based on the environment
 const API_URL1 = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/auth"
-    : "https://echobazar.onrender.com/api/auth";
+    : "https://echobazar-fn59.vercel.app/api/auth";
 const API_URL2 = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/create"
-    : "https://echobazar.onrender.com/api/create";
+    : "https://echobazar-fn59.vercel.app/api/create";
 
 axios.defaults.withCredentials = true;
 

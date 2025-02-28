@@ -6,7 +6,7 @@ import {IoIosArrowDown} from "react-icons/io";
 // Set the API URL based on the environment
 const API_URL = import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/create"
-    : "https://echobazar.onrender.com/api/create";
+    : "https://echobazar-fn59.vercel.app/api/create";
 
 axios.defaults.withCredentials = true;
 
