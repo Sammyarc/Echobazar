@@ -403,13 +403,16 @@ const handleGoogleLoginError = () => {
                 </div>
             {/* Sign in with Google button */}
             <GoogleLogin
-                    onSuccess={handleGoogleLoginSuccess}
-                    onError={handleGoogleLoginError}
-                    useOneTap={true}
-                    cookiePolicy={'single_host_origin'}
-                    theme="outline"
-                    text="Sign in with Google"
-                    shape="rectangular"/>
+  onSuccess={handleGoogleLoginSuccess}
+  onError={handleGoogleLoginError}
+  useOneTap={false} // Disable One-Tap auto sign-in
+  cookiePolicy={'single_host_origin'}
+  theme="outline"
+  text="signin_with"
+  shape="rectangular"
+  prompt="select_account" // Force account selection
+  auto_select={false} // Disable auto-selection
+/>
 
             </div>
 
