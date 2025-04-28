@@ -13,7 +13,6 @@ Responsive design for mobile and desktop devices
 Technologies Used
 Frontend: React, Zustand, Tailwind CSS, Axios
 Backend: Node.js, Express.js, MongoDB
-Authentication: Google OAuth
-Deployment: Heroku, Vercel (or your preferred hosting service)
+Authentication: Google OAuth, JWT
 
 
